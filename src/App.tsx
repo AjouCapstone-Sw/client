@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { DetailPage, HomePage, ListPage, LivePage, LoginPage, RegisterPage } from './Pages';
+import { DetailPage, HomePage, ListPage, LivePage, LoginPage, RegisterPage } from '@Pages/.';
 
 function App() {
   return (

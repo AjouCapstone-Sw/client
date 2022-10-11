@@ -57,11 +57,11 @@
       },
       "alias": {
         "map": [
-          ["@", "./src"],
           ["@Component", "./src/Component"],
           ["@MSW", "./src/_msw"],
           ["@Hook", "./src/Hook"],
-          ["@Page", "./src/Page"]
+          ["@Pages", "./src/Pages"],
+          ["@Util", "./src/Util"]
         ],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }

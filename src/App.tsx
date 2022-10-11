@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { DetailPage, HomePage, ListPage, LivePage, LoginPage, RegisterPage } from '@Pages/.';
+import './App.css';
 
 function App() {
   return (

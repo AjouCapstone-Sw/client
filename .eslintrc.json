@@ -57,7 +57,7 @@
       },
       "alias": {
         "map": [
-          ["@Component", "./src/Component"],
+          ["@Components", "./src/Components"],
           ["@MSW", "./src/_msw"],
           ["@Hook", "./src/Hook"],
           ["@Pages", "./src/Pages"],

@@ -35,6 +35,7 @@ const SearchText = styled.span`
   font-weight: 600;
   font-size: 16px;
   line-height: 19px;
+  cursor: pointer;
 `;
 
 const AuthButtonContainer = styled.div`

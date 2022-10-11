@@ -12,6 +12,7 @@ export const Button = styled.button<ButtonProp>`
   font-weight: 600;
   font-size: 16px;
   line-height: 19px;
+  cursor: pointer;
   ${({ radius }) => radius && 'border-radius: 100px;'}
 `;
 

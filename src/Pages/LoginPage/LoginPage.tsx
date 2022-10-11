@@ -1,4 +1,4 @@
-import { Input } from '@Components/.';
+import { Button, Input } from '@Components/.';
 
 export const LoginPage = () => (
   <div>
@@ -13,8 +13,18 @@ export const LoginPage = () => (
       <span>이메일 찾기</span>
     </div>
     <div>
-      <button type='button'>회원가입</button>
-      <button type='button'>로그인</button>
+      <Button
+        type='button'
+        radius
+      >
+        회원가입
+      </Button>
+      <Button
+        type='button'
+        radius
+      >
+        로그인
+      </Button>
     </div>
   </div>
 );

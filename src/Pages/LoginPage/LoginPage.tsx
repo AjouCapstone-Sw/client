@@ -11,7 +11,6 @@ export const LoginPage = () => {
     <LoginPageStyle.LoginContainer>
       <h1>로그인</h1>
       <LoginPageStyle.LoginForm
-        style={{ width: '100%' }}
         action='/login'
         method='POST'
       >

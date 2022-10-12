@@ -14,6 +14,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
+    "no-param-reassign": "warn",
     "react/function-component-definition": "off",
     "import/no-extraneous-dependencies": "off",
     "react/jsx-props-no-spreading": "off",
@@ -57,11 +58,11 @@
       },
       "alias": {
         "map": [
-          ["@", "./src"],
-          ["@Component", "./src/Component"],
+          ["@Components", "./src/Components"],
           ["@MSW", "./src/_msw"],
           ["@Hook", "./src/Hook"],
-          ["@Page", "./src/Page"]
+          ["@Pages", "./src/Pages"],
+          ["@Util", "./src/Util"]
         ],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }

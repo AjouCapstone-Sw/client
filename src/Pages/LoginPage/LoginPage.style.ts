@@ -14,7 +14,7 @@ const LoginContainer = styled.div`
 `;
 
 const LoginForm = styled.form`
-  width: 100%;
+  min-width: 300px;
 `;
 const InputContainer = styled.div`
   height: 120px;

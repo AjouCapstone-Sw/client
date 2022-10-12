@@ -3,16 +3,17 @@ import * as path from 'path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
+const resolve = (src: string) => path.resolve(__dirname, src);
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: [
-      { find: '@Components', replacement: path.resolve(__dirname, 'src/Components') },
-      { find: '@MSW', replacement: path.resolve(__dirname, 'src/_msw') },
-      { find: '@Hook', replacement: path.resolve(__dirname, 'src/Hook') },
-      { find: '@Pages', replacement: path.resolve(__dirname, 'src/Pages') },
-      { find: '@Util', replacement: path.resolve(__dirname, 'src/Util') },
+      { find: '@Components', replacement: resolve('src/Components') },
+      { find: '@MSW', replacement: resolve('src/_msw') },
+      { find: '@Hook', replacement: resolve('src/Hook') },
+      { find: '@Pages', replacement: resolve('src/Pages') },
+      { find: '@Util', replacement: resolve('src/Util') },
     ],
   },
   server: {

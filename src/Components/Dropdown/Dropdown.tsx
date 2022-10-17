@@ -1,12 +1,7 @@
 import { Controller, FieldValues } from 'react-hook-form';
-import ReactDropdown from 'react-select';
-import styled from 'styled-components';
 
+import DropdownStyle from './Dropdown.style';
 import { DropdownProp } from './Dropdown.type';
-
-const SDropdown = styled(ReactDropdown)`
-  width: 100%;
-`;
 
 export const Dropdown = <T extends FieldValues>({
   control,
@@ -20,7 +15,7 @@ export const Dropdown = <T extends FieldValues>({
     name={name}
     rules={rules}
     render={({ field: { onChange, value } }) => (
-      <SDropdown
+      <DropdownStyle.SDropdown
         options={options}
         onChange={onChange}
         placeholder={placeholder}

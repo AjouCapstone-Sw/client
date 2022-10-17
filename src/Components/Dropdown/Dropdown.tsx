@@ -1,14 +1,8 @@
-import { Control, Controller, FieldValues, Path } from 'react-hook-form';
+import { Controller, FieldValues } from 'react-hook-form';
 import ReactDropdown from 'react-select';
 import styled from 'styled-components';
 
-type DropdownProp<T extends FieldValues> = {
-  control: Control<T>;
-  name: Path<T>;
-  options: { value: string; label: string }[];
-  placeholder: string;
-  rules: object;
-};
+import { DropdownProp } from './Dropdown.type';
 
 const SDropdown = styled(ReactDropdown)`
   width: 100%;

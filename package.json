@@ -21,10 +21,17 @@
     ]
   },
   "dependencies": {
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.9",
+    "@mui/styled-engine-sc": "^5.10.6",
+    "@mui/x-date-pickers": "^5.0.4",
     "axios": "^1.1.2",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.37.0",
     "react-router-dom": "^6.4.2",
+    "react-select": "^5.5.0",
     "socket.io-client": "^4.5.2",
     "styled-components": "^5.3.6"
   },

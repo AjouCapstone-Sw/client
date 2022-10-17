@@ -3,6 +3,7 @@ import styled from 'styled-components';
 type ButtonProp = {
   radius?: boolean;
 };
+
 export const Button = styled.button<ButtonProp>`
   width: 100%;
   height: 50px;
@@ -14,6 +15,10 @@ export const Button = styled.button<ButtonProp>`
   line-height: 19px;
   cursor: pointer;
   ${({ radius }) => radius && 'border-radius: 100px;'}
+  opacity:.95;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 Button.defaultProps = {

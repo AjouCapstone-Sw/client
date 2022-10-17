@@ -39,23 +39,13 @@ export const RegisterPage = () => {
         <div>
           <Input
             placeholder='아이디'
-            {...register('id', { required: '필수 응답 항목입니다.' })}
+            {...register('id', RegisterPageConstant.ID_VALIDATION_OPTION)}
           />
           <RegisterPageStyle.ErrorMsg>{errors.id?.message}</RegisterPageStyle.ErrorMsg>
           <Input
             placeholder='비밀번호'
             type='password'
-            {...register('password', {
-              required: '필수 응답 항목입니다.',
-              minLength: {
-                value: 8,
-                message: '비밀번호는 8자 이상이어야 합니다',
-              },
-              pattern: {
-                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                message: '한 개 이상의 문자와 숫자로 구성해 주세요',
-              },
-            })}
+            {...register('password', RegisterPageConstant.PASSWORD_VALIDATION_OPTION)}
           />
           <RegisterPageStyle.ErrorMsg>{errors.password?.message}</RegisterPageStyle.ErrorMsg>
           <Input
@@ -72,13 +62,7 @@ export const RegisterPage = () => {
           </RegisterPageStyle.ErrorMsg>
           <Input
             placeholder='이메일'
-            {...register('email', {
-              required: '필수 응답 항목입니다.',
-              pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
-                message: '이메일 형식이 아닙니다.',
-              },
-            })}
+            {...register('email', RegisterPageConstant.EMAIL_VALIDATION_OPTION)}
           />
           <RegisterPageStyle.ErrorMsg>{errors.email?.message}</RegisterPageStyle.ErrorMsg>
 
@@ -86,13 +70,7 @@ export const RegisterPage = () => {
             <Input
               disabled={!emailVerifyState}
               placeholder='이메일 인증번호'
-              {...register('emailVerifyNum', {
-                required: '필수 응답 항목입니다.',
-                minLength: {
-                  value: 4,
-                  message: '인증번호를 확인해 주세요',
-                },
-              })}
+              {...register('emailVerifyNum', RegisterPageConstant.EMAIL_VERIFY_VALIDATION_OPTION)}
             />
             {emailVerifyState ? (
               <Button
@@ -114,7 +92,7 @@ export const RegisterPage = () => {
 
           <RegisterPageStyle.DropdownContainer>
             <Dropdown
-              options={RegisterPageConstant.SexOption}
+              options={RegisterPageConstant.REGISTER_SEX_OPTION}
               control={control}
               name='sex'
               placeholder='성별'

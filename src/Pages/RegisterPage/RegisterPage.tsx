@@ -22,7 +22,7 @@ export const RegisterPage = () => {
     handleSubmit: handleRegisterSubmit,
     control,
     watch,
-    formState: { errors },
+    formState: { errors: registerValidationErrors },
   } = useForm<RegisterFormData>();
 
   const { emailVerifyState, handleEmailVerify } = useEmailVerify();
@@ -41,13 +41,17 @@ export const RegisterPage = () => {
             placeholder='아이디'
             {...register('id', RegisterPageConstant.ID_VALIDATION_OPTION)}
           />
-          <RegisterPageStyle.ErrorMsg>{errors.id?.message}</RegisterPageStyle.ErrorMsg>
+          <RegisterPageStyle.ErrorMsg>
+            {registerValidationErrors.id?.message}
+          </RegisterPageStyle.ErrorMsg>
           <Input
             placeholder='비밀번호'
             type='password'
             {...register('password', RegisterPageConstant.PASSWORD_VALIDATION_OPTION)}
           />
-          <RegisterPageStyle.ErrorMsg>{errors.password?.message}</RegisterPageStyle.ErrorMsg>
+          <RegisterPageStyle.ErrorMsg>
+            {registerValidationErrors.password?.message}
+          </RegisterPageStyle.ErrorMsg>
           <Input
             placeholder='비밀번호 확인'
             type='password'
@@ -58,13 +62,15 @@ export const RegisterPage = () => {
             })}
           />
           <RegisterPageStyle.ErrorMsg>
-            {errors.passwordValidate?.message}
+            {registerValidationErrors.passwordValidate?.message}
           </RegisterPageStyle.ErrorMsg>
           <Input
             placeholder='이메일'
             {...register('email', RegisterPageConstant.EMAIL_VALIDATION_OPTION)}
           />
-          <RegisterPageStyle.ErrorMsg>{errors.email?.message}</RegisterPageStyle.ErrorMsg>
+          <RegisterPageStyle.ErrorMsg>
+            {registerValidationErrors.email?.message}
+          </RegisterPageStyle.ErrorMsg>
 
           <RegisterPageStyle.EmailVerifyContainer>
             <Input
@@ -88,7 +94,9 @@ export const RegisterPage = () => {
               </Button>
             )}
           </RegisterPageStyle.EmailVerifyContainer>
-          <RegisterPageStyle.ErrorMsg>{errors.emailVerifyNum?.message}</RegisterPageStyle.ErrorMsg>
+          <RegisterPageStyle.ErrorMsg>
+            {registerValidationErrors.emailVerifyNum?.message}
+          </RegisterPageStyle.ErrorMsg>
 
           <RegisterPageStyle.DropdownContainer>
             <Dropdown
@@ -104,7 +112,9 @@ export const RegisterPage = () => {
               name='birth'
             />
           </RegisterPageStyle.DropdownContainer>
-          <RegisterPageStyle.ErrorMsg>{errors.sex?.message}</RegisterPageStyle.ErrorMsg>
+          <RegisterPageStyle.ErrorMsg>
+            {registerValidationErrors.sex?.message}
+          </RegisterPageStyle.ErrorMsg>
         </div>
         <Button>회원가입</Button>
       </RegisterPageStyle.RegisterForm>

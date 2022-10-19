@@ -1,1 +1,3 @@
-export const ListPage = () => <div>상품리스트</div>;
+import { Footer } from '@Components/.';
+
+export const ListPage = () => <Footer />;

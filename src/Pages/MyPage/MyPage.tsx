@@ -1,1 +1,1 @@
-export const MyPage = () => <div>마의페이지</div>;
+export const MyPage = () => <div>마이페이지</div>;

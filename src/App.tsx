@@ -1,15 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { DetailPage, HomePage, ListPage, LivePage, LoginPage, RegisterPage } from '@Pages/.';
+import { FooterPage, LivePage, LoginPage, RegisterPage } from '@Pages/.';
 import './App.css';
 
 function App() {
   return (
     <Routes>
-      <Route
-        path='/'
-        element={<HomePage />}
-      />
       <Route
         path='/login'
         element={<LoginPage />}
@@ -19,16 +15,12 @@ function App() {
         element={<RegisterPage />}
       />
       <Route
-        path='/detail'
-        element={<DetailPage />}
-      />
-      <Route
-        path='/list'
-        element={<ListPage />}
-      />
-      <Route
         path='/live'
         element={<LivePage />}
+      />
+      <Route
+        path='*'
+        element={<FooterPage />}
       />
     </Routes>
   );

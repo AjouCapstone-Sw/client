@@ -1,3 +1,1 @@
-import { Footer } from '@Components/.';
-
-export const ListPage = () => <Footer />;
+export const ListPage = () => <div>list Page</div>;

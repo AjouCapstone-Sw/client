@@ -6,7 +6,7 @@ import { useMovePage } from '@Hook/useMovePage';
 
 export const LoginPage = () => {
   const { email, password, handleChangeEmail, handleChangePassword } = useLoginState();
-  const [goRegister] = useMovePage('/register');
+  const [goRegister] = useMovePage('/register') as (() => void)[];
   return (
     <LoginPageStyle.LoginContainer>
       <h1>로그인</h1>

@@ -8,6 +8,10 @@ ol,
 ul {
   list-style: none;
 }
+
+*::-webkit-scrollbar {
+  display: none;
+}
 input {
   outline: none;
 }

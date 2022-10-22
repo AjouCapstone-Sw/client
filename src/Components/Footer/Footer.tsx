@@ -1,32 +1,23 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import { FOOTER_DATA } from './Footer.const';
 import FooterStyle from './Footer.style';
 import { getCurrentPageName } from './Footer.util';
 
-import { useMovePage } from '@Hook/.';
-
 export const Footer = () => {
   const currentPageId = getCurrentPageName();
-
-  const [goPage] = useMovePage();
-  const handleIconClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.stopPropagation();
-    if (!(e.currentTarget instanceof HTMLElement)) return undefined;
-    const link = e.currentTarget.dataset?.link ?? '/';
-    goPage(link);
-  };
   return (
     <FooterStyle.FooterContainer>
       {FOOTER_DATA.map(({ id, component, title, link }) => (
-        <FooterStyle.IconContainer
+        <NavLink
           key={id}
           data-link={link}
-          onClickCapture={handleIconClick}
+          to={link}
         >
           {component(currentPageId === id)}
           <span>{title}</span>
-        </FooterStyle.IconContainer>
+        </NavLink>
       ))}
     </FooterStyle.FooterContainer>
   );

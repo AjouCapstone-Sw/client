@@ -9,18 +9,19 @@ const FooterContainer = styled.div`
   width: 100%;
   position: fixed;
   bottom: 0;
-`;
 
-const IconContainer = styled.div`
-  cursor: pointer;
-  width: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  a {
+    cursor: pointer;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-  .select path {
-    fill: #5db075;
+    .select path {
+      fill: #5db075;
+    }
   }
 `;
-export default { FooterContainer, IconContainer };
+
+export default { FooterContainer };

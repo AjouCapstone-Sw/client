@@ -8,6 +8,10 @@ ol,
 ul {
   list-style: none;
 }
+
+*::-webkit-scrollbar {
+  display: none;
+}
 input {
   outline: none;
 }
@@ -19,4 +23,8 @@ input:-webkit-autofill:active {
 }
 input::placeholder {
   color: #bdbdbd;
+}
+a {
+  text-decoration: none;
+  color: black;
 }

@@ -23,6 +23,6 @@
       "@Util/*": ["./src/Util/*"]
     }
   },
-  "include": ["src", "cypress"],
+  "include": ["src", "cypress", "src/custom.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

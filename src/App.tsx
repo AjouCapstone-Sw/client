@@ -45,7 +45,7 @@ function App() {
             element={<HomePage />}
           />
           <Route
-            path='/detail'
+            path='/detail/:productId'
             element={<DetailPage />}
           />
           <Route

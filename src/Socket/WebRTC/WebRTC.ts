@@ -8,7 +8,7 @@ export default class ClientSocket {
 
   static sendPC: RTCPeerConnection;
 
-  static receivePCs: { [index: string]: RTCPeerConnection };
+  static receivePC: RTCPeerConnection;
 
   static instance: ClientSocket | null;
 

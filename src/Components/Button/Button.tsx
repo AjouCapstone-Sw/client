@@ -19,6 +19,15 @@ export const Button = styled.button<ButtonProp>`
   &:hover {
     opacity: 1;
   }
+  &:disabled {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    opacity: 1;
+    &:hover {
+      cursor: inherit;
+    }
+  }
 `;
 
 Button.defaultProps = {

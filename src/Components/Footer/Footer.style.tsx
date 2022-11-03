@@ -3,12 +3,17 @@ import styled from 'styled-components';
 const FooterContainer = styled.div`
   background-color: #bdc5cd;
   display: flex;
+
   justify-content: center;
   align-items: center;
   height: 85px;
   width: 100%;
   position: fixed;
   bottom: 0;
+
+  @media screen and (min-width: 480px) {
+    display: none;
+  }
 
   a {
     cursor: pointer;

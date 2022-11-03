@@ -34,16 +34,10 @@ export const LoginPage = () => {
         <LoginPageStyle.TextContainer>
           <LoginPageStyle.SearchText>비밀번호 찾기</LoginPageStyle.SearchText>
           <LoginPageStyle.SearchText>이메일 찾기</LoginPageStyle.SearchText>
+          <LoginPageStyle.SearchText onClick={goRegister}>회원가입</LoginPageStyle.SearchText>
         </LoginPageStyle.TextContainer>
 
         <LoginPageStyle.AuthButtonContainer>
-          <Button
-            type='button'
-            radius
-            onClick={goRegister}
-          >
-            회원가입
-          </Button>
           <Button
             type='submit'
             radius

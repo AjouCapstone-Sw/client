@@ -5,3 +5,4 @@ export * from './Calendar/Calendar';
 export * from './Footer/Footer';
 export * from './ProductHeader/ProductHeader';
 export * from './ItemListCell/ItemListCell';
+export * from './ImageSlick/ImageSlick';

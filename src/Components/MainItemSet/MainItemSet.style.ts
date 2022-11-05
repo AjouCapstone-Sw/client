@@ -16,9 +16,11 @@ const Title = styled.div`
     font-size: 14px;
     line-height: 17px;
     color: #bdbdbd;
+    cursor: pointer;
   }
 
   img {
+    cursor: pointer;
     width: 10px;
     height: 10px;
   }

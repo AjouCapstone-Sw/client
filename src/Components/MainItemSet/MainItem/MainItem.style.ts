@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.li`
   height: 150px;
+  cursor: pointer;
   span {
     display: block;
     font-size: 14px;

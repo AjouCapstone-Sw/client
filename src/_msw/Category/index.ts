@@ -1,5 +1,8 @@
 import { rest } from 'msw';
 
-import { mockGetCategoryItemList } from './handler';
+import { mockGetCategoryItemList, mockGetCategoryList } from './handler';
 
-export const CategoryHandler = [rest.get('/api/v1/category/:categoryId', mockGetCategoryItemList)];
+export const CategoryHandler = [
+  rest.get('/api/v1/category/:categoryId', mockGetCategoryItemList),
+  rest.get('/api/v1/category', mockGetCategoryList),
+];

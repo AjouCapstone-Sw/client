@@ -1,5 +1,4 @@
-import moment from 'moment';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { ProductDetail } from './DetailPage.type';
 
@@ -57,19 +56,6 @@ const dummy: ProductDetail[] = [
     auctionReviewCount: 10,
   },
 ];
-
-export const useNowTime = () => {
-  const [nowTime, setNowTime] = useState(moment());
-
-  useEffect(() => {
-    const timer = setInterval(() => setNowTime(moment()), 1000);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-
-  return nowTime;
-};
 
 export const useGetProductDetail = (productId: number) => {
   const [productDetails] = useState<ProductDetail[]>([...dummy]);

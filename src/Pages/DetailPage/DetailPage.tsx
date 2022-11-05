@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetProductDetail, useNowTime } from './DetailPage.hook';
+import { useGetProductDetail } from './DetailPage.hook';
 import DetailPageStyle from './DetailPage.style';
 
-import { Button, ImageSlick } from '@Components/.';
+import { Button, ImageSlick, AuctionTimerButton } from '@Components/.';
 import { RightArrow } from '@Components/Svg';
-import { addPriceComma, getTimeDiffFromNow, isAuctionEnd, isNowTimeAhead } from '@Util/.';
+import { addPriceComma } from '@Util/.';
 
 export const DetailPage = () => {
   const { productId } = useParams();
@@ -23,11 +23,6 @@ export const DetailPage = () => {
     description,
     buyNowPrice,
   } = useGetProductDetail(Number(productId));
-
-  const nowTime = useNowTime();
-  const timeDiff = getTimeDiffFromNow(nowTime, auctionStartTime);
-  const isAuctionProceed =
-    !isNowTimeAhead(nowTime, auctionStartTime) && !isAuctionEnd(nowTime, auctionEndTime);
 
   return (
     <DetailPageStyle.ProductContainer>
@@ -60,11 +55,10 @@ export const DetailPage = () => {
         <Button>
           즉시 구매 <span>{addPriceComma(buyNowPrice)} ₩</span>
         </Button>
-        <Button disabled={!isAuctionProceed}>
-          {isNowTimeAhead(nowTime, auctionStartTime) && <span> 경매 참여 {timeDiff}</span>}
-          {isAuctionProceed && <span>경매 참여</span>}
-          {isAuctionEnd(nowTime, auctionEndTime) && <span>경매 종료</span>}
-        </Button>
+        <AuctionTimerButton
+          startTime={auctionStartTime}
+          endTime={auctionEndTime}
+        />
       </DetailPageStyle.ButtonContainer>
     </DetailPageStyle.ProductContainer>
   );

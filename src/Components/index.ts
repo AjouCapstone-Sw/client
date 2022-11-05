@@ -8,3 +8,4 @@ export * from './ItemListCell/ItemListCell';
 export * from './ImageSlick/ImageSlick';
 export * from './AuctionTimerButton/AuctionTimerButton';
 export * from './HomeHeader/HomeHeader';
+export * from './MainItemSet/MainItemSet';

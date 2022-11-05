@@ -59,9 +59,9 @@ const dummy: ProductDetail[] = [
 
 export const useGetProductDetail = (productId: number) => {
   const [productDetails] = useState<ProductDetail[]>([...dummy]);
-  const productDetail = productDetails.filter(({ id }) => id === productId);
-  if (!productDetail) {
+  const [targetProductDetail] = productDetails.filter(({ id }) => id === productId);
+  if (!targetProductDetail) {
     console.log('not fount');
   }
-  return productDetail[0];
+  return targetProductDetail;
 };

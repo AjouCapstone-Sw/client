@@ -1,21 +1,28 @@
 import { MainItem } from './MainItem/MainItem';
 import { useGetCategoryItemInfo } from './MainItemSet.hook';
+import MainItemSetStyle from './MainItemSet.style';
 import { MainItemSetProps } from './MainItemSet.type';
 
 export const MainItemSet = ({ categoryId }: MainItemSetProps) => {
   const { category, itemList } = useGetCategoryItemInfo({ categoryId });
   return (
-    <div>
-      <span>{category}</span>
-      <span>더보기 {'>'} </span>
-      <ul>
+    <MainItemSetStyle.Container>
+      <MainItemSetStyle.Title>
+        <MainItemSetStyle.Category>{category}</MainItemSetStyle.Category>
+        <span>더보기 </span>
+        <img
+          src='/asset/MainItemSet/더보기.svg'
+          alt='더보기'
+        />
+      </MainItemSetStyle.Title>
+      <MainItemSetStyle.ItemContainer>
         {itemList.map((item) => (
           <MainItem
             key={item.productId}
             {...item}
           />
         ))}
-      </ul>
-    </div>
+      </MainItemSetStyle.ItemContainer>
+    </MainItemSetStyle.Container>
   );
 };

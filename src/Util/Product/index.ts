@@ -1,21 +1,16 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+
+dayjs.extend(duration);
 
 const DATE_FORMAT = 'YYYY/MM/DD HH:mm';
-
 export const addPriceComma = (num: number) => num.toLocaleString();
 
-export const getTimeDiffFromNow = (nowTime: moment.Moment, baseTime: string) =>
-  moment(baseTime, DATE_FORMAT).isSame(moment(nowTime, DATE_FORMAT), 'day')
-    ? moment
-        .utc(moment(baseTime, DATE_FORMAT).diff(moment(nowTime, DATE_FORMAT)))
-        .format('00[일] HH:mm:ss')
-    : moment
-        .utc(moment(baseTime, DATE_FORMAT).diff(moment(nowTime, DATE_FORMAT)))
-        .subtract(1, 'day')
-        .format('DD[일] HH:mm:ss');
+export const getTimeDiffFromNow = (nowTime: dayjs.Dayjs, baseTime: string) =>
+  dayjs.duration(dayjs(baseTime).diff(dayjs(nowTime, DATE_FORMAT))).format('DD일 HH:mm:ss');
 
-export const isNowTimeAhead = (nowTime: moment.Moment, baseTime: string) =>
-  nowTime.isSameOrBefore(moment(baseTime, DATE_FORMAT));
+export const isNowTimeAhead = (nowTime: dayjs.Dayjs, baseTime: string) =>
+  nowTime.isBefore(dayjs(baseTime, DATE_FORMAT));
 
-export const isAuctionEnd = (nowTime: moment.Moment, endTime: string) =>
-  nowTime.isSameOrAfter(moment(endTime, DATE_FORMAT));
+export const isAuctionEnd = (nowTime: dayjs.Dayjs, endTime: string) =>
+  nowTime.isAfter(dayjs(endTime, DATE_FORMAT));

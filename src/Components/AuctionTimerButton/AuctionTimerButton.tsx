@@ -13,6 +13,7 @@ export const AuctionTimerButton = ({
   const nowTime = useNowTime();
   const timeDiff = getTimeDiffFromNow(nowTime, startTime);
   const isAuctionProceed = !isNowTimeAhead(nowTime, startTime) && !isAuctionEnd(nowTime, endTime);
+
   return (
     <Button disabled={!isAuctionProceed}>
       {isNowTimeAhead(nowTime, startTime) && <span> 경매 참여 {timeDiff}</span>}

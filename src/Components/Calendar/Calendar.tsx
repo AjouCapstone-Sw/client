@@ -1,8 +1,8 @@
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Controller, FieldValues } from 'react-hook-form';
 
 import { CalendarChildProp, CalendarProp } from './Calendar.type';
@@ -11,11 +11,11 @@ const CalendarChild = <T extends FieldValues>({
   field: { value, onChange },
   label,
 }: CalendarChildProp<T>) => (
-  <LocalizationProvider dateAdapter={AdapterMoment}>
+  <LocalizationProvider dateAdapter={AdapterDayjs}>
     <DatePicker
       label={label}
       onChange={(date) => {
-        onChange(moment(date).format('YYYY-MM-DD'));
+        onChange(dayjs(date).format('YYYY-MM-DD'));
       }}
       value={value}
       renderInput={(params) => <TextField {...params} />}

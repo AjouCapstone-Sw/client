@@ -1,8 +1,8 @@
 import ItemListCellStyle from './ItemListCell.style';
 import { ItemListCellProps } from './ItemListCell.type';
-import { addPriseComma } from './ItemListCell.util';
 
 import { useMovePage } from '@Hook/useMovePage';
+import { addPriceComma } from '@Util/.';
 
 export const ItemListCell = ({
   id,
@@ -25,8 +25,8 @@ export const ItemListCell = ({
       </ItemListCellStyle.ImageBox>
       <ItemListCellStyle.TextContainer>
         <span className='strong'>{title}</span>
-        <span>즉시 구매 : {addPriseComma(buyNowPrice)}원</span>
-        <span>경매 시작가 : {addPriseComma(auctionStartPrice)}원 </span>
+        <span>즉시 구매 : {addPriceComma(buyNowPrice)}원</span>
+        <span>경매 시작가 : {addPriceComma(auctionStartPrice)}원 </span>
         <span>경매 시간 : {auctionStartTime}</span>
       </ItemListCellStyle.TextContainer>
     </ItemListCellStyle.Container>

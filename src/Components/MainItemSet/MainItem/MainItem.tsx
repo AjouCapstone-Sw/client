@@ -2,6 +2,7 @@ import MainItemStyle from './MainItem.style';
 import { MainItemProps } from './MainItem.type';
 
 import { useMovePage } from '@Hook/useMovePage';
+import { addPriceComma } from '@Util/.';
 
 export const MainItem = ({ productId, productImage, title, buyNowPrice }: MainItemProps) => {
   const [goDetail] = useMovePage(`/detail/${productId}`);
@@ -15,7 +16,7 @@ export const MainItem = ({ productId, productImage, title, buyNowPrice }: MainIt
         alt='상품 이미지'
       />
       <span>{title}</span>
-      <MainItemStyle.Price>{buyNowPrice.toLocaleString()} 원</MainItemStyle.Price>
+      <MainItemStyle.Price>{addPriceComma(buyNowPrice)} 원</MainItemStyle.Price>
     </MainItemStyle.Container>
   );
 };

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const FooterContainer = styled.div`
+  display: none;
   background-color: #bdc5cd;
-  display: flex;
 
   justify-content: center;
   align-items: center;
@@ -11,8 +11,8 @@ const FooterContainer = styled.div`
   position: fixed;
   bottom: 0;
 
-  @media screen and (min-width: 480px) {
-    display: none;
+  ${({ theme }) => theme.mediaQuery.mobile} {
+    display: flex;
   }
 
   a {
@@ -24,7 +24,7 @@ const FooterContainer = styled.div`
     flex-direction: column;
 
     .select path {
-      fill: #5db075;
+      fill: ${({ theme }) => theme.color.primary};
     }
   }
 `;

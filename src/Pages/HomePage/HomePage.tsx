@@ -1,13 +1,13 @@
 import { useGetCategoryList } from './HomePage.hook';
 import HomePageStyle from './HomePage.style';
 
-import { HomeHeader, MainItemSet } from '@Components/.';
+import { HomeLiveItem, MainItemSet } from '@Components/.';
 
 export const HomePage = () => {
   const categoryList = useGetCategoryList();
   return (
     <>
-      <HomeHeader
+      <HomeLiveItem
         imgSrc='/asset/김영진.jpg'
         productId={1}
       />

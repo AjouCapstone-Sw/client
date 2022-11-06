@@ -1,4 +1,4 @@
-export type HomeHeaderProps = {
+export type HomeLiveItemProps = {
   imgSrc: string;
   productId: number;
 };

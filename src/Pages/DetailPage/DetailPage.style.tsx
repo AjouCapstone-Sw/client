@@ -64,17 +64,17 @@ const ReviewAnchor = styled.p`
 const ProductTitle = styled.p`
   margin-top: 32px;
   margin-bottom: 16px;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: ${({ theme }) => theme.fontSize.xl};
+  font-weight: ${({ theme }) => theme.fontWeight.base};
 `;
 
 const ProductText = styled.p`
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fontSize.m};
   margin: 16px 0px;
 `;
 
 const ProductHighlightText = styled(ProductText)`
-  font-weight: 600;
+  font-weight: ${({ theme }) => theme.fontWeight.base};
   margin: 8px 0px;
 `;
 
@@ -87,7 +87,7 @@ const ButtonContainer = styled.div`
 
   button {
     margin: 0.5px;
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.fontSize.m};
   }
   span {
     margin-left: 8px;

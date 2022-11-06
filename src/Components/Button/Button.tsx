@@ -7,11 +7,11 @@ type ButtonProp = {
 export const Button = styled.button<ButtonProp>`
   width: 100%;
   height: 50px;
-  background: #5db075;
-  color: #ffffff;
+  background: ${({ theme }) => theme.color.primary};
+  color: ${({ theme }) => theme.color.white};
   font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: ${({ theme }) => theme.fontWeight.base};
+  font-size: ${({ theme }) => theme.fontSize.m};
   line-height: 19px;
   cursor: pointer;
   ${({ radius }) => radius && 'border-radius: 100px;'}
@@ -21,8 +21,8 @@ export const Button = styled.button<ButtonProp>`
   }
   &:disabled {
     border: 1px solid #999999;
-    background-color: #cccccc;
-    color: #666666;
+    background-color: ${({ theme }) => theme.color.gray};
+    color: ${({ theme }) => theme.color.dark};
     opacity: 1;
     &:hover {
       cursor: inherit;

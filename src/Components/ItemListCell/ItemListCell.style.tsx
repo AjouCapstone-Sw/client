@@ -17,8 +17,8 @@ const ImageBox = styled.div`
     position: absolute;
     top: -8px;
     left: -12px;
-    color: #5db075;
-    font-weight: 900;
+    color: ${({ theme }) => theme.color.primary};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
     transform: rotate(-0.1turn);
   }
 `;
@@ -35,8 +35,8 @@ const TextContainer = styled.div`
   margin-left: 10px;
   overflow: auto;
   .strong {
-    font-weight: 900;
-    font-size: 24px;
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    font-size: ${({ theme }) => theme.fontSize.xl};
   }
 `;
 export default { Container, Image, ImageBox, TextContainer };

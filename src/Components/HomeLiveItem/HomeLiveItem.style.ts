@@ -5,10 +5,10 @@ const Container = styled.div`
   top: 90px;
   left: 0px;
 
-  background-color: #5db075;
+  background-color: ${({ theme }) => theme.color.primary};
   width: 100vw;
   height: 270px;
-  color: white;
+  color: ${({ theme }) => theme.color.white};
   text-align: center;
   box-sizing: border-box;
   padding: 0px 20px;
@@ -18,7 +18,7 @@ const View = styled.div`
   width: calc(100%);
   height: calc(80% - 20px);
   border-radius: 12px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.color.white};
   margin: 20px 0;
   position: relative;
   overflow: hidden;

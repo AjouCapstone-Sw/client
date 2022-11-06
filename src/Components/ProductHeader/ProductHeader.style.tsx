@@ -7,7 +7,7 @@ const HeaderContainer = styled.div`
   z-index: 9999;
   width: 100%;
   height: 90px;
-  background-color: #5db075;
+  background-color: ${({ theme }) => theme.color.primary};
   padding: 14px;
   box-sizing: border-box;
   display: flex;

@@ -1,12 +1,12 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import { FOOTER_DATA } from './Footer.const';
 import FooterStyle from './Footer.style';
 import { getCurrentPageName } from './Footer.util';
 
 export const Footer = () => {
-  const currentPageId = getCurrentPageName();
+  const { pathname } = useLocation();
+  const currentPageId = getCurrentPageName(pathname);
   return (
     <FooterStyle.FooterContainer>
       {FOOTER_DATA.map(({ id, component, title, link }) => (

@@ -1,1 +1,24 @@
-export const HomePage = () => <div>홈페이지</div>;
+import { useGetCategoryList } from './HomePage.hook';
+import HomePageStyle from './HomePage.style';
+
+import { HomeLiveItem, MainItemSet } from '@Components/.';
+
+export const HomePage = () => {
+  const categoryList = useGetCategoryList();
+  return (
+    <>
+      <HomeLiveItem
+        imgSrc='/asset/김영진.jpg'
+        productId={1}
+      />
+      <HomePageStyle.MainItemSetContainer>
+        {categoryList.map((categoryId) => (
+          <MainItemSet
+            key={categoryId}
+            categoryId={categoryId}
+          />
+        ))}
+      </HomePageStyle.MainItemSetContainer>
+    </>
+  );
+};

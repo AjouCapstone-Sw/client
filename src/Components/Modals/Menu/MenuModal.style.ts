@@ -7,6 +7,7 @@ const MenuModalContainer = styled.div`
   margin-top: 90px;
   width: 100%;
   z-index: 100;
+  min-width: 340px;
 
   &::before {
     display: block;

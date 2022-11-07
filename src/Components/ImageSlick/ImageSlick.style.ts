@@ -24,7 +24,7 @@ const Slider = styled(SSlider)`
     margin-bottom: 50px;
   }
   .slick-dots li.slick-active button:before {
-    color: white;
+    color: ${({ theme }) => theme.color.white};
   }
 `;
 

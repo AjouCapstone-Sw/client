@@ -52,7 +52,7 @@ const DropdownContainer = styled.div`
 `;
 
 const ErrorMsg = styled.p`
-  font-size: 12px;
+  font-size: ${({ theme }) => theme.fontSize.sm};
   margin-top: 5px;
   margin-bottom: 10px;
   color: #e03e3e;

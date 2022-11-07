@@ -16,8 +16,8 @@ const Container = styled.li`
 
 const Price = styled.span`
   font-style: normal;
-  font-weight: 600;
-  font-size: 16px !important;
+  font-weight: ${({ theme }) => theme.fontWeight.base};
+  font-size: ${({ theme }) => theme.fontSize.m} !important;
   line-height: 17px;
 `;
 

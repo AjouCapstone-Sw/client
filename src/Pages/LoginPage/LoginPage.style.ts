@@ -30,10 +30,10 @@ const TextContainer = styled.div`
   justify-content: space-around;
 `;
 const SearchText = styled.span`
-  color: #5db075;
+  color: ${({ theme }) => theme.color.primary};
   font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: ${({ theme }) => theme.fontWeight.base};
+  font-size: ${({ theme }) => theme.fontSize.m};
   line-height: 19px;
   cursor: pointer;
 `;

@@ -12,7 +12,7 @@ const Title = styled.div`
   margin: 15px 0;
   span {
     font-style: normal;
-    font-weight: 400;
+    font-weight: ${({ theme }) => theme.fontWeight.light};
     font-size: 14px;
     line-height: 17px;
     color: #bdbdbd;
@@ -28,8 +28,8 @@ const Title = styled.div`
 
 const Category = styled.div`
   font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
+  font-weight: ${({ theme }) => theme.fontWeight.base};
+  font-size: ${({ theme }) => theme.fontSize.xl};
   line-height: 29px;
   display: flex;
   align-items: center;

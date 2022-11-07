@@ -9,7 +9,7 @@ export const useGetCategoryItemInfo = ({ categoryId }: UseGetCategoryItemInfo) =
   useEffect(() => {
     getCategoryItemList(categoryId)
       .then(setCategoryItemSetObj)
-      .catch((e) => setCategoryItemSetObj(INIT_ITEM));
+      .catch(() => setCategoryItemSetObj(INIT_ITEM));
   }, [categoryId]);
 
   return categoryItemSetObj;

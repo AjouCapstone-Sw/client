@@ -7,7 +7,7 @@ export const useGetCategoryList = () => {
   useEffect(() => {
     getCategoryList()
       .then(setCategoryList)
-      .catch((e) => setCategoryList([]));
+      .catch(() => setCategoryList([]));
   }, []);
   return categoryList;
 };

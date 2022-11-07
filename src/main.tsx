@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { worker } from './_msw';
 import App from './App';
-import { ModalProvider } from './Context/Modal/ModalProvider';
+import { ModalProvider } from './Context';
 import { theme } from './Styles/theme';
 
 worker.start();

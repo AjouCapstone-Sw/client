@@ -1,6 +1,6 @@
-import axios from 'axios';
+import { axiosInstance } from '@Util/.';
 
 export const getProductDetail = async (productId: number) => {
-  const res = await axios.get(`/api/v1/product/${productId}`, { withCredentials: true });
+  const res = await axiosInstance.get(`/product/${productId}`);
   return res.data;
 };

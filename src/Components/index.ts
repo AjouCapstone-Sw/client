@@ -3,7 +3,7 @@ export * from './Button/Button';
 export * from './Dropdown/Dropdown';
 export * from './Calendar/Calendar';
 export * from './Footer/Footer';
-export * from './ProductHeader/ProductHeader';
+export * from './Header/Header';
 export * from './ItemListCell/ItemListCell';
 export * from './ImageSlick/ImageSlick';
 export * from './AuctionTimerButton/AuctionTimerButton';

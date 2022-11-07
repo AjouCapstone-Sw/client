@@ -22,7 +22,7 @@ export const DetailPage = () => {
     auctionEndTime,
     description,
     buyNowPrice,
-  } = useGetProductDetail(Number(productId));
+  } = useGetProductDetail(Number(productId))!;
 
   return (
     <DetailPageStyle.ProductContainer>

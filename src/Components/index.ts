@@ -9,3 +9,4 @@ export * from './ImageSlick/ImageSlick';
 export * from './AuctionTimerButton/AuctionTimerButton';
 export * from './HomeLiveItem/HomeLiveItem';
 export * from './MainItemSet/MainItemSet';
+export * from './Modals/Modals';

@@ -15,3 +15,13 @@ export const MODAL_PROPS = {
   shouldCloseOnEsc: true,
   style: MODAL_STYLE,
 };
+
+export const SEARCH_MODAL_PROPS = {
+  ...MODAL_PROPS,
+  style: {
+    ...MODAL_STYLE,
+    ...{ overlay: { backgroundColor: 'rgba(23,23,26,0.5)', zIndex: 10000 } },
+  },
+};
+
+console.log(SEARCH_MODAL_PROPS);

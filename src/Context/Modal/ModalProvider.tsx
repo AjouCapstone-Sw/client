@@ -6,22 +6,22 @@ import { OpenModal } from './ModalProvider.type';
 export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   const [openedModals, setOpenedModals] = useState<OpenModal[]>([]);
 
-  const open = (Component: React.FC, props: any) => {
+  const openModal = (Component: React.FC, props: any) => {
     setOpenedModals((modals) => [
       ...modals.filter(({ Component: openedModalComponent }) => Component !== openedModalComponent),
       { Component, props },
     ]);
   };
 
-  const close = (Component: React.FC) =>
+  const closeModal = (Component: React.FC) =>
     setOpenedModals((modals) =>
       modals.filter(({ Component: openedModalComponent }) => Component !== openedModalComponent),
     );
 
   const modalDispatch = useMemo(
     () => ({
-      open,
-      close,
+      openModal,
+      closeModal,
     }),
     [],
   );

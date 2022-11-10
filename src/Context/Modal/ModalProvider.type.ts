@@ -7,6 +7,6 @@ export type OpenModal = {
 };
 
 export type ModalDispatch = {
-  open: (Component: React.FC, props: any) => void;
-  close: (Component: React.FC) => void;
+  openModal: (Component: React.FC, props: any) => void;
+  closeModal: (Component: React.FC) => void;
 };

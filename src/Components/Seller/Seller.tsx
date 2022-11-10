@@ -2,6 +2,7 @@ import { ReactNode, useRef, useEffect } from 'react';
 
 import { connection, getSenderAnswerEvent, getSenderCandidateEvent } from './Seller.util';
 
+import { Video } from '@Components/.';
 import ClientSocket from '@Socket/WebRTC/WebRTC';
 
 const SELLER_ID = 'yj';
@@ -22,11 +23,7 @@ export const Seller = ({ children, productId }: { children: ReactNode; productId
   }, [productId]);
   return (
     <div>
-      <video
-        muted
-        ref={videoRef}
-        autoPlay
-      />
+      <Video videoRef={videoRef} />
       {children}
     </div>
   );

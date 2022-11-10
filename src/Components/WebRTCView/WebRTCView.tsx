@@ -1,15 +1,17 @@
 import { AUCTION_HEADER_IMG } from './WebRTCView.const';
+import { useGetProductDataInAuction } from './WebRTCView.hook';
 import WebRTCViewStyle from './WebRTCView.style';
+import type { WebRTCViewProps } from './WebRTCView.type';
 
 import { addPriceComma } from '@Util/index';
 
-export const WebRTCView = () => {
-  const productTitle = '김영진 피규어';
+export const WebRTCView = ({ productId }: WebRTCViewProps) => {
+  const { productTitle, auctionStartPrice, nowAskPrice } = useGetProductDataInAuction({
+    productId,
+  });
   const joinUserLength = 10000;
-  const auctionStartPrice = 1500;
   const untilExitAuctionTime = '10:00';
   const nowAuctionPrice = 2000;
-  const nowAskPrice = 500;
   const productLikeNum = 100;
   const chats = [
     {

@@ -1,3 +1,5 @@
+import type { auctionProductData } from './WebRTCView.type';
+
 export const AUCTION_HEADER_IMG = [
   {
     id: 1,
@@ -10,3 +12,9 @@ export const AUCTION_HEADER_IMG = [
     alt: '나가기',
   },
 ];
+
+export const IN_PRODUCT_DATA_IN_AUCTION: auctionProductData = {
+  productTitle: '',
+  auctionStartPrice: 0,
+  nowAskPrice: 0,
+};

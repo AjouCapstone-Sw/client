@@ -9,7 +9,7 @@ export const LivePage = () => {
   return (
     <div>
       <Container productId={Number(productId)}>
-        <WebRTCView />
+        <WebRTCView productId={Number(productId)} />
       </Container>
     </div>
   );

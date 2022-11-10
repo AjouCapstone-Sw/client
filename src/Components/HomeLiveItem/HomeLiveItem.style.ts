@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  position: fixed;
-  top: 90px;
-  left: 0px;
+  position: relative;
 
   background-color: ${({ theme }) => theme.color.primary};
   width: 100vw;
@@ -12,6 +10,10 @@ const Container = styled.div`
   text-align: center;
   box-sizing: border-box;
   padding: 0px 20px;
+
+  h1 {
+    margin-top: 10px;
+  }
 `;
 
 const View = styled.div`

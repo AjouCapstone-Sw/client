@@ -2,8 +2,8 @@ import { DefaultTheme } from 'styled-components';
 
 export const mediaQuery = {
   mobile: 'screen and (hover: none) and (pointer: coarse)',
-  small: 'screen and (max-width: "480px")',
-  base: 'screen and (max-width: "1024px")',
+  small: 'screen and (max-width: 480px)',
+  base: 'screen and (max-width: 768px)',
 };
 
 export const color = {

@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
+import { Modals } from '@Components/.';
 import {
   DetailPage,
   FooterPage,
@@ -11,50 +12,54 @@ import {
   ProductPage,
   RegisterPage,
 } from '@Pages/.';
+
 import './App.css';
 
 function App() {
   return (
-    <Routes>
-      <Route
-        path='/login'
-        element={<LoginPage />}
-      />
-      <Route
-        path='/register'
-        element={<RegisterPage />}
-      />
-      <Route
-        path='/live'
-        element={<LivePage />}
-      />
-      <Route
-        path='/'
-        element={<FooterPage />}
-      >
+    <>
+      <Routes>
         <Route
-          path='/my'
-          element={<MyPage />}
+          path='/login'
+          element={<LoginPage />}
+        />
+        <Route
+          path='/register'
+          element={<RegisterPage />}
+        />
+        <Route
+          path='/live'
+          element={<LivePage />}
         />
         <Route
           path='/'
-          element={<ProductPage />}
+          element={<FooterPage />}
         >
           <Route
+            path='/my'
+            element={<MyPage />}
+          />
+          <Route
             path='/'
-            element={<HomePage />}
-          />
-          <Route
-            path='/detail/:productId'
-            element={<DetailPage />}
-          />
-          <Route
-            path='/list'
-            element={<ListPage />}
-          />
+            element={<ProductPage />}
+          >
+            <Route
+              path='/'
+              element={<HomePage />}
+            />
+            <Route
+              path='/detail/:productId'
+              element={<DetailPage />}
+            />
+            <Route
+              path='/list'
+              element={<ListPage />}
+            />
+          </Route>
         </Route>
-      </Route>
-    </Routes>
+      </Routes>
+      <Modals />
+    </>
   );
 }
 export default App;

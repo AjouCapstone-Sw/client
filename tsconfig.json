@@ -20,7 +20,8 @@
       "@MSW/*": ["./src/_msw/*"],
       "@Hook/*": ["./src/Hook/*"],
       "@Pages/*": ["./src/Pages/*"],
-      "@Util/*": ["./src/Util/*"]
+      "@Util/*": ["./src/Util/*"],
+      "@Context/*": ["./src/Context/*"]
     }
   },
   "include": ["src", "cypress", "src/custom.d.ts"],

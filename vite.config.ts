@@ -15,6 +15,7 @@ export default defineConfig({
       { find: '@Hook', replacement: resolve('src/Hook') },
       { find: '@Pages', replacement: resolve('src/Pages') },
       { find: '@Util', replacement: resolve('src/Util') },
+      { find: '@Context', replacement: resolve('src/Context') },
     ],
   },
   server: {

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { Seller, Buyer, WebRTCView } from '@Components/WebRTC';
+import { Seller, Buyer, WebRTCView } from '@Components/WebRTCView';
 
 export const LivePage = () => {
   const { productId } = useParams();

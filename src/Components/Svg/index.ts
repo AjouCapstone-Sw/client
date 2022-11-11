@@ -6,3 +6,4 @@ export { ReactComponent as SearchIcon } from './Search.svg';
 export { ReactComponent as LeftArrow } from './LeftArrow.svg';
 export { ReactComponent as RightArrow } from './RightArrow.svg';
 export { ReactComponent as UserCircle } from './UserCircle.svg';
+export { ReactComponent as AddImage } from './AddImage.svg';

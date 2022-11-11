@@ -1,8 +1,8 @@
-import { Header } from './Header';
 import { useGetProductDataInAuction, useJoinAuction } from './WebRTCView.hook';
 import WebRTCViewStyle from './WebRTCView.style';
 import type { WebRTCViewProps } from './WebRTCView.type';
 import { WebRTCViewBody } from './WebRTCViewBody';
+import { WebRTCViewHeader } from './WebRTCViewHeader';
 
 import { addPriceComma } from '@Util/index';
 
@@ -16,7 +16,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
   return (
     <WebRTCViewStyle.Container>
       <WebRTCViewStyle.Header>
-        <Header />
+        <WebRTCViewHeader />
       </WebRTCViewStyle.Header>
 
       <WebRTCViewStyle.Title>{productTitle} 경매 Live</WebRTCViewStyle.Title>

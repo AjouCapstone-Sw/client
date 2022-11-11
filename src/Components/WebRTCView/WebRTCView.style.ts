@@ -47,7 +47,7 @@ const Body = styled.div`
 const Footer = styled.div`
   position: absolute;
   width: 100%;
-  bottom: 80px;
+  bottom: 40px;
   left: 0px;
 
   display: flex;
@@ -64,6 +64,18 @@ const Footer = styled.div`
     height: 150px;
     overflow: auto;
     margin-bottom: 20px;
+  }
+
+  form {
+    margin: 20px 0px;
+    input {
+      width: 200px;
+      height: 50px;
+      padding: 5px;
+      box-sizing: border-box;
+      border-radius: 10px;
+      background-color: transparent;
+    }
   }
   button {
     width: 200px;

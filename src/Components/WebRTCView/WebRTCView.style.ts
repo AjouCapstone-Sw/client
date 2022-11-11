@@ -24,15 +24,6 @@ const Header = styled.div`
   }
 `;
 
-const HeaderImgContainer = styled.div`
-  img {
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    margin-right: 15px;
-  }
-`;
-
 const Title = styled.div`
   font-size: 24px;
   margin: 20px 0px;
@@ -100,4 +91,4 @@ const FooterIconContainer = styled.div`
   }
 `;
 
-export default { Container, Header, Footer, Title, HeaderImgContainer, Body, FooterIconContainer };
+export default { Container, Header, Footer, Title, Body, FooterIconContainer };

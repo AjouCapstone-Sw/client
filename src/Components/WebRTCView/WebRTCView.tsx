@@ -1,3 +1,4 @@
+import { Header } from './Header';
 import { AUCTION_HEADER_IMG } from './WebRTCView.const';
 import { useGetProductDataInAuction, useJoinAuction } from './WebRTCView.hook';
 import WebRTCViewStyle from './WebRTCView.style';
@@ -14,18 +15,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
   return (
     <WebRTCViewStyle.Container>
       <WebRTCViewStyle.Header>
-        <div>
-          <span>경매</span>
-          <span className='strike'>Live</span>
-        </div>
-        <WebRTCViewStyle.HeaderImgContainer>
-          {AUCTION_HEADER_IMG.map(({ id, ...info }) => (
-            <img
-              key={id}
-              {...info}
-            />
-          ))}
-        </WebRTCViewStyle.HeaderImgContainer>
+        <Header />
       </WebRTCViewStyle.Header>
 
       <WebRTCViewStyle.Title>{productTitle} 경매 Live</WebRTCViewStyle.Title>

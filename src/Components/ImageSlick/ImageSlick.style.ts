@@ -6,13 +6,16 @@ const Slider = styled(SSlider)`
     height: 500px !important;
   }
   .slick-list {
+    width: 500px !important;
     height: 500px !important;
+    margin: auto;
   }
   img {
     border-radius: 8px;
     overflow: hidden;
     margin: 0 auto;
     aspect-ratio: 4/3;
+    width: 500px;
   }
 
   button {

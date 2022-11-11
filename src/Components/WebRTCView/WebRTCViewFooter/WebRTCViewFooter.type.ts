@@ -11,3 +11,7 @@ export type HandleAskPriceClick = {
   productId: number;
   nextAskPrice: number;
 };
+
+export type AuctionChatInput = {
+  message: string;
+};

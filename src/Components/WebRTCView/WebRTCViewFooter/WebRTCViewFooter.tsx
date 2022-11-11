@@ -1,3 +1,6 @@
+import { useForm } from 'react-hook-form';
+
+import { useSendChatMessage } from './WebRTCViewFooter.hook';
 import WebRTCViewFooterStyle from './WebRTCViewFooter.style';
 import type { WEbRTCViewFooterProps } from './WebRTCViewFooter.type';
 import { handleAskPriceClick } from './WebRTCViewFooter.util';
@@ -9,32 +12,41 @@ export const WebRTCViewFooter = ({
   nextAskPrice,
   productLikeNum,
   productId,
-}: WEbRTCViewFooterProps) => (
-  <>
-    <div>
-      <div className='chatContainer'>
-        {chats.map((chat) => (
-          <div key={chat.id}>
-            <span>{chat.name} : </span>
-            <span>{chat.message}</span>
-          </div>
-        ))}
+}: WEbRTCViewFooterProps) => {
+  const { register, handleSubmit } = useSendChatMessage();
+  return (
+    <>
+      <div>
+        <div className='chatContainer'>
+          {chats.map((chat) => (
+            <div key={chat.id}>
+              <span>{chat.name} : </span>
+              <span>{chat.message}</span>
+            </div>
+          ))}
+        </div>
+        <form onSubmit={handleSubmit}>
+          <input
+            placeholder='채팅을 입력해 보세요'
+            {...register}
+          />
+        </form>
+        <button
+          type='button'
+          onClick={handleAskPriceClick({ productId, nextAskPrice })}
+          aria-hidden
+        >
+          {addPriceComma(nextAskPrice)} 원
+        </button>
       </div>
-      <button
-        type='button'
-        onClick={handleAskPriceClick({ productId, nextAskPrice })}
-        aria-hidden
-      >
-        {addPriceComma(nextAskPrice)} 원
-      </button>
-    </div>
 
-    <WebRTCViewFooterStyle.FooterIconContainer>
-      <img
-        src='/asset/Auction/Like.svg'
-        alt='좋아요'
-      />
-      <span>{addPriceComma(productLikeNum)}</span>
-    </WebRTCViewFooterStyle.FooterIconContainer>
-  </>
-);
+      <WebRTCViewFooterStyle.FooterIconContainer>
+        <img
+          src='/asset/Auction/Like.svg'
+          alt='좋아요'
+        />
+        <span>{addPriceComma(productLikeNum)}</span>
+      </WebRTCViewFooterStyle.FooterIconContainer>
+    </>
+  );
+};

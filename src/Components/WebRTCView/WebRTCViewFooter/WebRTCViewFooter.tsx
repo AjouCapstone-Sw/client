@@ -1,5 +1,6 @@
 import WebRTCViewFooterStyle from './WebRTCViewFooter.style';
 import type { WEbRTCViewFooterProps } from './WebRTCViewFooter.type';
+import { handleAskPriceClick } from './WebRTCViewFooter.util';
 
 import { addPriceComma } from '@Util/.';
 
@@ -7,6 +8,7 @@ export const WebRTCViewFooter = ({
   chats,
   nextAskPrice,
   productLikeNum,
+  productId,
 }: WEbRTCViewFooterProps) => (
   <>
     <div>
@@ -18,7 +20,13 @@ export const WebRTCViewFooter = ({
           </div>
         ))}
       </div>
-      <button type='button'>{addPriceComma(nextAskPrice)} 원</button>
+      <button
+        type='button'
+        onClick={handleAskPriceClick({ productId, nextAskPrice })}
+        aria-hidden
+      >
+        {addPriceComma(nextAskPrice)} 원
+      </button>
     </div>
 
     <WebRTCViewFooterStyle.FooterIconContainer>
@@ -27,11 +35,6 @@ export const WebRTCViewFooter = ({
         alt='좋아요'
       />
       <span>{addPriceComma(productLikeNum)}</span>
-
-      <img
-        src='/asset/Auction/Chat.svg'
-        alt='채팅'
-      />
     </WebRTCViewFooterStyle.FooterIconContainer>
   </>
 );

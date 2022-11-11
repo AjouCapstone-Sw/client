@@ -32,6 +32,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
 
       <WebRTCViewStyle.Footer>
         <WebRTCViewFooter
+          productId={productId}
           chats={chats}
           nextAskPrice={nowAuctionPrice + nowAskPrice}
           productLikeNum={productLikeNum}

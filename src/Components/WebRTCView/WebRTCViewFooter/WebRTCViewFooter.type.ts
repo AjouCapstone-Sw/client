@@ -4,4 +4,10 @@ export type WEbRTCViewFooterProps = {
   chats: chatType[];
   nextAskPrice: number;
   productLikeNum: number;
+  productId: number;
+};
+
+export type HandleAskPriceClick = {
+  productId: number;
+  nextAskPrice: number;
 };

@@ -7,19 +7,21 @@ const Container = styled.div`
 
   overflow-x: scroll;
 
-  div {
+  .image-slider-content-container {
     position: relative;
+    min-width: 150px;
+    margin: 8px;
   }
 
   img {
     width: 150px;
     height: 150px;
-    margin: 8px;
   }
   svg {
     position: absolute;
-    left: 95px;
-    top: -px;
+    left: 85px;
+    top: -8px;
+
     fill: ${({ theme }) => theme.color.danger};
     opacity: 0.7;
     path {

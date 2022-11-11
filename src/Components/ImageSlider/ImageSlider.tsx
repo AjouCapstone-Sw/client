@@ -6,7 +6,10 @@ import { ImageSliderProps } from './ImageSlider.type';
 export const ImageSlider = ({ images, onRemove }: ImageSliderProps) => (
   <ImageSliderStyle.Container>
     {images.map((image, imageIdx) => (
-      <div key={image}>
+      <div
+        className='image-slider-content-container'
+        key={image}
+      >
         <img
           src={image}
           alt='preview_image'

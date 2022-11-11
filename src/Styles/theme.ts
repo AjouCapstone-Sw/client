@@ -11,6 +11,7 @@ export const color = {
   gray: '#9B9A97',
   primary: '#5db075',
   white: '#FFFFFF',
+  danger: '#E03E3E',
 };
 
 export const fontSize = {

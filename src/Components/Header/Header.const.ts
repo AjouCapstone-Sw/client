@@ -14,4 +14,9 @@ export const HEADER_MENU = [
     title: '마이페이지',
     link: '/my',
   },
+  {
+    id: 4,
+    title: '판매글 작성',
+    link: '/product-register',
+  },
 ];

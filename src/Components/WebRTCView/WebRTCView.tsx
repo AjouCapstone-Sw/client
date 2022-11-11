@@ -1,5 +1,5 @@
 import { AUCTION_HEADER_IMG } from './WebRTCView.const';
-import { useGetProductDataInAuction } from './WebRTCView.hook';
+import { useGetProductDataInAuction, useJoinAuction } from './WebRTCView.hook';
 import WebRTCViewStyle from './WebRTCView.style';
 import type { WebRTCViewProps } from './WebRTCView.type';
 
@@ -9,53 +9,8 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
   const { productTitle, auctionStartPrice, nowAskPrice } = useGetProductDataInAuction({
     productId,
   });
-  const joinUserLength = 10000;
-  const untilExitAuctionTime = '10:00';
-  const nowAuctionPrice = 2000;
-  const productLikeNum = 100;
-  const chats = [
-    {
-      id: 1,
-      name: '김기윤',
-      message: 'ㅅㅂ 이걸 왜사',
-    },
-    {
-      id: 2,
-      name: '김기윤2',
-      message: 'ㅅㅂ 이걸 왜사2',
-    },
-    {
-      id: 3,
-      name: '김기윤3',
-      message: 'ㅅㅂ 이걸 왜3사3',
-    },
-    {
-      id: 4,
-      name: '김기윤4',
-      message: 'ㅅㅂ 이걸 왜사4',
-    },
-    {
-      id: 5,
-      name: '김기윤',
-      message: 'ㅅㅂ 이걸 왜사',
-    },
-    {
-      id: 6,
-      name: '김기윤2',
-      message: 'ㅅㅂ 이걸 왜사2',
-    },
-    {
-      id: 7,
-      name: '김기윤3',
-      message: 'ㅅㅂ 이걸 왜3사3',
-    },
-    {
-      id: 8,
-      name: '김기윤4',
-      message: 'ㅅㅂ 이걸 왜사4',
-    },
-  ];
-
+  const { chats, joinUserLength, untilExitAuctionTime, nowAuctionPrice, productLikeNum } =
+    useJoinAuction({ productId });
   return (
     <WebRTCViewStyle.Container>
       <WebRTCViewStyle.Header>
@@ -81,7 +36,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
             src='/asset/Auction/PeopleCount.svg'
             alt='참석인원'
           />
-          {joinUserLength.toLocaleString()}
+          {addPriceComma(joinUserLength)}
         </div>
         <div>
           <div>경매 시작가 : {addPriceComma(auctionStartPrice)}</div>
@@ -90,6 +45,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
           <div>현재 호가 : {addPriceComma(nowAskPrice)}</div>
         </div>
       </WebRTCViewStyle.Body>
+
       <WebRTCViewStyle.Footer>
         <div>
           <div className='chatContainer'>

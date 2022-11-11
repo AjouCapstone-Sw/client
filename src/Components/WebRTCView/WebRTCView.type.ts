@@ -6,3 +6,12 @@ export type auctionProductData = {
   auctionStartPrice: number;
   nowAskPrice: number;
 };
+
+export type UseJoinAuction = { productId: number };
+export type chatType = { id: number; name: string; message: string };
+export type auctionInfoType = {
+  joinUserLength: number;
+  untilExitAuctionTime: string;
+  nowAuctionPrice: number;
+  productLikeNum: number;
+};

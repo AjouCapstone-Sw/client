@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { UseGetVideoStream, WebRTCUser } from './Buyer.type';
+import { UseGetVideoStreamBuyer, WebRTCUser } from './Buyer.type';
 import { connection, getReceiverAnswerEvent, getReceiverCandidateEvent } from './Buyer.util';
 
 import ClientSocket from '@Socket/WebRTC/WebRTC';
 
 const USER_ID = 'HS';
-export const useGetVideoStream = ({ productId }: UseGetVideoStream) => {
+export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [productStream, setProductStream] = useState<WebRTCUser | null>(null);
   const addStream = (e: RTCTrackEvent) => setProductStream({ id: productId, stream: e.streams[0] });

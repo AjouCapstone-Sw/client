@@ -3,6 +3,6 @@ export type WebRTCUser = {
   stream: MediaStream;
 };
 
-export type UseGetVideoStream = {
+export type UseGetVideoStreamBuyer = {
   productId: number;
 };

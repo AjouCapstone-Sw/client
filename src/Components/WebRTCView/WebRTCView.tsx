@@ -2,9 +2,8 @@ import { useGetProductDataInAuction, useJoinAuction } from './WebRTCView.hook';
 import WebRTCViewStyle from './WebRTCView.style';
 import type { WebRTCViewProps } from './WebRTCView.type';
 import { WebRTCViewBody } from './WebRTCViewBody';
+import { WebRTCViewFooter } from './WebRTCViewFooter/WebRTCViewFooter';
 import { WebRTCViewHeader } from './WebRTCViewHeader';
-
-import { addPriceComma } from '@Util/index';
 
 export const WebRTCView = ({ productId }: WebRTCViewProps) => {
   const { productTitle, auctionStartPrice, nowAskPrice } = useGetProductDataInAuction({
@@ -32,30 +31,11 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
       </WebRTCViewStyle.Body>
 
       <WebRTCViewStyle.Footer>
-        <div>
-          <div className='chatContainer'>
-            {chats.map((chat) => (
-              <div key={chat.id}>
-                <span>{chat.name} : </span>
-                <span>{chat.message}</span>
-              </div>
-            ))}
-          </div>
-          <button type='button'>{addPriceComma(nowAuctionPrice + nowAskPrice)} 원</button>
-        </div>
-
-        <WebRTCViewStyle.FooterIconContainer>
-          <img
-            src='/asset/Auction/Like.svg'
-            alt='좋아요'
-          />
-          <span>{addPriceComma(productLikeNum)}</span>
-
-          <img
-            src='/asset/Auction/Chat.svg'
-            alt='채팅'
-          />
-        </WebRTCViewStyle.FooterIconContainer>
+        <WebRTCViewFooter
+          chats={chats}
+          nextAskPrice={nowAuctionPrice + nowAskPrice}
+          productLikeNum={productLikeNum}
+        />
       </WebRTCViewStyle.Footer>
     </WebRTCViewStyle.Container>
   );

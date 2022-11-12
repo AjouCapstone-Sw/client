@@ -5,7 +5,7 @@ export const MSW_PRODUCT_REVIEW = [
     nickName: 'hansoly',
     review: '경매 재밌게 하시네요',
     score: 4,
-    createdAt: '2022.11.08',
+    createdAt: '2022-11-08',
     productImage: '/asset/김영진.jpg',
   },
   {
@@ -15,7 +15,7 @@ export const MSW_PRODUCT_REVIEW = [
     review:
       '경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요',
     score: 4,
-    createdAt: '2022.11.08',
+    createdAt: '2022-11-08',
     productImage: '/asset/김영진.jpg',
   },
   {
@@ -25,7 +25,7 @@ export const MSW_PRODUCT_REVIEW = [
     review:
       '경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요',
     score: 4,
-    createdAt: '2022.11.08',
+    createdAt: '2022-11-08',
     productImage: '/asset/김영진.jpg',
   },
   {
@@ -35,16 +35,45 @@ export const MSW_PRODUCT_REVIEW = [
     review:
       '경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요',
     score: 4,
-    createdAt: '2022.11.08',
+    createdAt: '2022-11-08',
     productImage: '/asset/김영진.jpg',
   },
 ];
 export const MSW_AUCTION_REVIEW = [
   {
     reviewId: 1,
-    nickName: '',
-    review: '경매 재밌게 하시네요',
+    nickName: 'yasdffasdfasdsdfafasdsdfadfasasdffasdfasdadsffasdj',
+    review:
+      '경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요경매 재밌게 하시네요',
     score: 4,
-    createdAt: '2022.11.08',
+    createdAt: '2022-11-08',
+  },
+  {
+    reviewId: 2,
+    nickName: 'yj',
+    review: '경매 재밌게 하시네요',
+    score: 1,
+    createdAt: '2022-11-08',
+  },
+  {
+    reviewId: 3,
+    nickName: 'yj',
+    review: '경매 재밌게 하시네요',
+    score: 2,
+    createdAt: '2022-11-08',
+  },
+  {
+    reviewId: 4,
+    nickName: 'yj',
+    review: '경매 재밌게 하시네요',
+    score: 5,
+    createdAt: '2022-11-08',
+  },
+  {
+    reviewId: 5,
+    nickName: 'yj',
+    review: '경매 재밌게 하시네요',
+    score: 3,
+    createdAt: '2022-11-08',
   },
 ];

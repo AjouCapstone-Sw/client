@@ -12,6 +12,7 @@ export const ItemListCell = ({
   auctionStartTime,
   productImage,
   live,
+  like,
 }: ItemListCellProps) => {
   const [goDetail] = useMovePage(`/detail/${productId}`) as (() => void)[];
   return (
@@ -31,8 +32,4 @@ export const ItemListCell = ({
       </ItemListCellStyle.TextContainer>
     </ItemListCellStyle.Container>
   );
-};
-
-ItemListCell.defaultProps = {
-  live: false,
 };

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
+const Container = styled.li`
   width: 100%;
   height: 140px;
   box-sizing: border-box;

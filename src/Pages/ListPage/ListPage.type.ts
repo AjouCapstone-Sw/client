@@ -1,9 +1,10 @@
 export type ItemListCellType = {
-  id: number;
+  productId: number;
   title: string;
   buyNowPrice: number;
   auctionStartPrice: number;
   auctionStartTime: string;
   productImage: string;
-  live?: boolean;
+  like: boolean;
+  live: boolean;
 };

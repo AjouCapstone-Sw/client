@@ -10,7 +10,7 @@ export const ListPage = () => {
       <div>
         {liveItemList.map((basicItem) => (
           <ItemListCell
-            key={basicItem.id}
+            key={basicItem.productId}
             {...basicItem}
           />
         ))}
@@ -18,7 +18,7 @@ export const ListPage = () => {
       <div>
         {basicItemList.map((basicItem) => (
           <ItemListCell
-            key={basicItem.id}
+            key={basicItem.productId}
             {...basicItem}
           />
         ))}

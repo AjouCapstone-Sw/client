@@ -5,7 +5,7 @@ import { useMovePage } from '@Hook/useMovePage';
 import { addPriceComma } from '@Util/.';
 
 export const ItemListCell = ({
-  id,
+  productId,
   title,
   buyNowPrice,
   auctionStartPrice,
@@ -13,7 +13,7 @@ export const ItemListCell = ({
   productImage,
   live,
 }: ItemListCellProps) => {
-  const [goDetail] = useMovePage(`/detail/${id}`) as (() => void)[];
+  const [goDetail] = useMovePage(`/detail/${productId}`) as (() => void)[];
   return (
     <ItemListCellStyle.Container onClick={goDetail}>
       <ItemListCellStyle.ImageBox>

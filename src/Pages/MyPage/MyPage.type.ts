@@ -1,3 +1,5 @@
+import React from 'react';
+
 import type { ItemListCellType } from '@Pages/ListPage/ListPage.type';
 
 export type GetUserInfo = { nickName: string | undefined };
@@ -16,10 +18,31 @@ export type userInfoType = {
 };
 
 export type auctionReviewType = {
+  reviewId: number;
   nickName: string;
   review: string;
   score: number;
   createdAt: string;
 };
 
-export type productReviewType = auctionReviewType & { productId: number };
+export type productReviewType = auctionReviewType & {
+  productId: number;
+  productImage: string;
+};
+export type UseSelectBodyData = {
+  auctionReview: auctionReviewType[];
+  productReview: productReviewType[];
+  likeList: ItemListCellType[];
+  sellList: ItemListCellType[];
+  buyList: ItemListCellType[];
+};
+
+export type BodySelectType = '판매' | '구매' | '찜' | '판매후기' | '경매후기';
+export type MakeBodyData = UseSelectBodyData;
+export type BodyDataType = {
+  [key in BodySelectType]: UseSelectBodyData[keyof UseSelectBodyData];
+};
+export type HandleSelectChange = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+export type MyPageBodyProps = {
+  bodyDatas: UseSelectBodyData[keyof UseSelectBodyData];
+};

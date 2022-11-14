@@ -5,7 +5,7 @@ const Container = styled.li`
   height: 140px;
   box-sizing: border-box;
   padding: 20px 15px;
-  border-bottom: 1px solid #e9ecef;
+  border-bottom: 1px solid ${({ theme }) => theme.color.border};
   display: flex;
   align-items: center;
   cursor: pointer;

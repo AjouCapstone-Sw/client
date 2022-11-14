@@ -10,4 +10,4 @@ export type RangeSliderProp<T extends FieldValues> = {
 
 export type RangeSliderChildProp<T extends FieldValues> = {
   field: ControllerRenderProps<T, Path<T>>;
-} & Pick<RangeSliderProp<T>, 'props' | 'className'>;
+} & Pick<RangeSliderProp<T>, 'className'>;

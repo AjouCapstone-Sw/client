@@ -3,17 +3,8 @@ import { Controller, FieldValues } from 'react-hook-form';
 
 import { RangeSliderChildProp, RangeSliderProp } from './RangeSlider.type';
 
-const RangeSliderChild = <T extends FieldValues>({
-  props,
-  className,
-  field: { onChange, value, ...field },
-}: RangeSliderChildProp<T>) => (
-  <Slider
-    {...props}
-    className={className}
-    onChange={onChange}
-    {...field}
-  />
+const RangeSliderChild = <T extends FieldValues>(props: RangeSliderChildProp<T>) => (
+  <Slider {...props} />
 );
 
 export const RangeSlider = <T extends FieldValues>({
@@ -27,7 +18,7 @@ export const RangeSlider = <T extends FieldValues>({
     name={name}
     render={({ field }) => (
       <RangeSliderChild
-        props={props}
+        {...props}
         className={className}
         field={field}
       />

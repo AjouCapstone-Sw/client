@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 
-import { getRemovedFileList } from './ProductPage.util';
 import { ProductRegisterForm } from './ProductRegisterPage.type';
+import { getRemovedFileList } from './ProductRegisterPage.util';
 
 import { addPriceComma, getBidPrice, removePriceEtc } from '@Util/.';
 

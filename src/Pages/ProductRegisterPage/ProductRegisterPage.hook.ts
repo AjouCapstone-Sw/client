@@ -6,30 +6,24 @@ import { getRemovedFileList } from './ProductRegisterPage.util';
 
 import { addPriceComma, getBidPrice, removePriceEtc } from '@Util/.';
 
-const useImagePreviews = (images: FileList) => {
+export const useImagePreviews = (images: FileList) => {
   const [imagePreviews, setImagePreview] = useState<string[]>([]);
   useEffect(() => {
-    if (images?.length > 0) {
-      setImagePreview(
-        [...images].map((imageFile: Blob | MediaSource) => URL.createObjectURL(imageFile)),
-      );
-    }
+    if (images?.length === 0) return;
+    setImagePreview(
+      [...images].map((imageFile: Blob | MediaSource) => URL.createObjectURL(imageFile)),
+    );
   }, [images]);
   return imagePreviews;
-};
-
-const useImageSetValues = (images: FileList, setValue: UseFormSetValue<ProductRegisterForm>) => {
-  useEffect(() => {
-    setValue('images', images);
-  }, [images]);
 };
 
 export const useImages = (setValue: UseFormSetValue<ProductRegisterForm>) => {
   const imageRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<FileList>(imageRef.current?.files as FileList);
-  const imagePreviews = useImagePreviews(images);
 
-  useImageSetValues(images, setValue);
+  useEffect(() => {
+    setValue('images', images);
+  }, [images]);
 
   const handleImageAdd = () => imageRef.current?.click();
 
@@ -42,7 +36,7 @@ export const useImages = (setValue: UseFormSetValue<ProductRegisterForm>) => {
     setImages(removedFileList);
   };
 
-  return { imageRef, handleImageAdd, images, handleImageChange, handleImageRemove, imagePreviews };
+  return { imageRef, handleImageAdd, images, handleImageChange, handleImageRemove };
 };
 
 export const usePriceFormatting = (

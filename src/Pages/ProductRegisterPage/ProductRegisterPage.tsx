@@ -10,7 +10,7 @@ import {
   SLIDER_PROPS,
   TITLE_VALIDATION_OPTION,
 } from './ProductRegisterPage.const';
-import { usePriceFormatting, useImages } from './ProductRegisterPage.hook';
+import { usePriceFormatting, useImages, useImagePreviews } from './ProductRegisterPage.hook';
 import ProductRegisterPageStyle from './ProductRegisterPage.style';
 import { ProductRegisterForm } from './ProductRegisterPage.type';
 
@@ -36,8 +36,10 @@ export const ProductReigsterPage = () => {
 
   const isAuction = watch('isAuction');
 
-  const { imageRef, handleImageAdd, handleImageChange, imagePreviews, handleImageRemove } =
+  const { imageRef, handleImageAdd, handleImageChange, handleImageRemove, images } =
     useImages(setValue);
+
+  const imagePreviews = useImagePreviews(images);
 
   const onSubmit = (data: ProductRegisterForm) => {
     console.log(data);

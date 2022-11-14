@@ -6,38 +6,30 @@ import { Controller, FieldValues } from 'react-hook-form';
 
 import { DateTimePickerChildProp, DateTimePickerProp } from './DateTimePicker.type';
 
-const DateTimePickerChild = <T extends FieldValues>({
-  field: { value, onChange },
-  label,
-  className,
-}: DateTimePickerChildProp<T>) => (
+const DateTimePickerChild = <T extends FieldValues>(props: DateTimePickerChildProp<T>) => (
   <LocalizationProvider dateAdapter={AdapterDayjs}>
     <MDateTimePicker
-      label={label}
-      onChange={(date) => {
-        onChange(dayjs(date).format('YYYY-MM-DD hh:mm'));
-      }}
-      value={value}
+      {...props}
       renderInput={(params) => <TextField {...params} />}
-      className={className}
     />
   </LocalizationProvider>
 );
 
 export const DateTimePicker = <T extends FieldValues>({
   control,
-  label,
   name,
-  className,
+  ...rest
 }: DateTimePickerProp<T>) => (
   <Controller
     control={control}
     name={name}
-    render={({ field }) => (
+    render={({ field: { value, onChange } }) => (
       <DateTimePickerChild
-        field={field}
-        label={label}
-        className={className}
+        {...rest}
+        value={value}
+        onChange={(date) => {
+          onChange(dayjs(date).format('YYYY-MM-DD hh:mm'));
+        }}
       />
     )}
   />

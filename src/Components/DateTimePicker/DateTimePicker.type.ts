@@ -1,4 +1,5 @@
-import { Control, ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
+/* eslint-disable no-unused-vars */
+import { Control, ControllerRenderProps, FieldValues, Path, PathValue } from 'react-hook-form';
 
 export type DateTimePickerProp<T extends FieldValues> = {
   control: Control<T>;
@@ -8,5 +9,6 @@ export type DateTimePickerProp<T extends FieldValues> = {
 };
 
 export type DateTimePickerChildProp<T extends FieldValues> = {
-  field: ControllerRenderProps<T, Path<T>>;
+  value: PathValue<T, Path<T>>;
+  onChange: (...event: any[]) => void;
 } & Pick<DateTimePickerProp<T>, 'label' | 'className'>;

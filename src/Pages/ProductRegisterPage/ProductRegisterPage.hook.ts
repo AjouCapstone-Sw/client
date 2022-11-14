@@ -56,8 +56,7 @@ export const usePriceFormatting = (
   }, [register]);
 
   const handleBuyNowPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(Number.isNaN(removePriceEtc(e.target.value)));
-    if (Number.isNaN(removePriceEtc(e.target.value))) return;
+    if (Number.isNaN(Number(removePriceEtc(e.target.value)))) return;
 
     setValue('buyNowPrice', `${addPriceComma(String(e.target.value))}원`);
   };

@@ -52,4 +52,8 @@ export const BUY_NOW_VALIDATION_OPTION = {
     value: 6,
     message: '최소 즉시 판매가는 1000원입니다',
   },
+  pattern: {
+    value: /\d{1,3}(,\d{3})*원/,
+    message: '금액 형식이 아닙니다',
+  },
 };

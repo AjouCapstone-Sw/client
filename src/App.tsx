@@ -9,7 +9,8 @@ import {
   LivePage,
   LoginPage,
   MyPage,
-  ProductPage,
+  HeaderPage,
+  ProductReigsterPage,
   RegisterPage,
 } from '@Pages/.';
 
@@ -41,7 +42,7 @@ function App() {
           />
           <Route
             path='/'
-            element={<ProductPage />}
+            element={<HeaderPage />}
           >
             <Route
               path='/'
@@ -54,6 +55,10 @@ function App() {
             <Route
               path='/list'
               element={<ListPage />}
+            />
+            <Route
+              path='product-register'
+              element={<ProductReigsterPage />}
             />
           </Route>
         </Route>

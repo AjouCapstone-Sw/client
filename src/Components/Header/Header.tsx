@@ -3,16 +3,17 @@ import { NavLink } from 'react-router-dom';
 
 import { HEADER_MENU } from './Header.const';
 import { useHandleModals } from './Header.hook';
-import ProductHeaderStyle from './Header.style';
+import HeaderStyle from './Header.style';
 
 import { SearchIcon } from '@Components/Svg';
 
 export const Header = () => {
   const { openSearchModal, openMenuModal } = useHandleModals();
+
   return (
-    <ProductHeaderStyle.HeaderContainer>
-      <ProductHeaderStyle.Logo to='/'>LOGO</ProductHeaderStyle.Logo>
-      <ProductHeaderStyle.MenuContainer>
+    <HeaderStyle.HeaderContainer>
+      <HeaderStyle.Logo to='/'>LOGO</HeaderStyle.Logo>
+      <HeaderStyle.MenuContainer>
         {HEADER_MENU.map(({ link, id, title }) => (
           <NavLink
             key={id}
@@ -22,14 +23,14 @@ export const Header = () => {
             <span>{title}</span>
           </NavLink>
         ))}
-      </ProductHeaderStyle.MenuContainer>
+      </HeaderStyle.MenuContainer>
       <div>
         <SearchIcon onClick={openSearchModal} />
-        <ProductHeaderStyle.MenuIcon
+        <HeaderStyle.MenuIcon
           icon={faBars}
           onClick={openMenuModal}
         />
       </div>
-    </ProductHeaderStyle.HeaderContainer>
+    </HeaderStyle.HeaderContainer>
   );
 };

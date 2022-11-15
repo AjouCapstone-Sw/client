@@ -77,11 +77,4 @@ const TextArea = styled.textarea`
   }
 `;
 
-const ErrorMsg = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  margin-top: 5px;
-  margin-bottom: 10px;
-  color: #e03e3e;
-`;
-
-export default { Container, ImageContainer, TextArea, ErrorMsg };
+export default { Container, ImageContainer, TextArea };

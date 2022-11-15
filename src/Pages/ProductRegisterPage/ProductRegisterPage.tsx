@@ -7,14 +7,13 @@ import {
   BUY_NOW_VALIDATION_OPTION,
   CONTENT_VALIDATION_OPTION,
   IMAGES_VALIDATION_OPTION,
-  SLIDER_PROPS,
   TITLE_VALIDATION_OPTION,
 } from './ProductRegisterPage.const';
 import { usePriceFormatting, useImages, useImagePreviews } from './ProductRegisterPage.hook';
 import ProductRegisterPageStyle from './ProductRegisterPage.style';
 import { ProductRegisterForm } from './ProductRegisterPage.type';
 
-import { Button, ImageSlider, Input, DateTimePicker, RangeSlider } from '@Components/.';
+import { Button, ImageSlider, Input, AuctionEditForm } from '@Components/.';
 import { AddImage } from '@Components/Svg';
 
 export const ProductReigsterPage = () => {
@@ -25,7 +24,6 @@ export const ProductReigsterPage = () => {
     handleSubmit: handleProductRegisterSubmit,
     formState: { errors: registerValidationErrors },
     control,
-
     watch,
   } = useForm<ProductRegisterForm>({ defaultValues: { buyNowPrice: '0' } });
 
@@ -96,35 +94,11 @@ export const ProductReigsterPage = () => {
         <label htmlFor='isAuction'>라이브 경매 진행 여부</label>
         <Switch {...register('isAuction')} />
         {isAuction && (
-          <>
-            <label>경매 시작가</label>
-            <Input
-              {...register('auctionStartPrice', {
-                onChange: handleAuctionStartPriceChange,
-              })}
-            />
-            <label>경매 진행 호가</label>
-            <Input
-              {...register('auctionBidPrice')}
-              disabled
-            />
-            <div>
-              <label>경매 시작 시간</label>
-              <DateTimePicker
-                className='register-date-time-picker'
-                control={control}
-                label='시작시간'
-                name='auctionStartTime'
-              />
-              <label className='register-sldier-label'>경매 기간</label>
-              <RangeSlider
-                props={SLIDER_PROPS}
-                control={control}
-                className='register-slider'
-                name='auctionDuration'
-              />
-            </div>
-          </>
+          <AuctionEditForm
+            control={control}
+            register={register}
+            handleAuctionStartPriceChange={handleAuctionStartPriceChange}
+          />
         )}
 
         <div className='register-button-container'>

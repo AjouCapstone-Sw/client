@@ -13,3 +13,4 @@ export * from './Modals/Modals';
 export * from './ImageSlider/ImageSlider';
 export * from './DateTimePicker/DateTimePicker';
 export * from './RangeSlider/RangeSlider';
+export * from './AuctionEditForm/AuctionEditForm';

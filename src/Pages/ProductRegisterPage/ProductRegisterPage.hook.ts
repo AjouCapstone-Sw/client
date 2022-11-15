@@ -9,7 +9,7 @@ import { addPriceComma, getBidPrice, removePriceEtc } from '@Util/.';
 export const useImagePreviews = (images: FileList) => {
   const [imagePreviews, setImagePreview] = useState<string[]>([]);
   useEffect(() => {
-    if (images?.length === 0) return;
+    if (!images || images?.length === 0) return;
     setImagePreview(
       [...images].map((imageFile: Blob | MediaSource) => URL.createObjectURL(imageFile)),
     );

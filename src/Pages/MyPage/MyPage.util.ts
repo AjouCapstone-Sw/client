@@ -27,9 +27,9 @@ export const makeBodyData = ({
   sellList,
   buyList,
 }: MakeBodyData) => ({
-  판매: sellList,
-  구매: buyList,
-  찜: likeList,
+  판매목록: sellList,
+  구매목록: buyList,
+  찜목록: likeList,
   경매후기: auctionReview,
   판매후기: productReview,
 });

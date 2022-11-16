@@ -37,7 +37,7 @@ export type UseSelectBodyData = {
   buyList: ItemListCellType[];
 };
 
-export type BodySelectType = '판매' | '구매' | '찜' | '판매후기' | '경매후기';
+export type BodySelectType = '판매목록' | '구매목록' | '찜목록' | '판매후기' | '경매후기';
 export type MakeBodyData = UseSelectBodyData;
 export type BodyDataType = {
   [key in BodySelectType]: UseSelectBodyData[keyof UseSelectBodyData];

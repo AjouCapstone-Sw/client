@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import type { MyPageUserProps } from './MyPageUser.type';
 
+import { INNER_HTML } from '@Pages/MyPage/MyPage.const';
+
 export const MyPageUser = ({
   profileImage,
   productReviewLength,
@@ -19,13 +21,13 @@ export const MyPageUser = ({
         onClick={handleSelectChange}
         type='button'
       >
-        <div>판매 후기</div> <span>{productReviewLength} 건</span>
+        <div>{INNER_HTML.SELL_REVIEW}</div> <span>{productReviewLength} 건</span>
       </button>
       <button
         type='button'
         onClick={handleSelectChange}
       >
-        <div>경매 후기</div> <span>{auctionReviewLength} 건</span>
+        <div>{INNER_HTML.AUCTION_REVIEW}</div> <span>{auctionReviewLength} 건</span>
       </button>
     </div>
   </>

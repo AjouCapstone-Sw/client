@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
+import { INNER_HTML } from './MyPage.const';
 import { useGetUserInfo, useGetUserReview, useSelectBodyData } from './MyPage.hook';
 import MyPageStyle from './MyPage.style';
 import { MyPageBody } from './MyPageBody/MyPageBody';
@@ -37,7 +38,7 @@ export const MyPage = () => {
           type='button'
           onClick={handleSelectChange}
         >
-          판매 목록
+          {INNER_HTML.SELL_LIST}
         </button>
         {name && (
           <>
@@ -45,13 +46,13 @@ export const MyPage = () => {
               type='button'
               onClick={handleSelectChange}
             >
-              구매 목록
+              {INNER_HTML.BUY_LIST}
             </button>
             <button
               type='button'
               onClick={handleSelectChange}
             >
-              찜 목록
+              {INNER_HTML.LIKE_LIST}
             </button>
           </>
         )}

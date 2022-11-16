@@ -44,15 +44,13 @@ export const useGetUserReview = ({ nickName }: UseGetUserReview) => {
 };
 
 export const useSelectBodyData = (props: UseSelectBodyData) => {
-  const [select, setSelect] = useState<BodySelectType>('판매');
+  const [select, setSelect] = useState<BodySelectType>('판매목록');
   const bodyData: BodyDataType = makeBodyData(props);
   const handleSelectChange: HandleSelectChange = (e) => {
-    if (e.currentTarget.innerHTML.includes('판매 목록')) setSelect('판매');
-    else if (e.currentTarget.innerHTML.includes('구매 목록')) setSelect('구매');
-    else if (e.currentTarget.innerHTML.includes('찜')) setSelect('찜');
-    else if (e.currentTarget.innerHTML.includes('판매 후기')) setSelect('판매후기');
-    else if (e.currentTarget.innerHTML.includes('경매 후기')) setSelect('경매후기');
-    else setSelect('판매');
+    const target = e.currentTarget.children.length ? e.currentTarget.firstChild : e.currentTarget;
+    const newSelect =
+      ((target as HTMLElement).innerHTML.split(' ').join('') as BodySelectType) ?? '판매목록';
+    setSelect(newSelect);
   };
   return { bodyDatas: bodyData[select], handleSelectChange };
 };

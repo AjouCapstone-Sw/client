@@ -18,7 +18,7 @@ const Header = styled.div`
     font-size: 24px;
   }
 
-  span.strike {
+  span.text-Impact {
     color: ${({ theme }) => theme.color.primary};
     margin-left: 10px;
   }

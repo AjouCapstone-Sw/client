@@ -8,7 +8,7 @@ export const WebRTCViewHeader = () => {
     <>
       <div>
         <span>경매</span>
-        <span className='strike'>Live</span>
+        <span className='text-Impact'>Live</span>
       </div>
       <WebRTCViewHeaderStyle.HeaderImgContainer>
         <img

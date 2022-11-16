@@ -18,7 +18,7 @@ export const useGetProductDataInAuction = ({ productId }: UseGetProductDataInAuc
   useEffect(() => {
     getProductDataInAuction({ productId })
       .then(setProductData)
-      .catch(() => setProductData({} as auctionProductData));
+      .catch(() => setProductData(IN_PRODUCT_DATA_IN_AUCTION as auctionProductData));
   }, [productId]);
 
   return productData;

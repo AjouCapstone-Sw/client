@@ -1,10 +1,10 @@
-import axios from 'axios';
-
 import { AUCTION_CHAT_SIZE_LIMIT } from './WebRTCView.const';
 import type { chatType, GetProductDataInAuction } from './WebRTCView.type';
 
+import { axiosInstance } from '@Util/Axios';
+
 export const getProductDataInAuction = async ({ productId }: GetProductDataInAuction) => {
-  const res = await axios.get(`/api/v1/auction/${productId}`);
+  const res = await axiosInstance.get(`/auction/${productId}`);
   return res.data;
 };
 

@@ -1,6 +1,6 @@
-import axios from 'axios';
+import { axiosInstance } from '@Util/Axios';
 
 export const getCategoryItemList = async (categoryId: number) => {
-  const res = await axios.get(`/api/v1/category/${categoryId}`, { withCredentials: true });
+  const res = await axiosInstance.get(`/category/${categoryId}`, { withCredentials: true });
   return res.data;
 };

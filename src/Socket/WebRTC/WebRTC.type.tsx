@@ -1,10 +1,12 @@
+import React from 'react';
+
 export type WebRTCUser = {
   id: string;
   stream: MediaStream;
 };
 
 export type WebRTCState = {
-  MeetingToggleButton: () => JSX.Element;
+  MeetingToggleButton: () => Element;
   meetingState: boolean;
   micState: boolean;
   windowState: boolean;

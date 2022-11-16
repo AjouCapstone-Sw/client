@@ -10,9 +10,11 @@ export default class ClientSocket {
 
   static receivePC: RTCPeerConnection;
 
+  // eslint-disable-next-line no-use-before-define
   static instance: ClientSocket | null;
 
   constructor(id: string) {
+    // eslint-disable-next-line no-constructor-return
     if (ClientSocket.instance) return ClientSocket.instance;
     this.connect();
     ClientSocket.instance = this;

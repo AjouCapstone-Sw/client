@@ -1,3 +1,5 @@
+import type { MutableRefObject, RefObject } from 'react';
+
 import ClientSocket from '@Socket/WebRTC/WebRTC';
 import {
   getLocalStream,
@@ -6,29 +8,6 @@ import {
   createOffer,
   makePeerConnection,
 } from '@Socket/WebRTC/WebRTC.util';
-
-export const connection = async ({
-  streamRef,
-  videoRef,
-  productId,
-}: {
-  streamRef: React.MutableRefObject<MediaStream | undefined>;
-  videoRef: React.RefObject<HTMLVideoElement>;
-  productId: number;
-}) => {
-  const clientSocket = new ClientSocket('싱글톤');
-  if (!clientSocket.socket) return;
-
-  clientSocket.socket!.emit('openAuction', { productId });
-
-  await getLocalStream({ streamRef, videoRef });
-  const sendPc = senderPC({ stream: streamRef.current! });
-  if (!sendPc) return;
-
-  ClientSocket.sendPC = sendPc;
-  const offer = await registerSdpToPC(sendPc);
-  clientSocket.socket!.emit('senderOffer', { sdp: offer });
-};
 
 const senderPC = ({ stream }: { stream: MediaStream }) => {
   const { socket } = new ClientSocket('싱글톤');
@@ -45,10 +24,34 @@ const registerSdpToPC = async (pc: RTCPeerConnection) => {
   return offer;
 };
 
+export const connection = async ({
+  streamRef,
+  videoRef,
+  productId,
+}: {
+  streamRef: MutableRefObject<MediaStream | undefined>;
+  videoRef: RefObject<HTMLVideoElement>;
+  productId: number;
+}) => {
+  const clientSocket = new ClientSocket('싱글톤');
+  if (!clientSocket.socket) return;
+
+  clientSocket.socket!.emit('openAuction', { productId });
+
+  await getLocalStream({ streamRef, videoRef });
+  const sendPc = senderPC({ stream: streamRef.current! });
+  if (!sendPc) return;
+
+  ClientSocket.sendPC = sendPc;
+  const offer = await registerSdpToPC(sendPc);
+  clientSocket.socket!.emit('senderOffer', { sdp: offer });
+};
+
 export const getSenderAnswerEvent = async (data: { sdp: RTCSessionDescription }) => {
   await registerRemoteDescriptionToPc(ClientSocket.sendPC, data.sdp);
 };
 
+// eslint-disable-next-line no-undef
 export const getSenderCandidateEvent = (data: { candidate: RTCIceCandidateInit }) => {
   getCandidateEvent(ClientSocket.sendPC, data.candidate);
 };

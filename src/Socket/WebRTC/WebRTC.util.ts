@@ -1,4 +1,6 @@
-import ClientSocket from './WebRTC';
+/* eslint-disable no-undef */
+
+// import ClientSocket from './WebRTC';
 import { PC_CONFIG } from './WebRTC.const';
 import { GetLocalStream } from './WebRTC.type';
 

@@ -6,6 +6,24 @@ import {
   makePeerConnection,
 } from '@Socket/WebRTC/WebRTC.util';
 
+const receivePC = ({ addStream, productId }: { addStream: Function; productId: number }) => {
+  const { socket } = new ClientSocket('싱글톤');
+  if (!socket) return null;
+  const callback = (e: RTCPeerConnectionIceEvent) => {
+    console.log('pc에 sdp 두개다 등록했으나 해당 callback이 동작하지 않음');
+    socket.emit('receiverCandidate', { candidate: e.candidate, productId });
+  };
+  const trackCallback = (e: RTCTrackEvent) => addStream(e);
+  const pc = makePeerConnection(callback, trackCallback);
+
+  return pc;
+};
+
+const createReceiverOffer = async (pc: RTCPeerConnection) => {
+  const answer = await createOffer(pc, true);
+  return answer;
+};
+
 export const connection = async ({
   productId,
   addStream,
@@ -25,24 +43,7 @@ export const connection = async ({
   clientSocket.socket!.emit('receiverOffer', { sdp: offer });
 };
 
-const receivePC = ({ addStream, productId }: { addStream: Function; productId: number }) => {
-  const { socket } = new ClientSocket('싱글톤');
-  if (!socket) return null;
-  const callback = (e: RTCPeerConnectionIceEvent) => {
-    console.log('pc에 sdp 두개다 등록했으나 해당 callback이 동작하지 않음');
-    socket.emit('receiverCandidate', { candidate: e.candidate, productId });
-  };
-  const trackCallback = (e: RTCTrackEvent) => addStream(e);
-  const pc = makePeerConnection(callback, trackCallback);
-
-  return pc;
-};
-
-const createReceiverOffer = async (pc: RTCPeerConnection) => {
-  const answer = await createOffer(pc, true);
-  return answer;
-};
-
+// eslint-disable-next-line no-undef
 export const getReceiverCandidateEvent = (data: { candidate: RTCIceCandidateInit }) => {
   getCandidateEvent(ClientSocket.receivePC, data.candidate);
 };

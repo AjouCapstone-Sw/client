@@ -15,11 +15,6 @@
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "no-plusplus": "warn",
-    "jsx-a11y/alt-text": "warn",
-    "no-use-before-define": "warn",
-    "no-constructor-return": "warn",
-    "no-undef": "warn",
-    "no-unused-vars": "warn",
     "consistent-return": "warn",
     "no-param-reassign": "warn",
     "react/function-component-definition": "off",

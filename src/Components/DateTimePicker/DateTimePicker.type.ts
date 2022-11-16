@@ -3,7 +3,6 @@ import { Control, ControllerRenderProps, FieldValues, Path, PathValue } from 're
 
 export type DateTimePickerProp<T extends FieldValues> = {
   control: Control<T>;
-  label: string;
   name: Path<T>;
   className?: string;
 };
@@ -11,4 +10,4 @@ export type DateTimePickerProp<T extends FieldValues> = {
 export type DateTimePickerChildProp<T extends FieldValues> = {
   value: PathValue<T, Path<T>>;
   onChange: (...event: any[]) => void;
-} & Pick<DateTimePickerProp<T>, 'label' | 'className'>;
+} & Pick<DateTimePickerProp<T>, 'className'>;

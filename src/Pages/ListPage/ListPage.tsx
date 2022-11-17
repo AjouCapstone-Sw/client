@@ -7,22 +7,22 @@ export const ListPage = () => {
   const basicItemList = useGetItemList();
   return (
     <div>
-      <div>
+      <ul>
         {liveItemList.map((basicItem) => (
           <ItemListCell
-            key={basicItem.id}
+            key={basicItem.productId}
             {...basicItem}
           />
         ))}
-      </div>
-      <div>
+      </ul>
+      <ul>
         {basicItemList.map((basicItem) => (
           <ItemListCell
-            key={basicItem.id}
+            key={basicItem.productId}
             {...basicItem}
           />
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

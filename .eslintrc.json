@@ -14,6 +14,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
+    "no-unused-vars": "warn",
     "consistent-return": "warn",
     "no-param-reassign": "warn",
     "react/function-component-definition": "off",

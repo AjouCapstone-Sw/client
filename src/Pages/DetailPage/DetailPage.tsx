@@ -23,7 +23,6 @@ export const DetailPage = () => {
     description,
     buyNowPrice,
   } = useGetProductDetail(Number(productId))!;
-
   return (
     <DetailPageStyle.ProductContainer>
       <DetailPageStyle.ImgBox>

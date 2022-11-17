@@ -15,6 +15,12 @@ const ProductContainer = styled.div`
   max-width: 650px;
   width: 90%;
   overflow-y: scroll;
+  .edit-button {
+    float: right;
+    margin-bottom: 30px;
+    width: 30%;
+    min-width: 150px;
+  }
 `;
 const SellerInfoContainer = styled.div`
   display: flex;

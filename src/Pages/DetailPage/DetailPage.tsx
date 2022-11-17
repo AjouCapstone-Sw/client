@@ -2,9 +2,11 @@ import { useParams } from 'react-router-dom';
 
 import { useGetProductDetail } from './DetailPage.hook';
 import DetailPageStyle from './DetailPage.style';
+import { isSeller } from './DetailPage.util';
 
 import { Button, ImageSlick, AuctionTimerButton } from '@Components/.';
 import { RightArrow } from '@Components/Svg';
+import { useMovePage } from '@Hook/useMovePage';
 import { addPriceComma } from '@Util/.';
 
 export const DetailPage = () => {
@@ -25,8 +27,18 @@ export const DetailPage = () => {
     isAuction,
   } = useGetProductDetail(Number(productId))!;
 
+  const [moveEditPage] = useMovePage(`/edit/${productId}`) as (() => void)[];
+
   return (
     <DetailPageStyle.ProductContainer>
+      {isSeller('Noelsky', seller) && (
+        <Button
+          className='edit-button'
+          onClick={() => moveEditPage()}
+        >
+          수정하기
+        </Button>
+      )}
       <DetailPageStyle.ImgBox>
         <ImageSlick images={productImages} />
       </DetailPageStyle.ImgBox>

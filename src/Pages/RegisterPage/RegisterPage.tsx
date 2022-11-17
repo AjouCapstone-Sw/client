@@ -3,8 +3,10 @@ import { useForm } from 'react-hook-form';
 import RegisterPageConstant from './RegisterPage.const';
 import { useEmailVerify } from './RegisterPage.hook';
 import RegisterPageStyle from './RegisterPage.style';
+import { postSignUpUser } from './RegisterPage.util';
 
 import { Button, Input, Dropdown, Calendar, FormErrorMessage } from '@Components/.';
+import { useMovePage } from '@Hook/useMovePage';
 
 type RegisterFormData = {
   id: string;
@@ -12,7 +14,10 @@ type RegisterFormData = {
   emailVerifyNum: string;
   password: string;
   passwordValidate: string;
-  sex: string;
+  sex: {
+    label: '남' | '여';
+    value: 'male' | 'female';
+  };
   birth: string;
 };
 
@@ -26,10 +31,18 @@ export const RegisterPage = () => {
   } = useForm<RegisterFormData>();
 
   const { emailVerifyState, handleEmailVerify } = useEmailVerify();
+  const [goLogin] = useMovePage('/login') as (() => void)[];
 
   const onSubmit = (data: RegisterFormData) => {
-    const { id, email, password, sex, birth } = data;
-    console.log(id, email, password, sex, birth);
+    const { id: nickName, email, password, sex, birth } = data;
+    const body = {
+      nickName,
+      email,
+      password,
+      gender: sex.value === 'male' ? 'M' : 'F',
+      birth,
+    };
+    postSignUpUser(body).then(goLogin);
   };
 
   return (
@@ -75,14 +88,14 @@ export const RegisterPage = () => {
             {emailVerifyState ? (
               <Button
                 type='button'
-                onClick={handleEmailVerify}
+                onClick={handleEmailVerify('1234')}
               >
                 인증번호 확인
               </Button>
             ) : (
               <Button
                 type='button'
-                onClick={handleEmailVerify}
+                onClick={handleEmailVerify('dnjun2@ajou.ac.kr')}
               >
                 인증번호 받기
               </Button>
@@ -104,7 +117,7 @@ export const RegisterPage = () => {
               name='birth'
             />
           </RegisterPageStyle.DropdownContainer>
-          <FormErrorMessage error={registerValidationErrors.sex} />
+          <FormErrorMessage error={registerValidationErrors.sex?.label} />
         </div>
         <Button>회원가입</Button>
       </RegisterPageStyle.RegisterForm>

@@ -96,7 +96,10 @@ export const ProductRegisterForm = ({ onSubmit, defaultValues }: ProductRegister
         </ProductRegisterFormStyle.ErrorMsg>
 
         <label htmlFor='isAuction'>라이브 경매 진행 여부</label>
-        <Switch {...register('isAuction')} />
+        <Switch
+          {...register('isAuction')}
+          checked={isAuction || false}
+        />
         {isAuction && (
           <AuctionEditForm
             control={control}

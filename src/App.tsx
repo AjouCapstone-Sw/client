@@ -12,6 +12,7 @@ import {
   HeaderPage,
   ProductReigsterPage,
   RegisterPage,
+  ProductEditPage,
 } from '@Pages/.';
 
 import './App.css';
@@ -51,6 +52,10 @@ function App() {
             <Route
               path='/detail/:productId'
               element={<DetailPage />}
+            />
+            <Route
+              path='/edit/:productId'
+              element={<ProductEditPage />}
             />
             <Route
               path='/list'

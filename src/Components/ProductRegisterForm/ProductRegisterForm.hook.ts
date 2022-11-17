@@ -70,6 +70,7 @@ export const useResetDefaultValue = (
 ) => {
   useEffect(() => {
     reset(defaultValues);
+
     if (defaultValues.images) setImages(defaultValues.images);
   }, [reset, defaultValues]);
 };

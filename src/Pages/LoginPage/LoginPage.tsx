@@ -5,7 +5,7 @@ import { Button, Input } from '@Components/.';
 import { useMovePage } from '@Hook/useMovePage';
 
 export const LoginPage = () => {
-  const { email, password, handleChangeEmail, handleChangePassword } = useLoginState();
+  const { email, password, handleChangeEmail, handleChangePassword, handleLogin } = useLoginState();
   const [goRegister] = useMovePage('/register') as (() => void)[];
   return (
     <LoginPageStyle.LoginContainer>
@@ -13,6 +13,7 @@ export const LoginPage = () => {
       <LoginPageStyle.LoginForm
         action='/login'
         method='POST'
+        onSubmit={handleLogin}
       >
         <LoginPageStyle.InputContainer>
           <Input

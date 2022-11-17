@@ -29,7 +29,7 @@ function App() {
           element={<RegisterPage />}
         />
         <Route
-          path='/live'
+          path='/live/:productId'
           element={<LivePage />}
         />
         <Route

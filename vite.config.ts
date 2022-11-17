@@ -17,6 +17,7 @@ export default defineConfig({
       { find: '@Pages', replacement: resolve('src/Pages') },
       { find: '@Util', replacement: resolve('src/Util') },
       { find: '@Context', replacement: resolve('src/Context') },
+      { find: '@Socket', replacement: resolve('src/Socket') },
     ],
   },
   server: {

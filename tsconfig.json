@@ -21,7 +21,8 @@
       "@Hook/*": ["./src/Hook/*"],
       "@Pages/*": ["./src/Pages/*"],
       "@Util/*": ["./src/Util/*"],
-      "@Context/*": ["./src/Context/*"]
+      "@Context/*": ["./src/Context/*"],
+      "@Socket/*": ["./src/Socket/*"]
     }
   },
   "include": ["src", "cypress", "src/custom.d.ts"],

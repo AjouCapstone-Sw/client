@@ -14,7 +14,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "no-unused-vars": "warn",
+    "no-plusplus": "warn",
     "consistent-return": "warn",
     "no-param-reassign": "warn",
     "react/function-component-definition": "off",
@@ -65,7 +65,8 @@
           ["@Hook", "./src/Hook"],
           ["@Pages", "./src/Pages"],
           ["@Util", "./src/Util"],
-          ["@Context", "./src/Context"]
+          ["@Context", "./src/Context"],
+          ["@Socket", "./src/Socket"]
         ],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }

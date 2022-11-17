@@ -1,5 +1,5 @@
 export const SKELETON_PRODUCT_DETAIL = {
-  id: 0,
+  productId: 0,
   title: '',
   buyNowPrice: 0,
   auctionStartPrice: 0,
@@ -7,6 +7,8 @@ export const SKELETON_PRODUCT_DETAIL = {
   auctionEndTime: '',
   productImages: ['/asset/김영진.jpg'],
   seller: 'Noelsky',
+  like: false,
+  live: false,
   description: '',
   sellReviewCount: 0,
   auctionReviewCount: 0,

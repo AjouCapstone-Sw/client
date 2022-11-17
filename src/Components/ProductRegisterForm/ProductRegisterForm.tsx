@@ -19,7 +19,7 @@ import {
 import ProductRegisterFormStyle from './ProductRegisterForm.style';
 import { ProductRegisterFormData, ProductRegisterFormProps } from './ProductRegisterForm.type';
 
-import { Button, ImageSlider, Input, AuctionEditForm } from '@Components/.';
+import { Button, ImageSlider, Input, AuctionEditForm, FormErrorMessage } from '@Components/.';
 import { AddImage } from '@Components/Svg';
 
 export const ProductRegisterForm = ({ onSubmit, defaultValues }: ProductRegisterFormProps) => {
@@ -52,9 +52,7 @@ export const ProductRegisterForm = ({ onSubmit, defaultValues }: ProductRegister
       <form onSubmit={handleProductRegisterSubmit(onSubmit)}>
         <label htmlFor='title'>상품명</label>
         <Input {...register('title', { ...TITLE_VALIDATION_OPTION })} />
-        <ProductRegisterFormStyle.ErrorMsg>
-          {registerValidationErrors.title?.message}
-        </ProductRegisterFormStyle.ErrorMsg>
+        <FormErrorMessage error={registerValidationErrors.title} />
 
         <label htmlFor='images'>상품 이미지</label>
         <ProductRegisterFormStyle.ImageContainer>
@@ -72,17 +70,13 @@ export const ProductRegisterForm = ({ onSubmit, defaultValues }: ProductRegister
             onRemove={handleImageRemove}
           />
         </ProductRegisterFormStyle.ImageContainer>
-        <ProductRegisterFormStyle.ErrorMsg>
-          {registerValidationErrors.images?.message}
-        </ProductRegisterFormStyle.ErrorMsg>
+        <FormErrorMessage error={registerValidationErrors.images} />
 
         <label htmlFor='content'>상품 설명</label>
         <ProductRegisterFormStyle.TextArea
           {...register('content', { ...CONTENT_VALIDATION_OPTION })}
         />
-        <ProductRegisterFormStyle.ErrorMsg>
-          {registerValidationErrors.content?.message}
-        </ProductRegisterFormStyle.ErrorMsg>
+        <FormErrorMessage error={registerValidationErrors.content} />
 
         <label htmlFor='buyNowPrice'>즉시 구매가</label>
         <Input
@@ -91,9 +85,7 @@ export const ProductRegisterForm = ({ onSubmit, defaultValues }: ProductRegister
             onChange: handleBuyNowPriceChange,
           })}
         />
-        <ProductRegisterFormStyle.ErrorMsg>
-          {registerValidationErrors.buyNowPrice?.message}
-        </ProductRegisterFormStyle.ErrorMsg>
+        <FormErrorMessage error={registerValidationErrors.buyNowPrice} />
 
         <label htmlFor='isAuction'>라이브 경매 진행 여부</label>
         <Switch

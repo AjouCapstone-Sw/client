@@ -12,6 +12,7 @@ export const color = {
   primary: '#5db075',
   white: '#FFFFFF',
   danger: '#E03E3E',
+  border: '#e9ecef',
 };
 
 export const fontSize = {

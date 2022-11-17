@@ -1,0 +1,1 @@
+export { MyPageUser } from './MyPageUser';

@@ -12,10 +12,10 @@ export const HomePage = () => {
         productId={1}
       />
       <HomePageStyle.MainItemSetContainer>
-        {categoryList.map((categoryId) => (
+        {categoryList.map((category) => (
           <MainItemSet
-            key={categoryId}
-            categoryId={categoryId}
+            key={category.categoryId}
+            categoryId={category.categoryId}
           />
         ))}
       </HomePageStyle.MainItemSetContainer>

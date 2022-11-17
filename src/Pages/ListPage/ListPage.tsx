@@ -1,25 +1,24 @@
-import { useGetItemList, useGetLiveItemList } from './ListPage.hook';
+import { useGetItemList } from './ListPage.hook';
 
 import { ItemListCell } from '@Components/.';
 
 export const ListPage = () => {
-  const liveItemList = useGetLiveItemList();
-  const basicItemList = useGetItemList();
+  const { viewLiveList, viewList } = useGetItemList();
   return (
     <div>
       <ul>
-        {liveItemList.map((basicItem) => (
+        {viewLiveList.map((viewLive) => (
           <ItemListCell
-            key={basicItem.productId}
-            {...basicItem}
+            key={viewLive.productId}
+            {...viewLive}
           />
         ))}
       </ul>
       <ul>
-        {basicItemList.map((basicItem) => (
+        {viewList.map((viewItem) => (
           <ItemListCell
-            key={basicItem.productId}
-            {...basicItem}
+            key={viewItem.productId}
+            {...viewItem}
           />
         ))}
       </ul>

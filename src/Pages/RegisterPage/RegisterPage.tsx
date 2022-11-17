@@ -4,7 +4,7 @@ import RegisterPageConstant from './RegisterPage.const';
 import { useEmailVerify } from './RegisterPage.hook';
 import RegisterPageStyle from './RegisterPage.style';
 
-import { Button, Input, Dropdown, Calendar } from '@Components/.';
+import { Button, Input, Dropdown, Calendar, FormErrorMessage } from '@Components/.';
 
 type RegisterFormData = {
   id: string;
@@ -41,17 +41,14 @@ export const RegisterPage = () => {
             placeholder='아이디'
             {...register('id', RegisterPageConstant.ID_VALIDATION_OPTION)}
           />
-          <RegisterPageStyle.ErrorMsg>
-            {registerValidationErrors.id?.message}
-          </RegisterPageStyle.ErrorMsg>
+          <FormErrorMessage error={registerValidationErrors.id} />
+
           <Input
             placeholder='비밀번호'
             type='password'
             {...register('password', RegisterPageConstant.PASSWORD_VALIDATION_OPTION)}
           />
-          <RegisterPageStyle.ErrorMsg>
-            {registerValidationErrors.password?.message}
-          </RegisterPageStyle.ErrorMsg>
+          <FormErrorMessage error={registerValidationErrors.password} />
           <Input
             placeholder='비밀번호 확인'
             type='password'
@@ -61,16 +58,13 @@ export const RegisterPage = () => {
                 watch('password') === val || '비밀번호가 일치하지 않습니다',
             })}
           />
-          <RegisterPageStyle.ErrorMsg>
-            {registerValidationErrors.passwordValidate?.message}
-          </RegisterPageStyle.ErrorMsg>
+          <FormErrorMessage error={registerValidationErrors.passwordValidate} />
+
           <Input
             placeholder='이메일'
             {...register('email', RegisterPageConstant.EMAIL_VALIDATION_OPTION)}
           />
-          <RegisterPageStyle.ErrorMsg>
-            {registerValidationErrors.email?.message}
-          </RegisterPageStyle.ErrorMsg>
+          <FormErrorMessage error={registerValidationErrors.email} />
 
           <RegisterPageStyle.EmailVerifyContainer>
             <Input
@@ -94,9 +88,7 @@ export const RegisterPage = () => {
               </Button>
             )}
           </RegisterPageStyle.EmailVerifyContainer>
-          <RegisterPageStyle.ErrorMsg>
-            {registerValidationErrors.emailVerifyNum?.message}
-          </RegisterPageStyle.ErrorMsg>
+          <FormErrorMessage error={registerValidationErrors.emailVerifyNum} />
 
           <RegisterPageStyle.DropdownContainer>
             <Dropdown
@@ -112,9 +104,7 @@ export const RegisterPage = () => {
               name='birth'
             />
           </RegisterPageStyle.DropdownContainer>
-          <RegisterPageStyle.ErrorMsg>
-            {registerValidationErrors.sex?.message}
-          </RegisterPageStyle.ErrorMsg>
+          <FormErrorMessage error={registerValidationErrors.sex} />
         </div>
         <Button>회원가입</Button>
       </RegisterPageStyle.RegisterForm>

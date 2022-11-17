@@ -26,7 +26,6 @@ export const AuctionEditForm = ({
       <DateTimePicker
         className='register-date-time-picker'
         control={control}
-        label='시작시간'
         name='auctionStartTime'
       />
       <label className='register-sldier-label'>경매 기간</label>

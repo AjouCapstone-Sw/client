@@ -17,3 +17,4 @@ export * from './AuctionEditForm/AuctionEditForm';
 export * from './MyPageUser';
 export * from './ProductReview';
 export * from './AuctionReview';
+export * from './FormErrorMessage/FormErrorMessage';

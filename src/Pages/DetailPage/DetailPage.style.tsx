@@ -33,12 +33,14 @@ const SellerInfoContainer = styled.div`
 const UserCircle = styled(SUserCircle)`
   width: 40px;
   height: 40px;
+  cursor: pointer;
 `;
 
 const UserName = styled.p`
   font-size: 20px;
   font-weight: 600;
   margin-left: 8px;
+  cursor: pointer;
 `;
 
 const ReviewContainer = styled.div`
@@ -51,6 +53,7 @@ const ReviewContainer = styled.div`
 `;
 
 const ReviewAnchor = styled.p`
+  cursor: pointer;
   opacity: 0.7;
   display: flex;
   justify-content: space-between;

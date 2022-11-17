@@ -5,6 +5,7 @@ import DetailPageStyle from './DetailPage.style';
 
 import { Button, ImageSlick, AuctionTimerButton } from '@Components/.';
 import { RightArrow } from '@Components/Svg';
+import { useMovePage } from '@Hook/useMovePage';
 import { addPriceComma } from '@Util/.';
 
 export const DetailPage = () => {
@@ -24,16 +25,18 @@ export const DetailPage = () => {
     buyNowPrice,
   } = useGetProductDetail(Number(productId))!;
 
+  const [goSeller] = useMovePage(`/my?${seller}`) as (() => void)[];
+
   return (
     <DetailPageStyle.ProductContainer>
       <DetailPageStyle.ImgBox>
         <ImageSlick images={productImages} />
       </DetailPageStyle.ImgBox>
-      <DetailPageStyle.SellerInfoContainer>
+      <DetailPageStyle.SellerInfoContainer onClick={goSeller}>
         <DetailPageStyle.UserCircle />
         <DetailPageStyle.UserName>{seller}</DetailPageStyle.UserName>
 
-        <DetailPageStyle.ReviewContainer>
+        <DetailPageStyle.ReviewContainer onClick={goSeller}>
           <DetailPageStyle.ReviewAnchor>
             경매 후기 {sellReviewCount}건<RightArrow />
           </DetailPageStyle.ReviewAnchor>

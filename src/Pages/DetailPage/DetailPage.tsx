@@ -22,6 +22,7 @@ export const DetailPage = () => {
     auctionEndTime,
     description,
     buyNowPrice,
+    isAuction,
   } = useGetProductDetail(Number(productId))!;
 
   return (
@@ -55,10 +56,12 @@ export const DetailPage = () => {
         <Button>
           즉시 구매 <span>{addPriceComma(buyNowPrice)} ₩</span>
         </Button>
-        <AuctionTimerButton
-          startTime={auctionStartTime}
-          endTime={auctionEndTime}
-        />
+        {isAuction && (
+          <AuctionTimerButton
+            startTime={auctionStartTime}
+            endTime={auctionEndTime}
+          />
+        )}
       </DetailPageStyle.ButtonContainer>
     </DetailPageStyle.ProductContainer>
   );

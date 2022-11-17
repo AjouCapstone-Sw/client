@@ -28,14 +28,15 @@ const TextContainer = styled.div`
   margin: 40px 0 20px;
   display: flex;
   justify-content: space-around;
-`;
-const SearchText = styled.span`
-  color: ${({ theme }) => theme.color.primary};
-  font-style: normal;
-  font-weight: ${({ theme }) => theme.fontWeight.base};
-  font-size: ${({ theme }) => theme.fontSize.m};
-  line-height: 19px;
-  cursor: pointer;
+
+  span {
+    color: ${({ theme }) => theme.color.primary};
+    font-style: normal;
+    font-weight: ${({ theme }) => theme.fontWeight.base};
+    font-size: ${({ theme }) => theme.fontSize.m};
+    line-height: 19px;
+    cursor: pointer;
+  }
 `;
 
 const AuthButtonContainer = styled.div`
@@ -50,7 +51,6 @@ const AuthButtonContainer = styled.div`
   }
 `;
 export default {
-  SearchText,
   AuthButtonContainer,
   LoginContainer,
   InputContainer,

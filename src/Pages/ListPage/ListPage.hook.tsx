@@ -77,8 +77,7 @@ const dummy = [
   },
 ];
 export const useGetItemList = () => {
-  // const [itemList, setItemList] = useState<ItemListCellType[]>([]);
-  const [viewList, setViewList] = useState<ItemListCellType[]>([...dummy]);
+  const [viewList, setViewList] = useState<ItemListCellType[]>([]);
   const [viewLiveList, setViewLiveList] = useState<ItemListCellType[]>([]);
   useEffect(() => {
     getCategoryItemList('전체')
@@ -90,7 +89,7 @@ export const useGetItemList = () => {
         setViewList([...dummy]);
         setViewLiveList([{ ...dummy[0], live: true }]);
       });
-  });
+  }, []);
 
   return { viewLiveList, viewList };
 };

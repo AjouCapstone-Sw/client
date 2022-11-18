@@ -2,6 +2,7 @@ import { ItemListCellType } from '@Pages/ListPage/ListPage.type';
 
 export type MainItemSetProps = {
   categoryId: number;
+  categoryName: string;
 };
 
 export type UseGetCategoryItemInfo = {
@@ -10,9 +11,5 @@ export type UseGetCategoryItemInfo = {
 
 export type CategoryItemSet = Pick<
   ItemListCellType,
-  'productId' | 'productImage' | 'title' | 'buyNowPrice' | 'live'
+  'productId' | 'productImage' | 'title' | 'buyNowPrice' | 'live' | 'like'
 >;
-export type CategoryItemSetList = {
-  category: string;
-  itemList: CategoryItemSet[];
-};

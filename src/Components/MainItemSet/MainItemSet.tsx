@@ -3,12 +3,12 @@ import { useGetCategoryItemInfo } from './MainItemSet.hook';
 import MainItemSetStyle from './MainItemSet.style';
 import { MainItemSetProps } from './MainItemSet.type';
 
-export const MainItemSet = ({ categoryId }: MainItemSetProps) => {
-  const { category, itemList } = useGetCategoryItemInfo({ categoryId });
+export const MainItemSet = ({ categoryId, categoryName }: MainItemSetProps) => {
+  const itemList = useGetCategoryItemInfo({ categoryId });
   return (
     <MainItemSetStyle.Container>
       <MainItemSetStyle.Title>
-        <MainItemSetStyle.Category>{category}</MainItemSetStyle.Category>
+        <MainItemSetStyle.Category>{categoryName}</MainItemSetStyle.Category>
         <span>더보기 </span>
         <img
           src='/asset/MainItemSet/더보기.svg'

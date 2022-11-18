@@ -15,7 +15,7 @@ export const HomePage = () => {
         {categoryList.map((category) => (
           <MainItemSet
             key={category.categoryId}
-            categoryId={category.categoryId}
+            {...category}
           />
         ))}
       </HomePageStyle.MainItemSetContainer>

@@ -4,12 +4,7 @@ import { Switch } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  TITLE_VALIDATION_OPTION,
-  IMAGES_VALIDATION_OPTION,
-  CONTENT_VALIDATION_OPTION,
-  BUY_NOW_VALIDATION_OPTION,
-} from './ProductRegisterForm.const';
+import ProductRegisterFormConst from './ProductRegisterForm.const';
 import {
   usePriceFormatting,
   useImages,
@@ -51,14 +46,14 @@ export const ProductRegisterForm = ({ onSubmit, defaultValues }: ProductRegister
     <ProductRegisterFormStyle.Container>
       <form onSubmit={handleProductRegisterSubmit(onSubmit)}>
         <label htmlFor='title'>상품명</label>
-        <Input {...register('title', { ...TITLE_VALIDATION_OPTION })} />
+        <Input {...register('title', { ...ProductRegisterFormConst.TITLE_VALIDATION_OPTION })} />
         <FormErrorMessage error={registerValidationErrors.title} />
 
         <label htmlFor='images'>상품 이미지</label>
         <ProductRegisterFormStyle.ImageContainer>
           <AddImage onClick={handleImageAdd} />
           <input
-            {...register('images', { ...IMAGES_VALIDATION_OPTION })}
+            {...register('images', { ...ProductRegisterFormConst.IMAGES_VALIDATION_OPTION })}
             type='file'
             multiple
             accept='image/*'
@@ -74,14 +69,14 @@ export const ProductRegisterForm = ({ onSubmit, defaultValues }: ProductRegister
 
         <label htmlFor='content'>상품 설명</label>
         <ProductRegisterFormStyle.TextArea
-          {...register('content', { ...CONTENT_VALIDATION_OPTION })}
+          {...register('content', { ...ProductRegisterFormConst.CONTENT_VALIDATION_OPTION })}
         />
         <FormErrorMessage error={registerValidationErrors.content} />
 
         <label htmlFor='buyNowPrice'>즉시 구매가</label>
         <Input
           {...register('buyNowPrice', {
-            ...BUY_NOW_VALIDATION_OPTION,
+            ...ProductRegisterFormConst.BUY_NOW_VALIDATION_OPTION,
             onChange: handleBuyNowPriceChange,
           })}
         />

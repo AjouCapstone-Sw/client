@@ -1,4 +1,4 @@
-export const TITLE_VALIDATION_OPTION = {
+const TITLE_VALIDATION_OPTION = {
   required: '필수 응답 항목입니다.',
   minLength: {
     value: 5,
@@ -10,7 +10,7 @@ export const TITLE_VALIDATION_OPTION = {
   },
 };
 
-export const CONTENT_VALIDATION_OPTION = {
+const CONTENT_VALIDATION_OPTION = {
   required: '필수 응답 항목입니다.',
   minLength: {
     value: 10,
@@ -22,7 +22,7 @@ export const CONTENT_VALIDATION_OPTION = {
   },
 };
 
-export const IMAGES_VALIDATION_OPTION = {
+const IMAGES_VALIDATION_OPTION = {
   required: '필수 응답 항목입니다.',
   maxLength: {
     value: 5,
@@ -30,7 +30,7 @@ export const IMAGES_VALIDATION_OPTION = {
   },
 };
 
-export const BUY_NOW_VALIDATION_OPTION = {
+const BUY_NOW_VALIDATION_OPTION = {
   required: '필수 응답 항목입니다.',
   minLength: {
     value: 6,
@@ -40,4 +40,11 @@ export const BUY_NOW_VALIDATION_OPTION = {
     value: /\d{1,3}(,\d{3})*원/,
     message: '금액 형식이 아닙니다',
   },
+};
+
+export default {
+  TITLE_VALIDATION_OPTION,
+  CONTENT_VALIDATION_OPTION,
+  IMAGES_VALIDATION_OPTION,
+  BUY_NOW_VALIDATION_OPTION,
 };

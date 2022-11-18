@@ -76,11 +76,11 @@ const dummy = [
     live: false,
   },
 ];
-export const useGetItemList = () => {
+export const useGetItemList = (categoryId: number) => {
   const [viewList, setViewList] = useState<ItemListCellType[]>([]);
   const [viewLiveList, setViewLiveList] = useState<ItemListCellType[]>([]);
   useEffect(() => {
-    getCategoryItemList('전체')
+    getCategoryItemList(categoryId)
       .then((res: ItemListCellType[]) => {
         setViewList(res.filter((viewItem) => viewItem.live));
         setViewLiveList(res.filter((viewItem) => !viewItem.live));

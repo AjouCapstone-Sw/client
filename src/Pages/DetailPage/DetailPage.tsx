@@ -34,7 +34,7 @@ export const DetailPage = () => {
       {isSeller('Noelsky', seller) && (
         <Button
           className='edit-button'
-          onClick={() => moveEditPage()}
+          onClick={moveEditPage}
         >
           수정하기
         </Button>

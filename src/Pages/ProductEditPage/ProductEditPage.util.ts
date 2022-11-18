@@ -13,7 +13,7 @@ const convertURLtoFile = async (url: string) => {
 };
 
 const getImageFiles = async (images: string[]) => {
-  const fileReqList = images.map((url) => convertURLtoFile(url));
+  const fileReqList = images.map(convertURLtoFile);
   const imageFiles = await Promise.all(fileReqList);
   return imageFiles;
 };

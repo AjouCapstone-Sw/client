@@ -9,9 +9,7 @@ export const useGetProductDefaultValue = (productDetail: ProductDetail) => {
 
   useEffect(() => {
     makeDefaultProductValue(productDetail)
-      .then((defaultValue) => {
-        setProductDefaultValue(defaultValue);
-      })
+      .then(setProductDefaultValue)
       .catch(() => setProductDefaultValue({}));
   }, [productDetail]);
 

@@ -10,7 +10,7 @@ export const TITLE_VALIDATION_OPTION = {
   },
 };
 
-export const CONTENT_VALIDATION_OPTION = {
+export const DESCRIPTION_VALIDATION_OPTION = {
   required: '필수 응답 항목입니다.',
   minLength: {
     value: 10,

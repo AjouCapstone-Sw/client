@@ -3,23 +3,11 @@ import { useForm } from 'react-hook-form';
 import RegisterPageConstant from './RegisterPage.const';
 import { useEmailVerify } from './RegisterPage.hook';
 import RegisterPageStyle from './RegisterPage.style';
+import type { PostSignUpUser, RegisterFormData } from './RegisterPage.type';
 import { postSignUpUser } from './RegisterPage.util';
 
 import { Button, Input, Dropdown, Calendar, FormErrorMessage } from '@Components/.';
 import { useMovePage } from '@Hook/useMovePage';
-
-type RegisterFormData = {
-  id: string;
-  email: string;
-  emailVerifyNum: string;
-  password: string;
-  passwordValidate: string;
-  sex: {
-    label: '남' | '여';
-    value: 'male' | 'female';
-  };
-  birth: string;
-};
 
 export const RegisterPage = () => {
   const {
@@ -30,12 +18,14 @@ export const RegisterPage = () => {
     formState: { errors: registerValidationErrors },
   } = useForm<RegisterFormData>();
 
-  const { emailVerifyState, handleEmailVerify } = useEmailVerify();
+  const { emailVerifyState, handleEmailVerify, confirmState, handleConfirmVerify } =
+    useEmailVerify();
   const [goLogin] = useMovePage('/login') as (() => void)[];
 
   const onSubmit = (data: RegisterFormData) => {
     const { id: nickName, email, password, sex, birth } = data;
-    const body = {
+    if (!confirmState) return;
+    const body: PostSignUpUser = {
       nickName,
       email,
       password,
@@ -88,7 +78,7 @@ export const RegisterPage = () => {
             {emailVerifyState ? (
               <Button
                 type='button'
-                onClick={handleEmailVerify('1234')}
+                onClick={handleConfirmVerify('1234')}
               >
                 인증번호 확인
               </Button>

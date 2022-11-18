@@ -1,28 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { getEmailValidation } from './RegisterPage.util';
 
 let validationCode = '';
 
 export const useEmailVerify = () => {
-  const [callValidation, setCallValidation] = useState<boolean>(false);
   const [emailVerifyState, setEmailVerifyState] = useState<boolean>(false);
   const [confirmState, setConfirmState] = useState<boolean>(false);
 
-  const handleEmailVerify = (userInput: string) => async () => {
-    if (!callValidation) {
-      const email = userInput;
-      const res = await getEmailValidation(email);
-      setCallValidation(true);
-      validationCode = res;
-      return;
-    }
-    const userInputValidateCode = userInput;
-    if (validationCode === userInputValidateCode) setEmailVerifyState(true);
+  const handleEmailVerify = (email: string) => async () => {
+    const res = await getEmailValidation(email);
+    setEmailVerifyState(true);
+    validationCode = res;
   };
 
-  const handleConfirmVerify: React.MouseEventHandler = () => {
-    setConfirmState(true);
+  const handleConfirmVerify = (userInputValidateCode: string) => () => {
+    if (validationCode === userInputValidateCode) setConfirmState(true);
   };
 
   return { emailVerifyState, handleEmailVerify, confirmState, handleConfirmVerify };

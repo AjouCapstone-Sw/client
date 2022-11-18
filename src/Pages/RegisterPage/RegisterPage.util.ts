@@ -1,3 +1,5 @@
+import type { PostSignUpUser } from './RegisterPage.type';
+
 import { axiosInstance } from '@Util/Axios';
 
 export const getEmailValidation = async (email: string) => {
@@ -6,7 +8,7 @@ export const getEmailValidation = async (email: string) => {
   return res.data;
 };
 
-export const postSignUpUser = async (body: any) => {
+export const postSignUpUser = async (body: PostSignUpUser) => {
   const res = await axiosInstance.post('/user/signup', body);
   console.log(res.data);
   return res.data;

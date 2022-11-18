@@ -26,3 +26,9 @@ export const isNowTimeAhead = (nowTime: dayjs.Dayjs, baseTime: string) =>
 
 export const isAuctionEnd = (nowTime: dayjs.Dayjs, endTime: string) =>
   nowTime.isAfter(dayjs(endTime, DATE_FORMAT));
+
+export const getAuctionDuration = (startTime: string, endTime: string) =>
+  dayjs
+    .duration(dayjs(endTime).diff(dayjs(startTime)))
+    .asMinutes()
+    .toString();

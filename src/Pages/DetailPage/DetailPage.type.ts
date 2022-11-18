@@ -7,4 +7,5 @@ export type ProductDetail = Omit<ItemListCellType, 'productImage'> & {
   auctionEndTime: string;
   sellReviewCount: number;
   auctionReviewCount: number;
+  isAuction: boolean;
 };

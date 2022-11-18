@@ -1,5 +1,3 @@
-import { useForm } from 'react-hook-form';
-
 import { useSendChatMessage } from './WebRTCViewFooter.hook';
 import WebRTCViewFooterStyle from './WebRTCViewFooter.style';
 import type { WEbRTCViewFooterProps } from './WebRTCViewFooter.type';

@@ -1,4 +1,4 @@
-import { MakeAuctionProduct, MakeNotAuctionProduct, MakeProduct } from './ProductRegisterPage.type';
+import { MakeAuctionProduct, MakeNotAuctionProduct, MakeProduct } from './ProductRegisterForm.type';
 
 import { axiosInstance } from '@Util/Axios';
 

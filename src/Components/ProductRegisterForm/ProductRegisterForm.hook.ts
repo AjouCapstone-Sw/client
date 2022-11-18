@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
+import { DeepPartial, UseFormRegister, UseFormReset, UseFormSetValue } from 'react-hook-form';
 
-import { ProductRegisterForm } from './ProductRegisterPage.type';
-import { getRemovedFileList } from './ProductRegisterPage.util';
+import { ProductRegisterFormData } from './ProductRegisterForm.type';
+import { getRemovedFileList } from './ProductRegisterForm.util';
 
 import { addPriceComma, getBidPrice, removePriceEtc } from '@Util/.';
 
 export const useImagePreviews = (images: FileList) => {
   const [imagePreviews, setImagePreview] = useState<string[]>([]);
   useEffect(() => {
-    if (!images || images?.length === 0) return;
+    if (!images) return;
     setImagePreview(
       [...images].map((imageFile: Blob | MediaSource) => URL.createObjectURL(imageFile)),
     );
@@ -17,7 +17,7 @@ export const useImagePreviews = (images: FileList) => {
   return imagePreviews;
 };
 
-export const useImages = (setValue: UseFormSetValue<ProductRegisterForm>) => {
+export const useImages = (setValue: UseFormSetValue<ProductRegisterFormData>) => {
   const imageRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<FileList>(imageRef.current?.files as FileList);
 
@@ -36,12 +36,12 @@ export const useImages = (setValue: UseFormSetValue<ProductRegisterForm>) => {
     setImages(removedFileList);
   };
 
-  return { imageRef, handleImageAdd, images, handleImageChange, handleImageRemove };
+  return { imageRef, handleImageAdd, images, handleImageChange, handleImageRemove, setImages };
 };
 
 export const usePriceFormatting = (
-  setValue: UseFormSetValue<ProductRegisterForm>,
-  register: UseFormRegister<ProductRegisterForm>,
+  setValue: UseFormSetValue<ProductRegisterFormData>,
+  register: UseFormRegister<ProductRegisterFormData>,
 ) => {
   useEffect(() => {
     register('buyNowPrice', { value: '0원' });
@@ -61,4 +61,16 @@ export const usePriceFormatting = (
   };
 
   return { handleBuyNowPriceChange, handleAuctionStartPriceChange };
+};
+
+export const useResetDefaultValue = (
+  defaultValues: DeepPartial<ProductRegisterFormData>,
+  reset: UseFormReset<ProductRegisterFormData>,
+  setImages: React.Dispatch<React.SetStateAction<FileList>>,
+) => {
+  useEffect(() => {
+    reset(defaultValues);
+
+    if (defaultValues.images) setImages(defaultValues.images);
+  }, [reset, defaultValues]);
 };

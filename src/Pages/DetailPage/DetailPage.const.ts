@@ -12,4 +12,5 @@ export const SKELETON_PRODUCT_DETAIL = {
   description: '',
   sellReviewCount: 0,
   auctionReviewCount: 0,
+  isAuction: true,
 };

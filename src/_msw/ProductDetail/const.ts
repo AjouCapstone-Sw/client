@@ -13,6 +13,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: true,
   },
   2: {
     id: 2,
@@ -26,6 +27,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: true,
   },
   3: {
     id: 3,
@@ -39,6 +41,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: true,
   },
   6: {
     id: 4,
@@ -52,6 +55,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: true,
   },
   7: {
     id: 1,
@@ -65,6 +69,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: false,
   },
   8: {
     id: 1,
@@ -78,6 +83,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: false,
   },
   9: {
     id: 1,
@@ -91,6 +97,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: false,
   },
   10: {
     id: 1,
@@ -104,6 +111,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: false,
   },
   11: {
     id: 1,
@@ -117,6 +125,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: false,
   },
   12: {
     id: 1,
@@ -130,6 +139,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: false,
   },
   13: {
     id: 1,
@@ -143,6 +153,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: false,
   },
   14: {
     id: 1,
@@ -156,6 +167,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: false,
   },
   15: {
     id: 1,
@@ -169,6 +181,7 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: false,
   },
   16: {
     id: 1,
@@ -182,5 +195,6 @@ export const MSW_PRODUCT_DETAILS: MockProductDetailType = {
     description: '김영진 피규어 2022 한정판 판매합니다 !',
     sellReviewCount: 1,
     auctionReviewCount: 10,
+    isAuction: false,
   },
 };

@@ -1,10 +1,10 @@
-import ClientSocket from '@Socket/WebRTC/WebRTC';
 import {
-  registerRemoteDescriptionToPc,
-  getCandidateEvent,
-  createOffer,
   makePeerConnection,
-} from '@Socket/WebRTC/WebRTC.util';
+  createOffer,
+  getCandidateEvent,
+  registerRemoteDescriptionToPc,
+} from '../../Socket/WebRTC';
+import ClientSocket from '../../Socket/WebRTC/WebRTC';
 
 const receivePC = ({ addStream, productId }: { addStream: Function; productId: number }) => {
   const { socket } = new ClientSocket('싱글톤');

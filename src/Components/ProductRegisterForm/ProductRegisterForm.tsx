@@ -67,11 +67,11 @@ export const ProductRegisterForm = ({ onSubmit, defaultValues }: ProductRegister
         </ProductRegisterFormStyle.ImageContainer>
         <FormErrorMessage error={registerValidationErrors.images} />
 
-        <label htmlFor='content'>상품 설명</label>
+        <label htmlFor='description'>상품 설명</label>
         <ProductRegisterFormStyle.TextArea
-          {...register('content', { ...ProductRegisterFormConst.CONTENT_VALIDATION_OPTION })}
+          {...register('description', { ...ProductRegisterFormConst.CONTENT_VALIDATION_OPTION })}
         />
-        <FormErrorMessage error={registerValidationErrors.content} />
+        <FormErrorMessage error={registerValidationErrors.description} />
 
         <label htmlFor='buyNowPrice'>즉시 구매가</label>
         <Input

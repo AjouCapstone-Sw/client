@@ -27,7 +27,10 @@ export const DetailPage = () => {
     isAuction,
   } = useGetProductDetail(Number(productId))!;
 
-  const [moveEditPage] = useMovePage(`/edit/${productId}`) as (() => void)[];
+  const [moveEditPage, goSeller] = useMovePage([
+    `/edit/${productId}`,
+    `/my?${seller}`,
+  ]) as (() => void)[];
 
   return (
     <DetailPageStyle.ProductContainer>
@@ -42,11 +45,11 @@ export const DetailPage = () => {
       <DetailPageStyle.ImgBox>
         <ImageSlick images={productImages} />
       </DetailPageStyle.ImgBox>
-      <DetailPageStyle.SellerInfoContainer>
+      <DetailPageStyle.SellerInfoContainer onClick={goSeller}>
         <DetailPageStyle.UserCircle />
         <DetailPageStyle.UserName>{seller}</DetailPageStyle.UserName>
 
-        <DetailPageStyle.ReviewContainer>
+        <DetailPageStyle.ReviewContainer onClick={goSeller}>
           <DetailPageStyle.ReviewAnchor>
             경매 후기 {sellReviewCount}건<RightArrow />
           </DetailPageStyle.ReviewAnchor>

@@ -35,7 +35,7 @@ export const makeDefaultProductValue = async ({
   auctionStartTime,
 }: ProductDetail): Promise<ProductRegisterFormData> => ({
   title,
-  content: description,
+  description,
   auctionStartTime,
   buyNowPrice: addPriceComma(buyNowPrice),
   auctionBidPrice: addPriceComma(getBidPrice(auctionStartPrice)),

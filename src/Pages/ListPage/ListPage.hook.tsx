@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ItemListCellType } from './ListPage.type';
+
+import { getCategoryItemList } from '@Components/MainItemSet/MainItemset.util';
 
 const dummy = [
   {
@@ -74,19 +76,20 @@ const dummy = [
     live: false,
   },
 ];
-export const useGetItemList = () => {
-  const [itemList, setItemList] = useState<ItemListCellType[]>([]);
-  const [viewList, setViewList] = useState<ItemListCellType[]>([...dummy]);
-  console.log(itemList);
-  console.log(setItemList);
-  console.log(setViewList);
-  return viewList;
-};
+export const useGetItemList = (categoryId: number) => {
+  const [viewList, setViewList] = useState<ItemListCellType[]>([]);
+  const [viewLiveList, setViewLiveList] = useState<ItemListCellType[]>([]);
+  useEffect(() => {
+    getCategoryItemList(categoryId)
+      .then((res: ItemListCellType[]) => {
+        setViewList(res.filter((viewItem) => viewItem.live));
+        setViewLiveList(res.filter((viewItem) => !viewItem.live));
+      })
+      .catch(() => {
+        setViewList([...dummy]);
+        setViewLiveList([{ ...dummy[0], live: true }]);
+      });
+  }, []);
 
-export const useGetLiveItemList = () => {
-  const [viewLiveList, setViewLiveList] = useState<ItemListCellType[]>([
-    { ...dummy[0], live: true },
-  ]);
-  console.log(setViewLiveList);
-  return viewLiveList;
+  return { viewLiveList, viewList };
 };

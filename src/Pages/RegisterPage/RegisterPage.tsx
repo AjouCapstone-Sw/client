@@ -15,6 +15,7 @@ export const RegisterPage = () => {
     handleSubmit: handleRegisterSubmit,
     control,
     watch,
+    getValues,
     formState: { errors: registerValidationErrors },
   } = useForm<RegisterFormData>();
 
@@ -78,14 +79,14 @@ export const RegisterPage = () => {
             {emailVerifyState ? (
               <Button
                 type='button'
-                onClick={handleConfirmVerify('1234')}
+                onClick={() => handleConfirmVerify(getValues('emailVerifyNum'))}
               >
                 인증번호 확인
               </Button>
             ) : (
               <Button
                 type='button'
-                onClick={handleEmailVerify('dnjun2@ajou.ac.kr')}
+                onClick={() => handleEmailVerify(getValues('email'))}
               >
                 인증번호 받기
               </Button>

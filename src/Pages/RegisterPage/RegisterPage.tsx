@@ -3,18 +3,11 @@ import { useForm } from 'react-hook-form';
 import RegisterPageConstant from './RegisterPage.const';
 import { useEmailVerify } from './RegisterPage.hook';
 import RegisterPageStyle from './RegisterPage.style';
+import type { PostSignUpUser, RegisterFormData } from './RegisterPage.type';
+import { postSignUpUser } from './RegisterPage.util';
 
 import { Button, Input, Dropdown, Calendar, FormErrorMessage } from '@Components/.';
-
-type RegisterFormData = {
-  id: string;
-  email: string;
-  emailVerifyNum: string;
-  password: string;
-  passwordValidate: string;
-  sex: string;
-  birth: string;
-};
+import { useMovePage } from '@Hook/useMovePage';
 
 export const RegisterPage = () => {
   const {
@@ -22,14 +15,25 @@ export const RegisterPage = () => {
     handleSubmit: handleRegisterSubmit,
     control,
     watch,
+    getValues,
     formState: { errors: registerValidationErrors },
   } = useForm<RegisterFormData>();
 
-  const { emailVerifyState, handleEmailVerify } = useEmailVerify();
+  const { emailVerifyState, handleEmailVerify, confirmState, handleConfirmVerify } =
+    useEmailVerify();
+  const [goLogin] = useMovePage('/login') as (() => void)[];
 
   const onSubmit = (data: RegisterFormData) => {
-    const { id, email, password, sex, birth } = data;
-    console.log(id, email, password, sex, birth);
+    const { id: nickName, email, password, sex, birth } = data;
+    if (!confirmState) return;
+    const body: PostSignUpUser = {
+      nickName,
+      email,
+      password,
+      gender: sex.value === 'male' ? 'M' : 'F',
+      birth,
+    };
+    postSignUpUser(body).then(goLogin);
   };
 
   return (
@@ -75,14 +79,14 @@ export const RegisterPage = () => {
             {emailVerifyState ? (
               <Button
                 type='button'
-                onClick={handleEmailVerify}
+                onClick={() => handleConfirmVerify(getValues('emailVerifyNum'))}
               >
                 인증번호 확인
               </Button>
             ) : (
               <Button
                 type='button'
-                onClick={handleEmailVerify}
+                onClick={() => handleEmailVerify(getValues('email'))}
               >
                 인증번호 받기
               </Button>
@@ -104,7 +108,7 @@ export const RegisterPage = () => {
               name='birth'
             />
           </RegisterPageStyle.DropdownContainer>
-          <FormErrorMessage error={registerValidationErrors.sex} />
+          <FormErrorMessage error={registerValidationErrors.sex?.label} />
         </div>
         <Button>회원가입</Button>
       </RegisterPageStyle.RegisterForm>

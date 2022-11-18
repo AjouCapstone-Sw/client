@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
+import { getEmailValidation } from './RegisterPage.util';
+
+let validationCode = '';
 
 export const useEmailVerify = () => {
   const [emailVerifyState, setEmailVerifyState] = useState<boolean>(false);
   const [confirmState, setConfirmState] = useState<boolean>(false);
 
-  const handleEmailVerify: React.MouseEventHandler = () => {
-    // api call with email
-    setEmailVerifyState(true);
-  };
+  const handleEmailVerify = (email: string) =>
+    getEmailValidation(email).then((res) => {
+      setEmailVerifyState(true);
+      validationCode = res;
+    });
 
-  const handleConfirmVerify: React.MouseEventHandler = () => {
-    setConfirmState(true);
+  const handleConfirmVerify = (userInputValidateCode: string) => {
+    if (validationCode === userInputValidateCode) setConfirmState(true);
   };
 
   return { emailVerifyState, handleEmailVerify, confirmState, handleConfirmVerify };

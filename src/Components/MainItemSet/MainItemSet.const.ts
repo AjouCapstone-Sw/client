@@ -1,4 +1,1 @@
-export const INIT_ITEM = {
-  category: '',
-  itemList: [],
-};
+export const INIT_ITEM = [];

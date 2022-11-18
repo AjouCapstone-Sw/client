@@ -5,13 +5,14 @@ import { useNavigate } from 'react-router-dom';
 
 import {
   BUY_NOW_VALIDATION_OPTION,
-  CONTENT_VALIDATION_OPTION,
+  DESCRIPTION_VALIDATION_OPTION,
   IMAGES_VALIDATION_OPTION,
   TITLE_VALIDATION_OPTION,
 } from './ProductRegisterPage.const';
 import { usePriceFormatting, useImages, useImagePreviews } from './ProductRegisterPage.hook';
 import ProductRegisterPageStyle from './ProductRegisterPage.style';
 import { ProductRegisterForm } from './ProductRegisterPage.type';
+import { makeAuctionProduct, makeNotAuctionProduct, makeProduct } from './ProductRegisterPage.util';
 
 import { Button, ImageSlider, Input, AuctionEditForm, FormErrorMessage } from '@Components/.';
 import { AddImage } from '@Components/Svg';
@@ -40,7 +41,11 @@ export const ProductReigsterPage = () => {
   const imagePreviews = useImagePreviews(images);
 
   const onSubmit = (data: ProductRegisterForm) => {
-    console.log(data);
+    // data에 userId 넣어줘야함
+    // images 뽑아서 s3에 넣어서 그 url 넣어줘야함
+    // auctionDuration이 안뽑힘 undefined
+    const body = isAuction ? makeAuctionProduct(data) : makeNotAuctionProduct(data);
+    makeProduct(body).then(() => navigate(-1));
   };
 
   return (
@@ -68,11 +73,11 @@ export const ProductReigsterPage = () => {
         </ProductRegisterPageStyle.ImageContainer>
         <FormErrorMessage error={registerValidationErrors.images} />
 
-        <label htmlFor='content'>상품 설명</label>
+        <label htmlFor='description'>상품 설명</label>
         <ProductRegisterPageStyle.TextArea
-          {...register('content', { ...CONTENT_VALIDATION_OPTION })}
+          {...register('description', { ...DESCRIPTION_VALIDATION_OPTION })}
         />
-        <FormErrorMessage error={registerValidationErrors.content} />
+        <FormErrorMessage error={registerValidationErrors.description} />
 
         <label htmlFor='buyNowPrice'>즉시 구매가</label>
         <Input

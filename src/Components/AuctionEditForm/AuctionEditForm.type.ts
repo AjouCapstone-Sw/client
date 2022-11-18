@@ -2,10 +2,10 @@
 import React from 'react';
 import { Control, UseFormRegister } from 'react-hook-form';
 
-import { ProductRegisterForm } from '@Pages/ProductRegisterPage/ProductRegisterPage.type';
+import { ProductRegisterFormData } from '@Components/ProductRegisterForm/ProductRegisterForm.type';
 
 export type AuctionEditFormProps = {
-  control: Control<ProductRegisterForm, any>;
-  register: UseFormRegister<ProductRegisterForm>;
+  control: Control<ProductRegisterFormData, any>;
+  register: UseFormRegister<ProductRegisterFormData>;
   handleAuctionStartPriceChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };

@@ -16,6 +16,7 @@ export const useGetVideoStreamSeller = ({ productId }: UseGetVideoStreamSeller) 
     clientSocket.socket!.on('getSenderCandidate', getSenderCandidateEvent);
     clientSocket.socket!.on('getSenderAnswer', getSenderAnswerEvent);
     return () => {
+      (ClientSocket.sendPC as RTCPeerConnection).close();
       ClientSocket.sendPC = null;
       clientSocket.socket!.emit('close', { productId });
       clientSocket.socket!.off('getSenderCandidate', getSenderCandidateEvent);

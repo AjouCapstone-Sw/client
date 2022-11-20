@@ -22,7 +22,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
         <WebRTCViewHeader />
       </WebRTCViewStyle.Header>
 
-      <WebRTCViewStyle.Title>{productTitle} 경매 Live</WebRTCViewStyle.Title>
+      <WebRTCViewStyle.Title>{productTitle}</WebRTCViewStyle.Title>
 
       <WebRTCViewStyle.Body>
         <WebRTCViewBody

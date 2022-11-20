@@ -1,4 +1,4 @@
-import { useAuctionFooterStates, useSendChatMessage } from './WebRTCViewFooter.hook';
+import { useAttendBid, useAuctionFooterStates, useSendChatMessage } from './WebRTCViewFooter.hook';
 import WebRTCViewFooterStyle from './WebRTCViewFooter.style';
 import type { WEbRTCViewFooterProps } from './WebRTCViewFooter.type';
 import { handleAskPriceClick } from './WebRTCViewFooter.util';
@@ -15,8 +15,10 @@ export const WebRTCViewFooter = ({
 }: WEbRTCViewFooterProps) => {
   const { register, handleSubmit } = useSendChatMessage({ productId });
   const { isAuctionStart } = useAuctionFooterStates({ productId });
+  const { attend, handleAttendTrue } = useAttendBid({ nextAskPrice });
   const userId = getUserId();
-
+  console.log('seller : ', seller);
+  console.log('userId : ', userId);
   return (
     <>
       <div>
@@ -42,9 +44,9 @@ export const WebRTCViewFooter = ({
         <button
           className='ask-button'
           type='button'
-          onClick={handleAskPriceClick({ productId, nextAskPrice })}
+          onClick={handleAskPriceClick({ productId, nextAskPrice, handleAttendTrue })}
           aria-hidden
-          disabled={!isAuctionStart || isSeller(userId, seller)}
+          disabled={!isAuctionStart || isSeller(userId, seller) || attend}
         >
           {addPriceComma(nextAskPrice)} 원
         </button>

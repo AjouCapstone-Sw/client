@@ -4,11 +4,12 @@ import ClientSocket from '@Socket/WebRTC/WebRTC';
 import { getUserId } from '@Util/LocalStorage';
 
 export const handleAskPriceClick =
-  ({ productId, nextAskPrice }: HandleAskPriceClick) =>
+  ({ productId, nextAskPrice, handleAttendTrue }: HandleAskPriceClick) =>
   () => {
     const userId = getUserId();
     const clientSocket = new ClientSocket(userId as string);
     clientSocket.socket!.emit('sendAskPrice', { productId, nextAskPrice });
+    handleAttendTrue();
   };
 
 export const handleChatMessageSend =

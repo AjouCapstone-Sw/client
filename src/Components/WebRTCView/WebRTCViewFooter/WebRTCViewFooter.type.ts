@@ -11,6 +11,7 @@ export type WEbRTCViewFooterProps = {
 export type HandleAskPriceClick = {
   productId: number;
   nextAskPrice: number;
+  handleAttendTrue: Function;
 };
 
 export type AuctionChatInput = {

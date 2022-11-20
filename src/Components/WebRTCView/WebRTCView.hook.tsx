@@ -57,7 +57,7 @@ export const useJoinAuction = ({ productId }: UseJoinAuction) => {
   const [seller, setSeller] = useState<string>('');
 
   useEffect(() => {
-    clientSocket.socket!.on('a', setSeller);
+    clientSocket.socket!.on('callSeller', setSeller);
     clientSocket.socket!.on('receiveMessage', ({ message, userId }) => {
       addChat(createChatData(userId, message));
     });

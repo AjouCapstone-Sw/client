@@ -1,31 +1,18 @@
+import { ProductDetail } from './DetailPage.type';
+
 import { axiosInstance } from '@Util/.';
 
-export const getProductDetail = async (productId: number) => {
-  const {
-    data: {
-      description,
-      endTime,
-      instant,
-      productImages,
-      seller,
-      startPrice,
-      startTime,
-      title,
-      buyNowPrice,
-    },
-  } = await axiosInstance.get(`/product/${productId}`);
+export const getProductDetail = async (productId: number): Promise<ProductDetail> => {
+  const { data } = await axiosInstance.get(`/product/${productId}`);
 
   return {
-    description,
-    productId,
-    auctionEndTime: endTime,
-    isAuction: !instant,
-    productImages,
-    seller,
-    auctionStartPrice: startPrice,
-    auctionStartTime: startTime,
-    title,
-    buyNowPrice,
+    ...data,
+    auctionEndTime: data.endTime,
+    isAuction: !data.instant,
+    auctionStartPrice: data.startPrice,
+    auctionStartTime: data.startTime,
+    sellReviewCount: 0,
+    auctionReviewCount: 0,
   };
 };
 

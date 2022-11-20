@@ -16,11 +16,11 @@ export const RangeSlider = <T extends FieldValues>({
   <Controller
     control={control}
     name={name}
-    render={({ field }) => (
+    render={({ field: { onChange } }) => (
       <RangeSliderChild
         {...props}
         className={className}
-        field={field}
+        onChange={onChange}
       />
     )}
   />

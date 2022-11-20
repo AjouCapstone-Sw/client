@@ -20,6 +20,8 @@ const getProductRegisterBody = (data: ProductRegisterFormData) => ({
 });
 
 export const onSubmit = async (data: ProductRegisterFormData) => {
+  console.log(getProductRegisterBody(data));
+  console.log(data);
   const res = await axiosInstance.post('/product/create', getProductRegisterBody(data));
   console.log(res);
 };

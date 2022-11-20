@@ -3,23 +3,32 @@ import WebRTCViewFooterStyle from './WebRTCViewFooter.style';
 import type { WEbRTCViewFooterProps } from './WebRTCViewFooter.type';
 import { handleAskPriceClick } from './WebRTCViewFooter.util';
 
+import { isSeller } from '@Pages/DetailPage/DetailPage.util';
 import { addPriceComma } from '@Util/.';
 
 export const WebRTCViewFooter = ({
-  chats,
   nextAskPrice,
   productLikeNum,
   productId,
+  chats,
+  seller,
 }: WEbRTCViewFooterProps) => {
-  const { register, handleSubmit } = useSendChatMessage();
+  const { register, handleSubmit } = useSendChatMessage({ productId });
   const { isAuctionStart } = useAuctionFooterStates({ productId });
+  const userId = localStorage.getItem('id')!;
+
   return (
     <>
       <div>
         <div className='chatContainer'>
           {chats.map((chat) => (
-            <div key={chat.id}>
-              <span>{chat.name} : </span>
+            <div
+              key={chat.id}
+              className={chat.name === 'system' ? 'system-message' : ''}
+            >
+              <span className={isSeller(chat.name, seller) ? 'seller-message' : ''}>
+                {chat.name}:
+              </span>
               <span>{chat.message}</span>
             </div>
           ))}
@@ -35,7 +44,7 @@ export const WebRTCViewFooter = ({
           type='button'
           onClick={handleAskPriceClick({ productId, nextAskPrice })}
           aria-hidden
-          disabled={!isAuctionStart}
+          disabled={!isAuctionStart || isSeller(userId, seller)}
         >
           {addPriceComma(nextAskPrice)} 원
         </button>

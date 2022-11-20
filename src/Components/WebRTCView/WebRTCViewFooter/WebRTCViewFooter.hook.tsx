@@ -10,10 +10,10 @@ import { UseGetVideoStreamBuyer } from '@Components/Buyer/Buyer.type';
 const NICKNAME = 'yj';
 const USER_ID = 'HS';
 
-export const useSendChatMessage = () => {
+export const useSendChatMessage = ({ productId }: { productId: number }) => {
   const { register, handleSubmit, resetField } = useForm<AuctionChatInput>();
   const onSubmitCallback = handleSubmit(
-    handleChatMessageSend(NICKNAME, () => resetField('message')),
+    handleChatMessageSend(NICKNAME, productId, () => resetField('message')),
   );
 
   return {
@@ -22,7 +22,9 @@ export const useSendChatMessage = () => {
   };
 };
 
-export const useAuctionFooterStates = ({ productId }: UseGetVideoStreamBuyer) => {
+export const useAuctionFooterStates = ({
+  productId,
+}: Pick<UseGetVideoStreamBuyer, 'productId'>) => {
   const [isAuctionStart, setAuctionStart] = useState<boolean>(false);
 
   const clientSocket = new ClientSocket(USER_ID);

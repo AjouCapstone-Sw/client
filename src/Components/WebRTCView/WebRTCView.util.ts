@@ -15,3 +15,9 @@ export const chatLengthLimit20 = (chats: chatType[]) => {
   }
   return res;
 };
+
+export const createChatData = (name: string, message: string) => ({
+  name,
+  message,
+  id: Math.floor(Math.random() * Number.MAX_VALUE),
+});

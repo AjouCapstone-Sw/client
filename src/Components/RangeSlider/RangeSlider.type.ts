@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { SliderProps } from '@mui/material';
-import { Control, ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
+import { Control, FieldValues, Path, PathValue } from 'react-hook-form';
 
 export type RangeSliderProp<T extends FieldValues> = {
   control: Control<T>;
@@ -9,5 +10,6 @@ export type RangeSliderProp<T extends FieldValues> = {
 };
 
 export type RangeSliderChildProp<T extends FieldValues> = {
-  field: ControllerRenderProps<T, Path<T>>;
+  // value: PathValue<T, Path<T>>;
+  onChange: (...event: any[]) => void;
 } & Pick<RangeSliderProp<T>, 'className'>;

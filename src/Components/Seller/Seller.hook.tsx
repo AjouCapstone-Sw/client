@@ -12,7 +12,7 @@ export const useGetVideoStreamSeller = ({ productId }: UseGetVideoStreamSeller) 
   const streamRef = useRef<MediaStream>();
   useEffect(() => {
     const clientSocket = new ClientSocket(SELLER_ID);
-    connection({ streamRef, videoRef, productId });
+    connection({ streamRef, videoRef, productId, userId: SELLER_ID });
     clientSocket.socket!.on('getSenderCandidate', getSenderCandidateEvent);
     clientSocket.socket!.on('getSenderAnswer', getSenderAnswerEvent);
     return () => {

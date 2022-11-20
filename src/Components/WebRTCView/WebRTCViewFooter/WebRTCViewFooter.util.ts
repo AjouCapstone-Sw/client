@@ -11,9 +11,9 @@ export const handleAskPriceClick =
   };
 
 export const handleChatMessageSend =
-  (nickName: string, cleanField: Function) =>
+  (nickName: string, productId: number, cleanField: Function) =>
   ({ message }: AuctionChatInput) => {
     const clientSocket = new ClientSocket(nickName);
-    clientSocket.socket!.emit('sendMessage', { nickName, message });
+    clientSocket.socket!.emit('sendMessage', { userId: nickName, message, productId });
     cleanField();
   };

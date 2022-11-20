@@ -34,7 +34,7 @@ export const DetailPage = () => {
 
   return (
     <DetailPageStyle.ProductContainer>
-      {isSeller('Noelsky', seller) && (
+      {isSeller('the_ajou', seller) && (
         <Button
           className='edit-button'
           onClick={moveEditPage}

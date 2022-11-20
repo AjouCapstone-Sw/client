@@ -29,15 +29,17 @@ export const connection = async ({
   streamRef,
   videoRef,
   productId,
+  userId,
 }: {
   streamRef: MutableRefObject<MediaStream | undefined>;
   videoRef: RefObject<HTMLVideoElement>;
   productId: number;
+  userId: string;
 }) => {
   const clientSocket = new ClientSocket('싱글톤');
   if (!clientSocket.socket) return;
 
-  clientSocket.socket!.emit('openAuction', { productId });
+  clientSocket.socket!.emit('openAuction', { productId, userId });
 
   await getLocalStream({ streamRef, videoRef });
   const sendPc = senderPC({ stream: streamRef.current! });

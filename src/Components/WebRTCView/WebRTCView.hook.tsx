@@ -13,9 +13,7 @@ import type {
 import { chatLengthLimit20, createChatData, getProductDataInAuction } from './WebRTCView.util';
 
 import { UseGetVideoStreamBuyer } from '@Components/Buyer/Buyer.type';
-
-const SELLER_ID = 'yj';
-const USER_ID = 'HS';
+import { getUserId } from '@Util/LocalStorage';
 
 export const useGetProductDataInAuction = ({ productId }: UseGetProductDataInAuction) => {
   const [productData, setProductData] = useState<auctionProductData>(IN_PRODUCT_DATA_IN_AUCTION);
@@ -46,7 +44,8 @@ export const useChatData = () => {
 
 export const useJoinAuction = ({ productId }: UseJoinAuction) => {
   const { auctionInfo } = useGetAuctionInfo();
-  const clientSocket = new ClientSocket(SELLER_ID);
+  const myId = getUserId();
+  const clientSocket = new ClientSocket(myId as string);
   const { chats, addChat } = useChatData();
   const [seller, setSeller] = useState<string>('');
 
@@ -69,9 +68,11 @@ export const useAuctionStates = ({
   const [joinedUserLength, setJoinedUserLength] = useState<string>('');
   const [nextAskPrice, setNextAskPrice] = useState<string>('');
 
-  const clientSocket = new ClientSocket(USER_ID);
-
   useEffect(() => {
+    const myId = getUserId();
+    if (typeof myId !== 'string') return;
+
+    const clientSocket = new ClientSocket(myId);
     clientSocket.socket!.on('updateAuctionStatus', ({ status, nextPrice }) => {
       setPriceUser(status);
       setNextAskPrice(nextPrice);

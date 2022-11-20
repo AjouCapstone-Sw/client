@@ -4,7 +4,8 @@ import ClientSocket from '../../Socket/WebRTC/WebRTC';
 import { UseGetVideoStreamBuyer, WebRTCUser } from './Buyer.type';
 import { connection, getReceiverAnswerEvent, getReceiverCandidateEvent } from './Buyer.util';
 
-const USER_ID = 'HS';
+import { getUserId } from '@Util/LocalStorage';
+
 export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [productStream, setProductStream] = useState<WebRTCUser | null>(null);
@@ -16,8 +17,11 @@ export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) =>
   };
 
   useEffect(() => {
-    const clientSocket = new ClientSocket(USER_ID);
-    connection({ productId, addStream, userId: USER_ID });
+    const userId = getUserId();
+    if (typeof userId !== 'string') return;
+
+    const clientSocket = new ClientSocket(userId);
+    connection({ productId, addStream, userId });
     clientSocket.socket!.on('getReceiverCandidate', getReceiverCandidateEvent);
     clientSocket.socket!.on('getReceiverAnswer', getReceiverAnswerEvent);
 

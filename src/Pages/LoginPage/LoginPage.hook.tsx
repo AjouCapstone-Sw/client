@@ -16,7 +16,10 @@ export const useLoginState = () => {
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     postLogin({ email, password })
-      .then(goMain)
+      .then(() => {
+        localStorage.setItem('userId', email);
+        goMain();
+      })
       .catch(() => {
         setEmail('');
         setPassword('');

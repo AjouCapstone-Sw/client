@@ -4,8 +4,14 @@ import type { chatType, GetProductDataInAuction } from './WebRTCView.type';
 import { axiosInstance } from '@Util/Axios';
 
 export const getProductDataInAuction = async ({ productId }: GetProductDataInAuction) => {
-  const res = await axiosInstance.get(`/auction/${productId}`);
-  return res.data;
+  const {
+    data: { bidPrice, startPrice, title },
+  } = await axiosInstance.get(`/product/${productId}`);
+  return {
+    productTitle: title,
+    auctionStartPrice: startPrice,
+    nowAskPrice: bidPrice,
+  };
 };
 
 export const chatLengthLimit20 = (chats: chatType[]) => {

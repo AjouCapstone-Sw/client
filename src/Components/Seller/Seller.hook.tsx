@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import type { UseGetVideoStreamSeller } from './Seller.type';
 import { connection, getSenderCandidateEvent, getSenderAnswerEvent } from './Seller.util';
@@ -15,6 +16,7 @@ export const useGetVideoStreamSeller = ({ productId }: UseGetVideoStreamSeller) 
     connection({ streamRef, videoRef, productId, userId: SELLER_ID });
     clientSocket.socket!.on('getSenderCandidate', getSenderCandidateEvent);
     clientSocket.socket!.on('getSenderAnswer', getSenderAnswerEvent);
+
     return () => {
       // 방 터지기
       clientSocket.socket!.off('getSenderCandidate', getSenderCandidateEvent);
@@ -22,4 +24,15 @@ export const useGetVideoStreamSeller = ({ productId }: UseGetVideoStreamSeller) 
     };
   }, [productId]);
   return videoRef;
+};
+
+export const useAuctionEnd = () => {
+  const navigator = useNavigate();
+  useEffect(() => {
+    const clientSocket = new ClientSocket(SELLER_ID);
+    clientSocket.socket!.on('endAuctionWithSeller', ({ price }: { price: number }) => {
+      navigator(`/seller-introduce?price=${price}`);
+      clientSocket.socket!.disconnect();
+    });
+  }, []);
 };

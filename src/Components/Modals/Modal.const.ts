@@ -14,6 +14,7 @@ export const MODAL_PROPS = {
   shouldCloseOnOverlayClick: true,
   shouldCloseOnEsc: true,
   style: MODAL_STYLE,
+  appElement: document.getElementById('root') as HTMLElement,
 };
 
 export const SEARCH_MODAL_PROPS = {
@@ -23,5 +24,3 @@ export const SEARCH_MODAL_PROPS = {
     ...{ overlay: { backgroundColor: 'rgba(23,23,26,0.5)', zIndex: 10000 } },
   },
 };
-
-console.log(SEARCH_MODAL_PROPS);

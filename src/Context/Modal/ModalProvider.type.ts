@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 
-export type OpenModal = {
-  Component: React.FC;
-  props: any;
+export type OpenModal<T> = {
+  Component: React.FC<T>;
+  props: T;
 };
 
 export type ModalDispatch = {

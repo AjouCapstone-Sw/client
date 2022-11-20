@@ -1,6 +1,6 @@
 import io, { Socket } from 'socket.io-client';
 
-const SERVER_URL = 'https://localhost';
+const SERVER_URL = 'https://theajou.shop:4000';
 const PORT = '4000';
 
 export default class ClientSocket {

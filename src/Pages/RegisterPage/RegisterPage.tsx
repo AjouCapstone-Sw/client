@@ -92,6 +92,9 @@ export const RegisterPage = () => {
               </Button>
             )}
           </RegisterPageStyle.EmailVerifyContainer>
+          {emailVerifyState && (
+            <RegisterPageStyle.SuccessMsg>인증에 성공하셨습니다.</RegisterPageStyle.SuccessMsg>
+          )}
           <FormErrorMessage error={registerValidationErrors.emailVerifyNum} />
 
           <RegisterPageStyle.DropdownContainer>

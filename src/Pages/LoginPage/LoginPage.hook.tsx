@@ -7,7 +7,7 @@ import { useMovePage } from '@Hook/.';
 export const useLoginState = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [goMain] = useMovePage('/main') as (() => void)[];
+  const [goMain] = useMovePage('/') as (() => void)[];
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -15,7 +15,7 @@ export const useLoginState = () => {
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    postLogin({ email, pw: password })
+    postLogin({ email, password })
       .then(goMain)
       .catch(() => {
         setEmail('');

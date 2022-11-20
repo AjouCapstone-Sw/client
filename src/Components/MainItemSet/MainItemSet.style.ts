@@ -46,6 +46,12 @@ const ItemContainer = styled.ul`
   li {
     margin-right: 20px;
   }
+  p {
+    margin-top: 16px;
+    margin-left: 16px;
+    font-size: 24px;
+    font-weight: 600;
+  }
 `;
 
 export default { Container, ItemContainer, Title, Category };

@@ -16,4 +16,4 @@ export const getProductDetail = async (productId: number): Promise<ProductDetail
   };
 };
 
-export const isSeller = (nickName: string | boolean, seller: string) => nickName === seller;
+export const isSeller = (nickName: string | null, seller: string) => nickName === seller;

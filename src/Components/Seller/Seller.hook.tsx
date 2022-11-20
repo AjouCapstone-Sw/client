@@ -16,9 +16,11 @@ export const useGetVideoStreamSeller = ({ productId }: UseGetVideoStreamSeller) 
     clientSocket.socket!.on('getSenderCandidate', getSenderCandidateEvent);
     clientSocket.socket!.on('getSenderAnswer', getSenderAnswerEvent);
     return () => {
-      // 방 터지기
+      ClientSocket.sendPC = null;
+      clientSocket.socket!.emit('close', { productId });
       clientSocket.socket!.off('getSenderCandidate', getSenderCandidateEvent);
       clientSocket.socket!.off('getSenderAnswer', getSenderAnswerEvent);
+      clientSocket.socket!.disconnect();
     };
   }, [productId]);
   return videoRef;

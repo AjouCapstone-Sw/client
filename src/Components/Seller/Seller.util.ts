@@ -51,10 +51,10 @@ export const connection = async ({
 };
 
 export const getSenderAnswerEvent = (data: { sdp: RTCSessionDescription }) => {
-  registerRemoteDescriptionToPc(ClientSocket.sendPC, data.sdp);
+  registerRemoteDescriptionToPc(ClientSocket.sendPC as RTCPeerConnection, data.sdp);
 };
 
 // eslint-disable-next-line no-undef
 export const getSenderCandidateEvent = (data: { candidate: RTCIceCandidateInit }) => {
-  getCandidateEvent(ClientSocket.sendPC, data.candidate);
+  getCandidateEvent(ClientSocket.sendPC as RTCPeerConnection, data.candidate);
 };

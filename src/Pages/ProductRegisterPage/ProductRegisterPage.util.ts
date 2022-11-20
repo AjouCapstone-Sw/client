@@ -1,27 +1,25 @@
-import dayjs from 'dayjs';
-
 import { ProductRegisterFormData } from '@Components/ProductRegisterForm/ProductRegisterForm.type';
+import { removePriceEtc } from '@Util/.';
 import { axiosInstance } from '@Util/Axios';
 
 const getProductRegisterBody = (data: ProductRegisterFormData) => ({
-  seller: 'Noelsky',
+  userId: 1,
   title: data.title,
   description: data.description,
   startTime: data.auctionStartTime,
-  endTime: dayjs(data.auctionStartTime).add(dayjs.duration(data.auctionDuration)),
-  startPrice: data.auctionStartPrice,
+  startPrice: Number(removePriceEtc(data.auctionStartPrice)),
   instant: Number(data.isAuction),
-  buyNowPrice: data.buyNowPrice,
+  buyNowPrice: Number(removePriceEtc(data.buyNowPrice)),
   duration: data.auctionDuration,
-  bidPrice: data.auctionBidPrice,
-  like: false,
-  live: false,
-  productImages: data.images,
+  bidPrice: Number(removePriceEtc(data.auctionBidPrice)),
+  categoryId: 2,
+  productImages: [
+    'https://t1.daumcdn.net/cfile/tistory/998E393359E4C42001',
+    'https://t1.daumcdn.net/cfile/tistory/998E393359E4C42001',
+  ],
 });
 
-export const onSubmit = async (data: ProductRegisterFormData) => {
-  console.log(getProductRegisterBody(data));
-  console.log(data);
-  const res = await axiosInstance.post('/product/create', getProductRegisterBody(data));
-  console.log(res);
+export const createProduct = async (formData: ProductRegisterFormData) => {
+  const { data } = await axiosInstance.post('/product/create', getProductRegisterBody(formData));
+  return data;
 };

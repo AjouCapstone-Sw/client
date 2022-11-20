@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
 import RegisterPageConstant from './RegisterPage.const';
-import { useEmailVerify } from './RegisterPage.hook';
+import { useEmailVerify, useOpenAddressModal } from './RegisterPage.hook';
 import RegisterPageStyle from './RegisterPage.style';
 import type { PostSignUpUser, RegisterFormData } from './RegisterPage.type';
 import { postSignUpUser } from './RegisterPage.util';
@@ -24,7 +24,7 @@ export const RegisterPage = () => {
   const [goLogin] = useMovePage('/login') as (() => void)[];
 
   const onSubmit = (data: RegisterFormData) => {
-    const { id: nickName, email, password, sex, birth } = data;
+    const { id: nickName, email, password, sex, birth, address } = data;
     if (!confirmState) return;
     const body: PostSignUpUser = {
       nickName,
@@ -32,9 +32,13 @@ export const RegisterPage = () => {
       password,
       gender: sex.value === 'male' ? 'M' : 'F',
       birth,
+      address,
     };
     postSignUpUser(body).then(goLogin);
   };
+
+  const openAddressModal = useOpenAddressModal(control);
+  const addressValue = watch('address');
 
   return (
     <RegisterPageStyle.RegisterContainer>
@@ -97,6 +101,12 @@ export const RegisterPage = () => {
           )}
           <FormErrorMessage error={registerValidationErrors.emailVerifyNum} />
 
+          <Input
+            placeholder='주소'
+            {...register('address')}
+            onClick={openAddressModal}
+            value={addressValue}
+          />
           <RegisterPageStyle.DropdownContainer>
             <Dropdown
               options={RegisterPageConstant.REGISTER_SEX_OPTION}

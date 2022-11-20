@@ -1,11 +1,13 @@
 import { useParams } from 'react-router-dom';
 
-import { Seller, Buyer, WebRTCView } from '@Components/WebRTCView';
+import { useGetWebRtcContainer } from './LivePage.hook';
+
+import { WebRTCView } from '@Components/WebRTCView';
 
 export const LivePage = () => {
   const { productId } = useParams();
-  const data = localStorage.getItem('id');
-  const Container = data === 'yj' ? Seller : Buyer;
+  const { loading, Container } = useGetWebRtcContainer({ productId });
+  if (!loading) return null;
   return (
     <div>
       <Container productId={Number(productId)}>

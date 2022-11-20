@@ -16,9 +16,11 @@ export const getProductDataInAuction = async ({ productId }: GetProductDataInAuc
 
 export const chatLengthLimit20 = (chats: chatType[]) => {
   const res = [];
-  for (let i = chats.length - 1; i >= 0; i--) {
-    if (res.length <= AUCTION_CHAT_SIZE_LIMIT) res.push(chats[i]);
+  const start = Math.max(0, chats.length - AUCTION_CHAT_SIZE_LIMIT);
+  for (let i = start; i < chats.length; i++) {
+    res.push(chats[i]);
   }
+  console.log(res);
   return res;
 };
 

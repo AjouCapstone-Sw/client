@@ -44,7 +44,7 @@ const useGetAuctionInfo = () => {
 export const useChatData = () => {
   const [chats, setChats] = useState<chatType[]>([]);
   const addChat = (chatsData: chatType) =>
-    setChats((prev) => chatLengthLimit20(prev.concat(chatsData)));
+    setChats((prev) => chatLengthLimit20([...prev, chatsData]));
 
   return { chats, addChat };
 };
@@ -86,7 +86,7 @@ export const useAuctionStates = ({
     });
 
     clientSocket.socket!.on('joinUser', ({ userId, updatedUserLength }) => {
-      addChat(createChatData('system', `${userId}님이 입장하셨습니다`));
+      addChat(createChatData(`${userId}`, `님이 입장하셨습니다`));
       setJoinedUserLength(updatedUserLength);
     });
     clientSocket.socket!.on('auctionTimer', setRemainTime);

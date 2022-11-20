@@ -17,19 +17,18 @@ export const WebRTCViewFooter = ({
   const { isAuctionStart } = useAuctionFooterStates({ productId });
   const { attend, handleAttendTrue } = useAttendBid({ nextAskPrice });
   const userId = getUserId();
-  console.log('seller : ', seller);
-  console.log('userId : ', userId);
+
   return (
     <>
       <div>
         <div className='chatContainer'>
-          {chats.map((chat) => (
+          {[...chats].reverse().map((chat) => (
             <div
               key={chat.id}
-              className={chat.name === 'system' ? 'system-message' : ''}
+              className={chat.message === '님이 입장하셨습니다' ? 'system-message' : ''}
             >
-              <span className={isSeller(chat.name, seller) ? 'seller-message' : ''}>
-                {chat.name}:
+              <span className={isSeller(chat.name, `${seller} : `) ? 'seller-message' : ''}>
+                {chat.name}
               </span>
               <span>{chat.message}</span>
             </div>

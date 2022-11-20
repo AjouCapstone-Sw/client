@@ -1,4 +1,9 @@
-import { useAuctionStates, useGetProductDataInAuction, useJoinAuction } from './WebRTCView.hook';
+import {
+  useAuctionAlert,
+  useAuctionStates,
+  useGetProductDataInAuction,
+  useJoinAuction,
+} from './WebRTCView.hook';
 import WebRTCViewStyle from './WebRTCView.style';
 import type { WebRTCViewProps } from './WebRTCView.type';
 import { WebRTCViewBody } from './WebRTCViewBody';
@@ -15,6 +20,9 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
     productId,
     addChat,
   });
+
+  const userId = localStorage.getItem('id');
+  useAuctionAlert(maxPriceUser, userId!);
 
   return (
     <WebRTCViewStyle.Container>

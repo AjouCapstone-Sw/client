@@ -1,8 +1,12 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ClientSocket from '../../Socket/WebRTC/WebRTC';
-import { INIT_AUCTION_INFO, IN_PRODUCT_DATA_IN_AUCTION } from './WebRTCView.const';
+import {
+  ALERT_ASK_SUCCESS,
+  INIT_AUCTION_INFO,
+  IN_PRODUCT_DATA_IN_AUCTION,
+} from './WebRTCView.const';
 import type {
   auctionInfoType,
   auctionProductData,
@@ -13,6 +17,9 @@ import type {
 import { chatLengthLimit20, createChatData, getProductDataInAuction } from './WebRTCView.util';
 
 import { UseGetVideoStreamBuyer } from '@Components/Buyer/Buyer.type';
+import { AlertModal } from '@Components/Modals/Alert/AlertModal';
+import { AlertModalProps } from '@Components/Modals/Alert/AlertModal.type';
+import { useModal } from '@Hook/useModal';
 
 const SELLER_ID = 'yj';
 const USER_ID = 'HS';
@@ -87,4 +94,13 @@ export const useAuctionStates = ({
   }, [productId]);
 
   return { remainTime, maxPriceUser, nowPrice, joinedUserLength, nextAskPrice };
+};
+
+export const useAuctionAlert = (maxPriceUser: string, userId: string) => {
+  const { openModal } = useModal();
+  const openSuccess = () => openModal(AlertModal as React.FC, ALERT_ASK_SUCCESS);
+
+  useEffect(() => {
+    if (userId === maxPriceUser) openSuccess();
+  }, [maxPriceUser]);
 };

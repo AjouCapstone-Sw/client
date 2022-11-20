@@ -23,4 +23,3 @@ export * from './WebRTCView';
 export * from './Video';
 export * from './Buyer';
 export * from './Seller';
-export * from './AddressModal/AddressModal';

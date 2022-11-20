@@ -1,6 +1,8 @@
 import dayjs from 'dayjs';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { useProductId } from '@Hook/useProductId';
 import { isAuctionEnd } from '@Util/.';
 
 export const useNowTime = (endTime: string) => {
@@ -18,4 +20,11 @@ export const useNowTime = (endTime: string) => {
   }, [endTime]);
 
   return nowTime;
+};
+
+export const useAuctionEnter = () => {
+  const productId = useProductId();
+  const navigator = useNavigate();
+  const auctionEnter = () => navigator(`/live/${productId}`);
+  return auctionEnter;
 };

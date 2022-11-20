@@ -13,7 +13,7 @@ const Header = styled.div`
 
 const User = styled.div`
   position: absolute;
-  top: 25vh;
+  top: 36vh;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -41,7 +41,7 @@ const User = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  margin-top: 190px;
+  margin-top: 220px;
   width: 100%;
   height: 60px;
   display: flex;
@@ -60,6 +60,7 @@ const ButtonContainer = styled.div`
 const Body = styled.ul`
   overflow: auto;
   height: calc(75vh - 250px);
+
   li {
     border-bottom: 2px solid #f6f6f6;
   }

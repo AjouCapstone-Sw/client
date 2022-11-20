@@ -12,7 +12,6 @@ export const useGetProductDetail = (productId: number) => {
     const [targetProductDetail] = productDetails.filter(({ productId: id }) => id === productId);
     if (targetProductDetail) {
       setProductDetail(targetProductDetail);
-      console.log(targetProductDetail);
     } else {
       getProductDetail(productId).then((detail) => {
         setProductDetails((details) => [...details, detail]);

@@ -1,3 +1,5 @@
+import { ProductDetail } from './DetailPage.type';
+
 import { axiosInstance } from '@Util/.';
 
 export const getProductDetail = async (productId: number) => {
@@ -12,6 +14,8 @@ export const getProductDetail = async (productId: number) => {
       startTime,
       title,
       buyNowPrice,
+      like,
+      live,
     },
   } = await axiosInstance.get(`/product/${productId}`);
 
@@ -26,7 +30,9 @@ export const getProductDetail = async (productId: number) => {
     auctionStartTime: startTime,
     title,
     buyNowPrice,
-  };
+    like,
+    live,
+  } as ProductDetail;
 };
 
 export const isSeller = (nickName: string | boolean, seller: string) => nickName === seller;

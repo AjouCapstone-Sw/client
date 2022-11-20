@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Control, UseFormSetValue } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
 import { AddressRegisterForm } from './AddressRegisterPage.type';
 import { updateAddress } from './AddressRegisterPage.util';
 
 import { AddressModal } from '@Components/Modals/Address/AddressModal';
+import { ReviewModal } from '@Components/Modals/Review/ReviewModal';
 import { useModal } from '@Hook/useModal';
 
 export const useOpenAddressModal = (control: Control<AddressRegisterForm, any>) => {
@@ -33,11 +33,11 @@ export const useIsDefaultAddress = (
   return { isDefaultAddress, onCheckChange };
 };
 
-export const useOnSubmit = () => {
-  const navigator = useNavigate();
+export const useOnSubmit = (seller: string, type: string, productId: string) => {
+  const { openModal } = useModal();
   const onSubmit = async (data: AddressRegisterForm) => {
     await updateAddress(data);
-    navigator('/');
+    openModal(ReviewModal as React.FC, { type, productId, userId: seller });
   };
   return onSubmit;
 };

@@ -1,6 +1,7 @@
 import { ProductDetail } from './DetailPage.type';
 
 import { axiosInstance } from '@Util/.';
+import { getUserIdByNickName } from '@Util/User';
 
 export const getProductDetail = async (productId: number): Promise<ProductDetail> => {
   const { data } = await axiosInstance.get(`/product/${productId}`);
@@ -17,3 +18,9 @@ export const getProductDetail = async (productId: number): Promise<ProductDetail
 };
 
 export const isSeller = (nickName: string | null, seller: string) => nickName === seller;
+
+export const buyProduct = async (userId: string, productId: number) => {
+  const buyerId = await getUserIdByNickName(userId);
+  const res = await axiosInstance.post('/product/instantPurchase', { buyerId, productId });
+  console.log(res);
+};

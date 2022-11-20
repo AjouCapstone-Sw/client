@@ -1,4 +1,4 @@
-import { useGetProductDetail } from './DetailPage.hook';
+import { useBuyNow, useGetProductDetail } from './DetailPage.hook';
 import DetailPageStyle from './DetailPage.style';
 import { isSeller } from './DetailPage.util';
 
@@ -7,6 +7,7 @@ import { RightArrow } from '@Components/Svg';
 import { useMovePage } from '@Hook/useMovePage';
 import { useProductId } from '@Hook/useProductId';
 import { addPriceComma } from '@Util/.';
+import { getUserId } from '@Util/LocalStorage';
 
 export const DetailPage = () => {
   const productId = useProductId();
@@ -30,9 +31,12 @@ export const DetailPage = () => {
     `/my?${seller}`,
   ]) as (() => void)[];
 
+  const buyNowHandler = useBuyNow(productId, seller);
+  const userId = getUserId();
+
   return (
     <DetailPageStyle.ProductContainer>
-      {isSeller('the_ajou', seller) && (
+      {isSeller(userId, seller) && (
         <Button
           className='edit-button'
           onClick={moveEditPage}
@@ -66,7 +70,7 @@ export const DetailPage = () => {
       </DetailPageStyle.ProductHighlightText>
       <DetailPageStyle.ProductText>{description}</DetailPageStyle.ProductText>
       <DetailPageStyle.ButtonContainer>
-        <Button>
+        <Button onClick={buyNowHandler}>
           즉시 구매 <span>{addPriceComma(buyNowPrice)} ₩</span>
         </Button>
         {isAuction && (

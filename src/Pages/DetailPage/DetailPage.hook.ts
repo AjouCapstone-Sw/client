@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { SKELETON_PRODUCT_DETAIL } from './DetailPage.const';
 import { ProductDetail } from './DetailPage.type';
-import { getProductDetail } from './DetailPage.util';
+import { buyProduct, getProductDetail } from './DetailPage.util';
+
+import { getUserId } from '@Util/LocalStorage';
 
 export const useGetProductDetail = (productId: number) => {
   const [productDetails, setProductDetails] = useState<ProductDetail[]>([SKELETON_PRODUCT_DETAIL]);
@@ -22,4 +25,16 @@ export const useGetProductDetail = (productId: number) => {
   }, [productId]);
 
   return productDetail;
+};
+
+export const useBuyNow = (productId: number, seller: string) => {
+  const navigator = useNavigate();
+  const userId = getUserId();
+
+  const handleBuyNow = async () => {
+    await buyProduct(userId!, productId);
+    navigator(`/address-register?productId=${productId}&seller=${seller}&type=buy`);
+  };
+
+  return handleBuyNow;
 };

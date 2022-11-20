@@ -11,7 +11,7 @@ import { Button, Input } from '@Components/index';
 import { useQuerySearch } from '@Hook/useQuerySearch';
 
 export const AddressRegisterPage = () => {
-  const [price, productId] = useQuerySearch(['price', 'productId']);
+  const [price, productId, seller, type] = useQuerySearch(['price', 'productId', 'seller', 'type']);
   const { title } = useGetProductDetail(Number(productId!));
   const {
     register,
@@ -23,7 +23,7 @@ export const AddressRegisterPage = () => {
   const defaultAddress = '경기 성남시 분당구 판교역로 4';
   const openAddressModal = useOpenAddressModal(control);
   const { isDefaultAddress, onCheckChange } = useIsDefaultAddress(defaultAddress, setValue);
-  const onSubmit = useOnSubmit();
+  const onSubmit = useOnSubmit(seller!, type!, productId!);
   const newAddress = watch('address');
 
   return (

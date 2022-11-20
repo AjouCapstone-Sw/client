@@ -1,10 +1,15 @@
+/* eslint-disable no-var */
 /* eslint-disable no-unused-vars */
 import { ProductRegisterFormData } from '@Components/ProductRegisterForm/ProductRegisterForm.type';
 import { ProductDetail } from '@Pages/DetailPage';
 import { axiosInstance } from '@Util/Axios';
+import { addImages } from '@Util/Image';
 import { addPriceComma, getAuctionDuration, getBidPrice, removePriceEtc } from '@Util/Product';
 
 const convertURLtoFile = async (url: string) => {
+  const image = new Image();
+  image.src = url;
+  if (!image) return;
   const response = await fetch(url);
   const data = await response.blob();
   const ext = url.split('.').pop();
@@ -19,9 +24,11 @@ const getImageFiles = async (images: string[]) => {
   return imageFiles;
 };
 const makeImageFileList = async (images: string[]) => {
+  console.log(images);
   const imageFiles = await getImageFiles(images);
   const dataTransfer = new DataTransfer();
-  imageFiles.forEach((imageFile) => dataTransfer.items.add(imageFile));
+  imageFiles.forEach((imageFile) => dataTransfer.items.add(imageFile!));
+  console.log(dataTransfer.files);
   return dataTransfer.files;
 };
 
@@ -77,13 +84,9 @@ const getProductRegisterBody = (data: ProductRegisterFormData & { productId: num
   duration: data.auctionDuration,
   bidPrice: Number(removePriceEtc(data.auctionBidPrice)),
   categoryId: 2,
-  images: [
-    'https://t1.daumcdn.net/cfile/tistory/998E393359E4C42001',
-    'https://t1.daumcdn.net/cfile/tistory/998E393359E4C42001',
-  ],
 });
 
 export const updateProduct = async (formData: ProductRegisterFormData & { productId: number }) => {
-  console.log(getProductRegisterBody(formData));
-  await axiosInstance.patch(`/product/update`, getProductRegisterBody(formData));
+  const images = await addImages(formData.images);
+  await axiosInstance.patch(`/product/update`, { ...getProductRegisterBody(formData), images });
 };

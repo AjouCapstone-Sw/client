@@ -7,6 +7,7 @@ import { UseGetVideoStreamBuyer, WebRTCUser } from './Buyer.type';
 import { connection, getReceiverAnswerEvent, getReceiverCandidateEvent } from './Buyer.util';
 
 import { AlertModal } from '@Components/Modals/Alert/AlertModal';
+import { ReviewModal } from '@Components/Modals/Review/ReviewModal';
 import { useModal } from '@Hook/useModal';
 import { getUserId } from '@Util/LocalStorage';
 
@@ -49,13 +50,23 @@ export const useAuctionEnd = () => {
     const clientSocket = new ClientSocket('');
     clientSocket.socket!.on(
       'endAuctionWithBuyer',
-      ({ price, productId }: { price: number; productId: number }) => {
+      ({ price, productId, seller }: { price: number; productId: number; seller: string }) => {
+        console.log(price, productId, seller);
         openSuccessModal();
         setTimeout(() => {
-          navigator(`/address-register?price=${price}&productId=${productId}`);
+          navigator(
+            `/address-register?price=${price}&productId=${productId}&seller=${seller}&type=auction`,
+          );
           clientSocket.socket!.disconnect();
-        }, 5000);
+        }, 10000);
       },
     );
+
+    clientSocket.socket!.on('endAuctionWithRemainder', ({ productId, seller }) => {
+      setTimeout(() => {
+        openModal(ReviewModal as React.FC, { productId, userId: seller, type: 'auction' });
+        clientSocket.socket!.disconnect();
+      }, 10000);
+    });
   }, []);
 };

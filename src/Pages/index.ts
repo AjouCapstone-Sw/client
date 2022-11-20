@@ -9,3 +9,4 @@ export * from './FooterPage';
 export * from './HeaderPage';
 export * from './ProductRegisterPage';
 export * from './ProductEditPage';
+export * from './PrivatePage';

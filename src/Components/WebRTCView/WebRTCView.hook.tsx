@@ -64,7 +64,7 @@ export const useAuctionStates = ({
   productId,
   addChat,
 }: UseGetVideoStreamBuyer & { addChat: (chatData: chatType) => void }) => {
-  const [remainTime, setRemainTime] = useState<string>('');
+  const [remainTime, setRemainTime] = useState<string>('0');
   const [maxPriceUser, setPriceUser] = useState<string>('');
   const [nowPrice, setNowPrice] = useState<string>('');
   const [joinedUserLength, setJoinedUserLength] = useState<string>('');

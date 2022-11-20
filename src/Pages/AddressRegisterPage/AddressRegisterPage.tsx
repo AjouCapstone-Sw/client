@@ -9,6 +9,7 @@ import { AddressRegisterForm } from './AddressRegisterPage.type';
 
 import { Button, Input } from '@Components/index';
 import { useQuerySearch } from '@Hook/useQuerySearch';
+import { addPriceComma } from '@Util/Product';
 
 export const AddressRegisterPage = () => {
   const [price, productId, seller, type] = useQuerySearch(['price', 'productId', 'seller', 'type']);
@@ -30,7 +31,10 @@ export const AddressRegisterPage = () => {
     <AddressRegisterPageStyle.Container>
       <AddressRegisterPageStyle.InfoText>
         결제된 포인트는{' '}
-        <AddressRegisterPageStyle.Highlight>{price}</AddressRegisterPageStyle.Highlight>입니다
+        <AddressRegisterPageStyle.Highlight>
+          {addPriceComma(Number(price))}
+        </AddressRegisterPageStyle.Highlight>
+        원 입니다
       </AddressRegisterPageStyle.InfoText>
       <AddressRegisterPageStyle.InfoText>
         <AddressRegisterPageStyle.Highlight>{title}</AddressRegisterPageStyle.Highlight>에 대한 상품

@@ -51,14 +51,13 @@ export const useAuctionEnd = () => {
     clientSocket.socket!.on(
       'endAuctionWithBuyer',
       ({ price, productId, seller }: { price: number; productId: number; seller: string }) => {
-        console.log(price, productId, seller);
         openSuccessModal();
         setTimeout(() => {
           navigator(
             `/address-register?price=${price}&productId=${productId}&seller=${seller}&type=auction`,
           );
           clientSocket.socket!.disconnect();
-        }, 10000);
+        }, 5000);
       },
     );
 

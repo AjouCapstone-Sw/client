@@ -4,7 +4,7 @@ import { ModalDispatchContext, ModalStateContext } from './ModalContext';
 import { OpenModal } from './ModalProvider.type';
 
 export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
-  const [openedModals, setOpenedModals] = useState<OpenModal[]>([]);
+  const [openedModals, setOpenedModals] = useState<OpenModal<any>[]>([]);
 
   const openModal = (Component: React.FC, props: any) => {
     setOpenedModals((modals) => [

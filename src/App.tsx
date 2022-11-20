@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
+import './App.css';
 import { Modals } from '@Components/.';
 import {
   DetailPage,
@@ -16,8 +17,7 @@ import {
   SellerIntroducePage,
   AddressRegisterPage,
 } from '@Pages/.';
-
-import './App.css';
+import { PrivatePage } from '@Pages/PrivatePage/PrivatePage';
 
 function App() {
   return (
@@ -25,11 +25,11 @@ function App() {
       <Routes>
         <Route
           path='/login'
-          element={<LoginPage />}
+          element={<PrivatePage component={LoginPage} />}
         />
         <Route
           path='/register'
-          element={<RegisterPage />}
+          element={<PrivatePage component={RegisterPage} />}
         />
         <Route
           path='/live/:productId'

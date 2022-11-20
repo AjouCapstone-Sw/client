@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 
 import type { WebRTCViewBodyProps } from './WebRTCViewBody.type';
+import { getNowPrice } from './WebRTCViewBody.util';
 
 import { addPriceComma } from '@Util/.';
 
@@ -24,7 +25,7 @@ export const WebRTCViewBody = ({
       <div>경매 시작가 : {addPriceComma(auctionStartPrice)}</div>
       <p>남은 경매 시간 : {dayjs(untilExitAuctionTime).format('mm:ss')}</p>
       <div>낙찰 후보자 : {maxPriceUser}</div>
-      <div>현재 가격 : {addPriceComma(nowAuctionPrice)}</div>
+      <div>현재 가격 : {addPriceComma(getNowPrice(nowAuctionPrice, auctionStartPrice))}</div>
       <div>현재 호가 : {addPriceComma(nowAskPrice)}</div>
     </div>
   </>

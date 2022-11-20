@@ -6,14 +6,13 @@ import { AuctionChatInput } from './WebRTCViewFooter.type';
 import { handleChatMessageSend } from './WebRTCViewFooter.util';
 
 import { UseGetVideoStreamBuyer } from '@Components/Buyer/Buyer.type';
-
-const NICKNAME = 'yj';
-const USER_ID = 'HS';
+import { getUserId } from '@Util/LocalStorage';
 
 export const useSendChatMessage = ({ productId }: { productId: number }) => {
   const { register, handleSubmit, resetField } = useForm<AuctionChatInput>();
+  const userId = getUserId();
   const onSubmitCallback = handleSubmit(
-    handleChatMessageSend(NICKNAME, productId, () => resetField('message')),
+    handleChatMessageSend(userId as string, productId, () => resetField('message')),
   );
 
   return {
@@ -26,9 +25,10 @@ export const useAuctionFooterStates = ({
   productId,
 }: Pick<UseGetVideoStreamBuyer, 'productId'>) => {
   const [isAuctionStart, setAuctionStart] = useState<boolean>(false);
-
-  const clientSocket = new ClientSocket(USER_ID);
   useEffect(() => {
+    const userId = getUserId();
+    if (typeof userId !== 'string') return;
+    const clientSocket = new ClientSocket(userId);
     clientSocket.socket!.on('startAuction', () => setAuctionStart(true));
   }, [productId]);
 

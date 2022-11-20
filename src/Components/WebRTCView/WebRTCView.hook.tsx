@@ -20,9 +20,7 @@ import { UseGetVideoStreamBuyer } from '@Components/Buyer/Buyer.type';
 import { AlertModal } from '@Components/Modals/Alert/AlertModal';
 import { AlertModalProps } from '@Components/Modals/Alert/AlertModal.type';
 import { useModal } from '@Hook/useModal';
-
-const SELLER_ID = 'yj';
-const USER_ID = 'HS';
+import { getUserId } from '@Util/LocalStorage';
 
 export const useGetProductDataInAuction = ({ productId }: UseGetProductDataInAuction) => {
   const [productData, setProductData] = useState<auctionProductData>(IN_PRODUCT_DATA_IN_AUCTION);
@@ -53,7 +51,8 @@ export const useChatData = () => {
 
 export const useJoinAuction = ({ productId }: UseJoinAuction) => {
   const { auctionInfo } = useGetAuctionInfo();
-  const clientSocket = new ClientSocket(SELLER_ID);
+  const myId = getUserId();
+  const clientSocket = new ClientSocket(myId as string);
   const { chats, addChat } = useChatData();
   const [seller, setSeller] = useState<string>('');
 
@@ -71,18 +70,18 @@ export const useAuctionStates = ({
   productId,
   addChat,
 }: UseGetVideoStreamBuyer & { addChat: (chatData: chatType) => void }) => {
-  const [remainTime, setRemainTime] = useState<string>('');
+  const [remainTime, setRemainTime] = useState<string>('0');
   const [maxPriceUser, setPriceUser] = useState<string>('');
-  const [nowPrice, setNowPrice] = useState<string>('');
   const [joinedUserLength, setJoinedUserLength] = useState<string>('');
   const [nextAskPrice, setNextAskPrice] = useState<string>('');
 
-  const clientSocket = new ClientSocket(USER_ID);
-
   useEffect(() => {
-    clientSocket.socket!.on('updateAuctionStatus', ({ status, price, nextPrice }) => {
+    const myId = getUserId();
+    if (typeof myId !== 'string') return;
+
+    const clientSocket = new ClientSocket(myId);
+    clientSocket.socket!.on('updateAuctionStatus', ({ status, nextPrice }) => {
       setPriceUser(status);
-      setNowPrice(price);
       setNextAskPrice(nextPrice);
     });
 
@@ -93,7 +92,7 @@ export const useAuctionStates = ({
     clientSocket.socket!.on('auctionTimer', setRemainTime);
   }, [productId]);
 
-  return { remainTime, maxPriceUser, nowPrice, joinedUserLength, nextAskPrice };
+  return { remainTime, maxPriceUser, joinedUserLength, nextAskPrice };
 };
 
 export const useAuctionAlert = (maxPriceUser: string, userId: string) => {

@@ -10,27 +10,29 @@ import { WebRTCViewBody } from './WebRTCViewBody';
 import { WebRTCViewFooter } from './WebRTCViewFooter/WebRTCViewFooter';
 import { WebRTCViewHeader } from './WebRTCViewHeader';
 
+import { getUserId } from '@Util/LocalStorage';
+
 export const WebRTCView = ({ productId }: WebRTCViewProps) => {
   const { productTitle, auctionStartPrice, nowAskPrice } = useGetProductDataInAuction({
     productId,
   });
   const { productLikeNum, chats, addChat, seller } = useJoinAuction({ productId });
 
-  const { remainTime, maxPriceUser, nowPrice, joinedUserLength, nextAskPrice } = useAuctionStates({
+  const { remainTime, maxPriceUser, joinedUserLength, nextAskPrice } = useAuctionStates({
     productId,
     addChat,
   });
+  const myId = getUserId();
+  useAuctionAlert(maxPriceUser, myId!);
 
-  const userId = localStorage.getItem('id');
-  useAuctionAlert(maxPriceUser, userId!);
-
+  const nowPrice = Number(nextAskPrice) - nowAskPrice;
   return (
     <WebRTCViewStyle.Container>
       <WebRTCViewStyle.Header>
         <WebRTCViewHeader />
       </WebRTCViewStyle.Header>
 
-      <WebRTCViewStyle.Title>{productTitle} 경매 Live</WebRTCViewStyle.Title>
+      <WebRTCViewStyle.Title>{productTitle}</WebRTCViewStyle.Title>
 
       <WebRTCViewStyle.Body>
         <WebRTCViewBody

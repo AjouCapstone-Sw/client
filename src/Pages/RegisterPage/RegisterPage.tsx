@@ -21,7 +21,7 @@ export const RegisterPage = () => {
 
   const { emailVerifyState, handleEmailVerify, confirmState, handleConfirmVerify } =
     useEmailVerify();
-  const [goLogin] = useMovePage('/login') as (() => void)[];
+  const [goLogin] = useMovePage(['/login']) as (() => void)[];
 
   const onSubmit = (data: RegisterFormData) => {
     const { id: nickName, email, password, sex, birth, address } = data;

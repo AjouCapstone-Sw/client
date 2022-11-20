@@ -4,7 +4,7 @@ import type { WEbRTCViewFooterProps } from './WebRTCViewFooter.type';
 import { handleAskPriceClick } from './WebRTCViewFooter.util';
 
 import { isSeller } from '@Pages/DetailPage/DetailPage.util';
-import { addPriceComma } from '@Util/.';
+import { addPriceComma, getUserId } from '@Util/.';
 
 export const WebRTCViewFooter = ({
   nextAskPrice,
@@ -15,7 +15,7 @@ export const WebRTCViewFooter = ({
 }: WEbRTCViewFooterProps) => {
   const { register, handleSubmit } = useSendChatMessage({ productId });
   const { isAuctionStart } = useAuctionFooterStates({ productId });
-  const userId = localStorage.getItem('id')!;
+  const userId = getUserId();
 
   return (
     <>

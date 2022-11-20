@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { postLogin } from './LoginPage.util';
 
 import { useMovePage } from '@Hook/.';
+import { setUserId } from '@Util/LocalStorage';
 
 export const useLoginState = () => {
   const [email, setEmail] = useState('');
@@ -16,7 +17,10 @@ export const useLoginState = () => {
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     postLogin({ email, password })
-      .then(goMain)
+      .then((res) => {
+        setUserId(res);
+        goMain();
+      })
       .catch(() => {
         setEmail('');
         setPassword('');

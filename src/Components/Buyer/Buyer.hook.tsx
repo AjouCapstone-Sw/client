@@ -8,8 +8,8 @@ import { connection, getReceiverAnswerEvent, getReceiverCandidateEvent } from '.
 
 import { AlertModal } from '@Components/Modals/Alert/AlertModal';
 import { useModal } from '@Hook/useModal';
+import { getUserId } from '@Util/LocalStorage';
 
-const USER_ID = 'HS';
 export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [productStream, setProductStream] = useState<WebRTCUser | null>(null);
@@ -17,8 +17,11 @@ export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) =>
   const addStream = (e: RTCTrackEvent) => setProductStream({ id: productId, stream: e.streams[0] });
 
   useEffect(() => {
-    const clientSocket = new ClientSocket(USER_ID);
-    connection({ productId, addStream, userId: USER_ID! });
+    const userId = getUserId();
+    if (typeof userId !== 'string') return;
+
+    const clientSocket = new ClientSocket(userId);
+    connection({ productId, addStream, userId });
     clientSocket.socket!.on('getReceiverCandidate', getReceiverCandidateEvent);
     clientSocket.socket!.on('getReceiverAnswer', getReceiverAnswerEvent);
 
@@ -43,7 +46,7 @@ export const useAuctionEnd = () => {
   const openSuccessModal = () => openModal(AlertModal as React.FC, ALERT_BUY_SUCCESS);
 
   useEffect(() => {
-    const clientSocket = new ClientSocket(USER_ID!);
+    const clientSocket = new ClientSocket('');
     clientSocket.socket!.on(
       'endAuctionWithBuyer',
       ({ price, productId }: { price: number; productId: number }) => {

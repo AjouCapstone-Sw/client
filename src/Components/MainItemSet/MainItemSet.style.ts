@@ -42,7 +42,7 @@ const Category = styled.div`
 const ItemContainer = styled.ul`
   display: flex;
   overflow: auto;
-  width: 100vw;
+  width: 100%;
   li {
     margin-right: 20px;
   }

@@ -12,8 +12,10 @@ export const ItemListCell = ({
   auctionStartTime,
   productImage,
   live,
+  like,
 }: ItemListCellProps) => {
   const [goDetail] = useMovePage(`/detail/${productId}`) as (() => void)[];
+  console.log(like);
   return (
     <ItemListCellStyle.Container onClick={goDetail}>
       <ItemListCellStyle.ImageBox>
@@ -26,8 +28,14 @@ export const ItemListCell = ({
       <ItemListCellStyle.TextContainer>
         <span className='strong'>{title}</span>
         <span>즉시 구매 : {addPriceComma(buyNowPrice)}원</span>
-        <span>경매 시작가 : {addPriceComma(auctionStartPrice)}원 </span>
-        <span>경매 시간 : {auctionStartTime}</span>
+        {live ? (
+          <>
+            <span>경매 시작가 : {addPriceComma(auctionStartPrice ?? 0)}원 </span>
+            <span>경매 시간 : {auctionStartTime}</span>
+          </>
+        ) : (
+          <span>즉시 구매 상품입니다.</span>
+        )}
       </ItemListCellStyle.TextContainer>
     </ItemListCellStyle.Container>
   );

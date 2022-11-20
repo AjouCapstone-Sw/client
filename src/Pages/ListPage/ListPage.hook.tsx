@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { ItemListCellType } from './ListPage.type';
+import { getTransCategoryId } from './ListPage.util';
 
 import { getCategoryItemList } from '@Components/MainItemSet/MainItemset.util';
 
@@ -76,11 +78,12 @@ const dummy = [
     live: false,
   },
 ];
-export const useGetItemList = (categoryId: number) => {
+export const useGetItemList = () => {
+  const { search: categoryId } = useLocation();
   const [viewList, setViewList] = useState<ItemListCellType[]>([]);
   const [viewLiveList, setViewLiveList] = useState<ItemListCellType[]>([]);
   useEffect(() => {
-    getCategoryItemList(categoryId)
+    getCategoryItemList(getTransCategoryId(categoryId))
       .then((res: ItemListCellType[]) => {
         setViewList(res.filter((viewItem) => viewItem.live));
         setViewLiveList(res.filter((viewItem) => !viewItem.live));

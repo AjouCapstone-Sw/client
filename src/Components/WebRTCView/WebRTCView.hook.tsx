@@ -66,16 +66,14 @@ export const useAuctionStates = ({
 }: UseGetVideoStreamBuyer & { addChat: (chatData: chatType) => void }) => {
   const [remainTime, setRemainTime] = useState<string>('0');
   const [maxPriceUser, setPriceUser] = useState<string>('');
-  const [nowPrice, setNowPrice] = useState<string>('');
   const [joinedUserLength, setJoinedUserLength] = useState<string>('');
   const [nextAskPrice, setNextAskPrice] = useState<string>('');
 
   const clientSocket = new ClientSocket(USER_ID);
 
   useEffect(() => {
-    clientSocket.socket!.on('updateAuctionStatus', ({ status, price, nextPrice }) => {
+    clientSocket.socket!.on('updateAuctionStatus', ({ status, nextPrice }) => {
       setPriceUser(status);
-      setNowPrice(price);
       setNextAskPrice(nextPrice);
     });
 
@@ -86,5 +84,5 @@ export const useAuctionStates = ({
     clientSocket.socket!.on('auctionTimer', setRemainTime);
   }, [productId]);
 
-  return { remainTime, maxPriceUser, nowPrice, joinedUserLength, nextAskPrice };
+  return { remainTime, maxPriceUser, joinedUserLength, nextAskPrice };
 };

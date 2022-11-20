@@ -2,25 +2,18 @@ import { useForm } from 'react-hook-form';
 import ReactModal from 'react-modal';
 
 import { SEARCH_MODAL_PROPS } from '../Modal.const';
+import { useSearchModal } from './SearchModal.hook';
 import SearchModalStyle from './SearchModal.style';
 import { SearchModalInput } from './SearchModal.type';
 
-import { useModal } from '@Hook/useModal';
-
 export const SearchModal = () => {
-  const { closeModal } = useModal();
-  const closeSearchModal = () => closeModal(SearchModal);
   const { register, handleSubmit: handleSearch } = useForm<SearchModalInput>();
-
-  const onSubmit = (data: SearchModalInput) => {
-    const { inputValue } = data;
-    console.log(inputValue);
-  };
+  const { onSubmit, closeSearchModal } = useSearchModal();
 
   return (
     <ReactModal
       {...SEARCH_MODAL_PROPS}
-      onRequestClose={() => closeModal(SearchModal)}
+      onRequestClose={closeSearchModal}
     >
       <SearchModalStyle.SearchModalContainer>
         <SearchModalStyle.SearchBar>

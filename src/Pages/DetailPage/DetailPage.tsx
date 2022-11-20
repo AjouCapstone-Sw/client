@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom';
-
 import { useGetProductDetail } from './DetailPage.hook';
 import DetailPageStyle from './DetailPage.style';
 import { isSeller } from './DetailPage.util';
@@ -7,11 +5,11 @@ import { isSeller } from './DetailPage.util';
 import { Button, ImageSlick, AuctionTimerButton } from '@Components/.';
 import { RightArrow } from '@Components/Svg';
 import { useMovePage } from '@Hook/useMovePage';
+import { useProductId } from '@Hook/useProductId';
 import { addPriceComma } from '@Util/.';
 
 export const DetailPage = () => {
-  const { productId } = useParams();
-  if (!productId) return null;
+  const productId = useProductId();
 
   const {
     productImages,
@@ -25,7 +23,7 @@ export const DetailPage = () => {
     description,
     buyNowPrice,
     isAuction,
-  } = useGetProductDetail(Number(productId))!;
+  } = useGetProductDetail(productId)!;
 
   const [moveEditPage, goSeller] = useMovePage([
     `/edit/${productId}`,

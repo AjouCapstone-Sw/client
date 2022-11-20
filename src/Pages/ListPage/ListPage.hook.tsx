@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import { ItemListCellType } from './ListPage.type';
-import { getTransCategoryId } from './ListPage.util';
 
-import { getCategoryItemList } from '@Components/MainItemSet/MainItemset.util';
+import { getCategoryItemList, getItemListBySearch } from '@Components/MainItemSet/MainItemset.util';
+import { useQuerySearch } from '@Hook/useQuerySearch';
 
 const dummy = [
   {
@@ -79,20 +78,35 @@ const dummy = [
   },
 ];
 export const useGetItemList = () => {
-  const { search: categoryId } = useLocation();
+  const [categoryId, keyword] = useQuerySearch(['categoryId', 'keyword']);
+
   const [viewList, setViewList] = useState<ItemListCellType[]>([]);
   const [viewLiveList, setViewLiveList] = useState<ItemListCellType[]>([]);
+
   useEffect(() => {
-    getCategoryItemList(getTransCategoryId(categoryId))
+    if (!categoryId && keyword) return;
+    getCategoryItemList(Number(categoryId) || 1)
       .then((res: ItemListCellType[]) => {
-        setViewList(res.filter((viewItem) => viewItem.live));
-        setViewLiveList(res.filter((viewItem) => !viewItem.live));
+        setViewList(res.filter((viewItem) => !viewItem.live));
+        setViewLiveList(res.filter((viewItem) => viewItem.live));
       })
       .catch(() => {
-        setViewList([...dummy]);
+        setViewList([]);
         setViewLiveList([{ ...dummy[0], live: true }]);
       });
-  }, []);
+  }, [categoryId]);
 
+  useEffect(() => {
+    if (!keyword) return;
+    getItemListBySearch(keyword)
+      .then((res: ItemListCellType[]) => {
+        setViewList(res.filter((viewItem) => !viewItem.live));
+        setViewLiveList(res.filter((viewItem) => viewItem.live));
+      })
+      .catch(() => {
+        setViewList([]);
+        setViewLiveList([{ ...dummy[0], live: true }]);
+      });
+  }, [keyword]);
   return { viewLiveList, viewList };
 };

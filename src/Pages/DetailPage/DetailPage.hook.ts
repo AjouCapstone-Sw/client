@@ -9,6 +9,7 @@ export const useGetProductDetail = (productId: number) => {
   const [productDetail, setProductDetail] = useState<ProductDetail>(SKELETON_PRODUCT_DETAIL);
 
   useEffect(() => {
+    if (!productId) return;
     const [targetProductDetail] = productDetails.filter(({ productId: id }) => id === productId);
     if (targetProductDetail) {
       setProductDetail(targetProductDetail);

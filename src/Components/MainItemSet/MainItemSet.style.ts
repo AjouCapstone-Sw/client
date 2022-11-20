@@ -42,9 +42,15 @@ const Category = styled.div`
 const ItemContainer = styled.ul`
   display: flex;
   overflow: auto;
-  width: 100vw;
+  width: 100%;
   li {
     margin-right: 20px;
+  }
+  p {
+    margin-top: 16px;
+    margin-left: 16px;
+    font-size: 24px;
+    font-weight: 600;
   }
 `;
 

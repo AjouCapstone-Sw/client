@@ -1,4 +1,4 @@
-import { useGetProductDataInAuction, useJoinAuction } from './WebRTCView.hook';
+import { useAuctionStates, useGetProductDataInAuction, useJoinAuction } from './WebRTCView.hook';
 import WebRTCViewStyle from './WebRTCView.style';
 import type { WebRTCViewProps } from './WebRTCView.type';
 import { WebRTCViewBody } from './WebRTCViewBody';
@@ -9,32 +9,38 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
   const { productTitle, auctionStartPrice, nowAskPrice } = useGetProductDataInAuction({
     productId,
   });
-  const { chats, joinUserLength, untilExitAuctionTime, nowAuctionPrice, productLikeNum } =
-    useJoinAuction({ productId });
+  const { productLikeNum, chats, addChat, seller } = useJoinAuction({ productId });
 
+  const { remainTime, maxPriceUser, joinedUserLength, nextAskPrice } = useAuctionStates({
+    productId,
+    addChat,
+  });
+  const nowPrice = Number(nextAskPrice) - nowAskPrice;
   return (
     <WebRTCViewStyle.Container>
       <WebRTCViewStyle.Header>
         <WebRTCViewHeader />
       </WebRTCViewStyle.Header>
 
-      <WebRTCViewStyle.Title>{productTitle} 경매 Live</WebRTCViewStyle.Title>
+      <WebRTCViewStyle.Title>{productTitle}</WebRTCViewStyle.Title>
 
       <WebRTCViewStyle.Body>
         <WebRTCViewBody
-          joinUserLength={joinUserLength}
+          joinUserLength={Number(joinedUserLength)}
           auctionStartPrice={auctionStartPrice}
-          untilExitAuctionTime={untilExitAuctionTime}
-          nowAuctionPrice={nowAuctionPrice}
+          untilExitAuctionTime={remainTime}
+          nowAuctionPrice={Number(nowPrice)}
           nowAskPrice={nowAskPrice}
+          maxPriceUser={maxPriceUser}
         />
       </WebRTCViewStyle.Body>
 
       <WebRTCViewStyle.Footer>
         <WebRTCViewFooter
-          productId={productId}
           chats={chats}
-          nextAskPrice={nowAuctionPrice + nowAskPrice}
+          seller={seller}
+          productId={productId}
+          nextAskPrice={Number(nextAskPrice)}
           productLikeNum={productLikeNum}
         />
       </WebRTCViewStyle.Footer>

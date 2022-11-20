@@ -11,13 +11,13 @@ import { theme } from './Styles/theme';
 // worker.start();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <ModalProvider>
-        <Router>
-          <App />
-        </Router>
-      </ModalProvider>
-    </ThemeProvider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <ThemeProvider theme={theme}>
+    <ModalProvider>
+      <Router>
+        <App />
+      </Router>
+    </ModalProvider>
+  </ThemeProvider>,
+  // </React.StrictMode>,
 );

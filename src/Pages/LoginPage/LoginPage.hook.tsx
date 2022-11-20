@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { postLogin } from './LoginPage.util';
 
 import { useMovePage } from '@Hook/.';
+import { setUserId } from '@Util/LocalStorage';
 
 export const useLoginState = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [goMain] = useMovePage('/main') as (() => void)[];
+  const [goMain] = useMovePage('/') as (() => void)[];
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -15,8 +16,11 @@ export const useLoginState = () => {
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    postLogin({ email, pw: password })
-      .then(goMain)
+    postLogin({ email, password })
+      .then((res) => {
+        setUserId(res);
+        goMain();
+      })
       .catch(() => {
         setEmail('');
         setPassword('');

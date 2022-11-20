@@ -10,13 +10,14 @@ export const useGetProductDetail = (productId: number) => {
 
   useEffect(() => {
     const [targetProductDetail] = productDetails.filter(({ productId: id }) => id === productId);
-    if (targetProductDetail) setProductDetail(targetProductDetail);
-    else {
-      getProductDetail(productId).then((detail) => {
-        setProductDetails((details) => [...details, detail]);
-        setProductDetail(detail);
-      });
+    if (targetProductDetail) {
+      setProductDetail(targetProductDetail);
+      return;
     }
+    getProductDetail(productId).then((detail) => {
+      setProductDetails((details) => [...details, detail]);
+      setProductDetail(detail);
+    });
   }, [productId]);
 
   return productDetail;

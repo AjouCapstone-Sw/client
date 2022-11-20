@@ -34,7 +34,7 @@ export const DetailPage = () => {
 
   return (
     <DetailPageStyle.ProductContainer>
-      {isSeller('Noelsky', seller) && (
+      {isSeller('the_ajou', seller) && (
         <Button
           className='edit-button'
           onClick={moveEditPage}
@@ -51,11 +51,11 @@ export const DetailPage = () => {
 
         <DetailPageStyle.ReviewContainer onClick={goSeller}>
           <DetailPageStyle.ReviewAnchor>
-            경매 후기 {sellReviewCount}건<RightArrow />
+            경매 후기 {sellReviewCount ?? 0}건<RightArrow />
           </DetailPageStyle.ReviewAnchor>
 
           <DetailPageStyle.ReviewAnchor>
-            판매 후기 {auctionReviewCount}건<RightArrow />
+            판매 후기 {auctionReviewCount ?? 0}건<RightArrow />
           </DetailPageStyle.ReviewAnchor>
         </DetailPageStyle.ReviewContainer>
       </DetailPageStyle.SellerInfoContainer>

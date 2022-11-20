@@ -21,7 +21,7 @@ export const RegisterPage = () => {
 
   const { emailVerifyState, handleEmailVerify, confirmState, handleConfirmVerify } =
     useEmailVerify();
-  const [goLogin] = useMovePage('/login') as (() => void)[];
+  const [goLogin] = useMovePage(['/login']) as (() => void)[];
 
   const onSubmit = (data: RegisterFormData) => {
     const { id: nickName, email, password, sex, birth } = data;
@@ -35,7 +35,6 @@ export const RegisterPage = () => {
     };
     postSignUpUser(body).then(goLogin);
   };
-
   return (
     <RegisterPageStyle.RegisterContainer>
       <h1>회원 가입</h1>
@@ -92,6 +91,9 @@ export const RegisterPage = () => {
               </Button>
             )}
           </RegisterPageStyle.EmailVerifyContainer>
+          {emailVerifyState && (
+            <RegisterPageStyle.SuccessMsg>인증에 성공하셨습니다.</RegisterPageStyle.SuccessMsg>
+          )}
           <FormErrorMessage error={registerValidationErrors.emailVerifyNum} />
 
           <RegisterPageStyle.DropdownContainer>

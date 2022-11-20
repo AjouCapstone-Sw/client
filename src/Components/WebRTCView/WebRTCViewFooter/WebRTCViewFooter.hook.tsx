@@ -1,18 +1,36 @@
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
+import ClientSocket from '../../../Socket/WebRTC/WebRTC';
 import { AuctionChatInput } from './WebRTCViewFooter.type';
 import { handleChatMessageSend } from './WebRTCViewFooter.util';
 
-const NICKNAME = 'yj';
+import { UseGetVideoStreamBuyer } from '@Components/Buyer/Buyer.type';
+import { getUserId } from '@Util/LocalStorage';
 
-export const useSendChatMessage = () => {
+export const useSendChatMessage = ({ productId }: { productId: number }) => {
   const { register, handleSubmit, resetField } = useForm<AuctionChatInput>();
+  const userId = getUserId();
   const onSubmitCallback = handleSubmit(
-    handleChatMessageSend(NICKNAME, () => resetField('message')),
+    handleChatMessageSend(userId as string, productId, () => resetField('message')),
   );
 
   return {
     register: register('message'),
     handleSubmit: onSubmitCallback,
   };
+};
+
+export const useAuctionFooterStates = ({
+  productId,
+}: Pick<UseGetVideoStreamBuyer, 'productId'>) => {
+  const [isAuctionStart, setAuctionStart] = useState<boolean>(false);
+  useEffect(() => {
+    const userId = getUserId();
+    if (typeof userId !== 'string') return;
+    const clientSocket = new ClientSocket(userId);
+    clientSocket.socket!.on('startAuction', () => setAuctionStart(true));
+  }, [productId]);
+
+  return { isAuctionStart };
 };

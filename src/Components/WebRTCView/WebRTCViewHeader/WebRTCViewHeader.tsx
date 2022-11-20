@@ -4,10 +4,12 @@ import { useMovePage } from '@Hook/useMovePage';
 
 export const WebRTCViewHeader = () => {
   const [goHome] = useMovePage('/') as (() => void)[];
+
   return (
     <>
       <div>
         <span>경매</span>
+
         <span className='text-Impact'>Live</span>
       </div>
       <WebRTCViewHeaderStyle.HeaderImgContainer>

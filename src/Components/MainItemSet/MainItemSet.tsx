@@ -26,12 +26,16 @@ export const MainItemSet = ({ categoryId, categoryName }: MainItemSetProps) => {
         />
       </MainItemSetStyle.Title>
       <MainItemSetStyle.ItemContainer>
-        {itemList.map((item) => (
-          <MainItem
-            key={item.productId}
-            {...item}
-          />
-        ))}
+        {itemList.length === 0 ? (
+          <p>텅</p>
+        ) : (
+          itemList.map((item) => (
+            <MainItem
+              key={item.productId}
+              {...item}
+            />
+          ))
+        )}
       </MainItemSetStyle.ItemContainer>
     </MainItemSetStyle.Container>
   );

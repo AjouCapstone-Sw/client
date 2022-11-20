@@ -3,7 +3,7 @@ import duration from 'dayjs/plugin/duration';
 
 dayjs.extend(duration);
 
-const DATE_FORMAT = 'YYYY/MM/DD HH:mm';
+export const DATE_FORMAT = 'YYYY/MM/DD HH:mm';
 
 const BID_PRICE_RATIO = 1 / 50;
 

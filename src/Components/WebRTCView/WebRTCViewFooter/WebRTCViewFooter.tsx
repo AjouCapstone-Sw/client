@@ -1,4 +1,4 @@
-import { useSendChatMessage } from './WebRTCViewFooter.hook';
+import { useAuctionFooterStates, useSendChatMessage } from './WebRTCViewFooter.hook';
 import WebRTCViewFooterStyle from './WebRTCViewFooter.style';
 import type { WEbRTCViewFooterProps } from './WebRTCViewFooter.type';
 import { handleAskPriceClick } from './WebRTCViewFooter.util';
@@ -12,6 +12,7 @@ export const WebRTCViewFooter = ({
   productId,
 }: WEbRTCViewFooterProps) => {
   const { register, handleSubmit } = useSendChatMessage();
+  const { isAuctionStart } = useAuctionFooterStates({ productId });
   return (
     <>
       <div>
@@ -30,9 +31,11 @@ export const WebRTCViewFooter = ({
           />
         </form>
         <button
+          className='ask-button'
           type='button'
           onClick={handleAskPriceClick({ productId, nextAskPrice })}
           aria-hidden
+          disabled={!isAuctionStart}
         >
           {addPriceComma(nextAskPrice)} 원
         </button>

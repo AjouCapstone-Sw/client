@@ -46,23 +46,28 @@ export const makePeerConnection = (
 
   // peerConnection 생성 이후 발생
   // socket event로 candidate 전송해야함
+  // console.log(stream);
+
   pc.onicecandidate = (e) => onIceCandidate(e);
+  pc.ontrack = (e) => {
+    trackCallback(e);
+  };
   if (stream) stream.getTracks().forEach((track) => pc.addTrack(track, stream));
 
   // pc에 sdp 등록하면 발생
   // e.streams[0]을 user의 stream으로 저장해야함
-  pc.ontrack = (e) => trackCallback(e);
+
   return pc;
 };
 
-export const createOffer = async (pc: RTCPeerConnection, isOffer: boolean) => {
+export const createOffer = async (pc: RTCPeerConnection) => {
   const offer = await pc.createOffer({
-    offerToReceiveAudio: !isOffer,
-    offerToReceiveVideo: !isOffer,
+    offerToReceiveAudio: true,
+    offerToReceiveVideo: true,
   });
   const sdp = new RTCSessionDescription(offer);
   // ontrack 발생
-  await pc.setLocalDescription(sdp);
+  pc.setLocalDescription(sdp);
   return offer;
 };
 
@@ -71,11 +76,16 @@ export const getCandidateEvent = (pc: RTCPeerConnection, candidate: RTCIceCandid
   pc.addIceCandidate(new RTCIceCandidate(candidate));
 };
 
-export const registerRemoteDescriptionToPc = async (
+let flag = false;
+
+export const registerRemoteDescriptionToPc = (
   pc: RTCPeerConnection,
   sdp: RTCSessionDescription,
 ) => {
-  await pc.setRemoteDescription(new RTCSessionDescription(sdp));
+  if (!pc.remoteDescription && !flag) {
+    flag = true;
+    pc.setRemoteDescription(new RTCSessionDescription(sdp));
+  }
 };
 
 // const registerUser = async (id: string, addUser: Function, chatRoomId: number) => {

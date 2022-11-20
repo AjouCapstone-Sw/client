@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import ClientSocket from '../../Socket/WebRTC/WebRTC';
 import { INIT_AUCTION_INFO, IN_PRODUCT_DATA_IN_AUCTION } from './WebRTCView.const';
 import type {
   auctionInfoType,
@@ -10,7 +11,7 @@ import type {
 } from './WebRTCView.type';
 import { chatLengthLimit20, getProductDataInAuction } from './WebRTCView.util';
 
-import ClientSocket from '@Socket/WebRTC/WebRTC';
+import { UseGetVideoStreamBuyer } from '@Components/Buyer/Buyer.type';
 
 export const useGetProductDataInAuction = ({ productId }: UseGetProductDataInAuction) => {
   const [productData, setProductData] = useState<auctionProductData>(IN_PRODUCT_DATA_IN_AUCTION);
@@ -39,6 +40,8 @@ const useChatData = () => {
 };
 
 const SELLER_ID = 'yj';
+const USER_ID = 'HS';
+
 export const useJoinAuction = ({ productId }: UseJoinAuction) => {
   const { chats, addChat } = useChatData();
   const { auctionInfo, updateAuctionInfo } = useGetAuctionInfo();
@@ -54,4 +57,29 @@ export const useJoinAuction = ({ productId }: UseJoinAuction) => {
   }, [productId]);
 
   return { chats, ...auctionInfo };
+};
+
+export const useAuctionStates = ({ productId }: UseGetVideoStreamBuyer) => {
+  const [remainTime, setRemainTime] = useState<string>('');
+  const [maxPriceUser, setPriceUser] = useState<string>('');
+  const [nowPrice, setNowPrice] = useState<string>('');
+  const [joinedUserLength, setJoinedUserLength] = useState<string>('');
+  const [nextAskPrice, setNextAskPrice] = useState<string>('');
+
+  const clientSocket = new ClientSocket(USER_ID);
+
+  useEffect(() => {
+    clientSocket.socket!.on(
+      'updateAuctionStatus',
+      ({ status, price, joinedUserLength: userLength, nextPrice }) => {
+        setPriceUser(status);
+        setNowPrice(price);
+        setJoinedUserLength(userLength);
+        setNextAskPrice(nextPrice);
+      },
+    );
+    clientSocket.socket!.on('auctionTimer', setRemainTime);
+  }, [productId]);
+
+  return { remainTime, maxPriceUser, nowPrice, joinedUserLength, nextAskPrice };
 };

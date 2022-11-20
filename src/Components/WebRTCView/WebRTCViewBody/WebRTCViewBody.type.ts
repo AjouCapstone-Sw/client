@@ -4,4 +4,5 @@ export type WebRTCViewBodyProps = {
   untilExitAuctionTime: string;
   nowAuctionPrice: number;
   nowAskPrice: number;
+  maxPriceUser: string;
 };

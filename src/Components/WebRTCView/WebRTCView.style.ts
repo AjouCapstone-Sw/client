@@ -8,6 +8,17 @@ const Container = styled.div`
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
+  .ask-button {
+    &:disabled {
+      border: 1px solid #999999;
+      background-color: ${({ theme }) => theme.color.gray};
+      color: ${({ theme }) => theme.color.dark};
+      opacity: 1;
+      &:hover {
+        cursor: inherit;
+      }
+    }
+  }
 `;
 
 const Header = styled.div`

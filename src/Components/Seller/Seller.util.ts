@@ -1,26 +1,27 @@
 import type { MutableRefObject, RefObject } from 'react';
 
-import ClientSocket from '@Socket/WebRTC/WebRTC';
+import ClientSocket from '../../Socket/WebRTC/WebRTC';
 import {
   getLocalStream,
   registerRemoteDescriptionToPc,
   getCandidateEvent,
   createOffer,
   makePeerConnection,
-} from '@Socket/WebRTC/WebRTC.util';
+} from '../../Socket/WebRTC/WebRTC.util';
 
 const senderPC = ({ stream }: { stream: MediaStream }) => {
   const { socket } = new ClientSocket('싱글톤');
   if (!socket) return null;
   const callback = (e: RTCPeerConnectionIceEvent) =>
     socket.emit('senderCandidate', { candidate: e.candidate });
-  const trackCallback = (e: RTCTrackEvent) => console.log(e);
+
+  const trackCallback = (e: RTCTrackEvent) => console.log('track', e);
   const pc = makePeerConnection(callback, trackCallback, stream);
   return pc;
 };
 
 const registerSdpToPC = async (pc: RTCPeerConnection) => {
-  const offer = await createOffer(pc, false);
+  const offer = await createOffer(pc);
   return offer;
 };
 
@@ -47,8 +48,8 @@ export const connection = async ({
   clientSocket.socket!.emit('senderOffer', { sdp: offer });
 };
 
-export const getSenderAnswerEvent = async (data: { sdp: RTCSessionDescription }) => {
-  await registerRemoteDescriptionToPc(ClientSocket.sendPC, data.sdp);
+export const getSenderAnswerEvent = (data: { sdp: RTCSessionDescription }) => {
+  registerRemoteDescriptionToPc(ClientSocket.sendPC, data.sdp);
 };
 
 // eslint-disable-next-line no-undef

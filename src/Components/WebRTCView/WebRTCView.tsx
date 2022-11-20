@@ -1,4 +1,4 @@
-import { useGetProductDataInAuction, useJoinAuction } from './WebRTCView.hook';
+import { useAuctionStates, useGetProductDataInAuction, useJoinAuction } from './WebRTCView.hook';
 import WebRTCViewStyle from './WebRTCView.style';
 import type { WebRTCViewProps } from './WebRTCView.type';
 import { WebRTCViewBody } from './WebRTCViewBody';
@@ -9,8 +9,11 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
   const { productTitle, auctionStartPrice, nowAskPrice } = useGetProductDataInAuction({
     productId,
   });
-  const { chats, joinUserLength, untilExitAuctionTime, nowAuctionPrice, productLikeNum } =
-    useJoinAuction({ productId });
+  const { chats, productLikeNum } = useJoinAuction({ productId });
+
+  const { remainTime, maxPriceUser, nowPrice, joinedUserLength, nextAskPrice } = useAuctionStates({
+    productId,
+  });
 
   return (
     <WebRTCViewStyle.Container>
@@ -22,11 +25,12 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
 
       <WebRTCViewStyle.Body>
         <WebRTCViewBody
-          joinUserLength={joinUserLength}
+          joinUserLength={Number(joinedUserLength)}
           auctionStartPrice={auctionStartPrice}
-          untilExitAuctionTime={untilExitAuctionTime}
-          nowAuctionPrice={nowAuctionPrice}
+          untilExitAuctionTime={remainTime}
+          nowAuctionPrice={Number(nowPrice)}
           nowAskPrice={nowAskPrice}
+          maxPriceUser={maxPriceUser}
         />
       </WebRTCViewStyle.Body>
 
@@ -34,7 +38,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
         <WebRTCViewFooter
           productId={productId}
           chats={chats}
-          nextAskPrice={nowAuctionPrice + nowAskPrice}
+          nextAskPrice={Number(nextAskPrice)}
           productLikeNum={productLikeNum}
         />
       </WebRTCViewStyle.Footer>

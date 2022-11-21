@@ -1,7 +1,8 @@
-import { Alert, AlertTitle, Snackbar } from '@mui/material';
+import { Alert, AlertTitle } from '@mui/material';
 import React from 'react';
 
 import { useCloseAlert } from './AlertModal.hook';
+import { Snackbar } from './AlertModal.style';
 import { AlertModalProps } from './AlertModal.type';
 
 export const AlertModal: React.FC<AlertModalProps> = ({

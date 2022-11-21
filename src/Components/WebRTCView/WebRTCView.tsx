@@ -22,6 +22,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
     productId,
     addChat,
   });
+
   const myId = getUserId();
   useAuctionAlert(maxPriceUser, myId!);
 
@@ -41,7 +42,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
           untilExitAuctionTime={remainTime}
           nowAuctionPrice={Number(nowPrice)}
           nowAskPrice={nowAskPrice}
-          maxPriceUser={maxPriceUser}
+          maxPriceUser={maxPriceUser.toString()}
         />
       </WebRTCViewStyle.Body>
 

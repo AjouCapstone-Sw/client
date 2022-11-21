@@ -21,7 +21,7 @@ export const WebRTCViewBody = ({
       />
       {addPriceComma(joinUserLength)}
     </div>
-    <div>
+    <div className='auction-info'>
       <div>경매 시작가 : {addPriceComma(auctionStartPrice)}</div>
       <p>남은 경매 시간 : {dayjs(untilExitAuctionTime).format('mm:ss')}</p>
       <div>낙찰 후보자 : {maxPriceUser}</div>

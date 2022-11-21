@@ -7,7 +7,10 @@ const Container = styled.div`
   padding: 40px 20px;
   box-sizing: border-box;
   width: 100vw;
+  min-width: 320px;
   height: 100vh;
+  color: ${({ theme }) => theme.color.white};
+
   .ask-button {
     &:disabled {
       border: 1px solid #999999;
@@ -18,6 +21,9 @@ const Container = styled.div`
         cursor: inherit;
       }
     }
+  }
+  .auction-info {
+    line-height: 24px;
   }
 `;
 
@@ -77,6 +83,9 @@ const Footer = styled.div`
     margin-bottom: 20px;
     display: flex;
     flex-direction: column-reverse;
+    span {
+      line-height: 24px;
+    }
 
     .system-message,
     .seller-message {
@@ -93,6 +102,9 @@ const Footer = styled.div`
       box-sizing: border-box;
       border-radius: 10px;
       background-color: transparent;
+      &::placeholder {
+        color: ${({ theme }) => theme.color.white};
+      }
     }
   }
   button {

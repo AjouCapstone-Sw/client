@@ -1,3 +1,4 @@
+/* eslint-disable no-new-wrappers */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 
@@ -71,7 +72,7 @@ export const useAuctionStates = ({
   addChat,
 }: UseGetVideoStreamBuyer & { addChat: (chatData: chatType) => void }) => {
   const [remainTime, setRemainTime] = useState<string>('0');
-  const [maxPriceUser, setPriceUser] = useState<string>('');
+  const [maxPriceUser, setPriceUser] = useState<String>('');
   const [joinedUserLength, setJoinedUserLength] = useState<string>('');
   const [nextAskPrice, setNextAskPrice] = useState<string>('');
 
@@ -81,7 +82,8 @@ export const useAuctionStates = ({
 
     const clientSocket = new ClientSocket(myId);
     clientSocket.socket!.on('updateAuctionStatus', ({ status, nextPrice }) => {
-      setPriceUser(status);
+      console.log(status);
+      setPriceUser(new String(status));
       setNextAskPrice(nextPrice);
     });
 
@@ -95,11 +97,12 @@ export const useAuctionStates = ({
   return { remainTime, maxPriceUser, joinedUserLength, nextAskPrice };
 };
 
-export const useAuctionAlert = (maxPriceUser: string, userId: string) => {
+export const useAuctionAlert = (maxPriceUser: String, userId: string) => {
   const { openModal } = useModal();
   const openSuccess = () => openModal(AlertModal as React.FC, ALERT_ASK_SUCCESS);
 
   useEffect(() => {
+    console.log(userId, maxPriceUser);
     if (userId === maxPriceUser) openSuccess();
   }, [maxPriceUser]);
 };

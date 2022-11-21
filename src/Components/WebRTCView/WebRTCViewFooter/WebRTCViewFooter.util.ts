@@ -1,7 +1,7 @@
 import { AuctionChatInput, HandleAskPriceClick } from './WebRTCViewFooter.type';
 
 import ClientSocket from '@Socket/WebRTC/WebRTC';
-import { getUserId } from '@Util/LocalStorage';
+import { getUserId } from '@Util/.';
 
 export const handleAskPriceClick =
   ({ productId, nextAskPrice, handleAttendTrue }: HandleAskPriceClick) =>

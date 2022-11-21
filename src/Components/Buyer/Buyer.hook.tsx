@@ -65,7 +65,7 @@ export const useAuctionEnd = () => {
       setTimeout(() => {
         openModal(ReviewModal as React.FC, { productId, userId: seller, type: 'auction' });
         clientSocket.socket!.disconnect();
-      }, 10000);
+      }, 5000);
     });
   }, []);
 };

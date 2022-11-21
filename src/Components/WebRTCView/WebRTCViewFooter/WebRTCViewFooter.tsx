@@ -28,7 +28,7 @@ export const WebRTCViewFooter = ({
               className={chat.message === '님이 입장하셨습니다' ? 'system-message' : ''}
             >
               <span className={isSeller(chat.name, `${seller} : `) ? 'seller-message' : ''}>
-                {chat.name}
+                {chat.name}:{' '}
               </span>
               <span>{chat.message}</span>
             </div>

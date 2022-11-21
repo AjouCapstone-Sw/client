@@ -1,11 +1,14 @@
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { ALERT_SELL_SUCCESS } from './Seller.const';
 import type { UseGetVideoStreamSeller } from './Seller.type';
 import { connection, getSenderCandidateEvent, getSenderAnswerEvent } from './Seller.util';
 
+import { AlertModal } from '@Components/Modals/Alert/AlertModal';
+import { useModal } from '@Hook/useModal';
 import ClientSocket from '@Socket/WebRTC/WebRTC';
-import { getUserId } from '@Util/LocalStorage';
+import { getUserId } from '@Util/.';
 
 export const useGetVideoStreamSeller = ({ productId }: UseGetVideoStreamSeller) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -31,11 +34,18 @@ export const useGetVideoStreamSeller = ({ productId }: UseGetVideoStreamSeller) 
 
 export const useAuctionEnd = () => {
   const navigator = useNavigate();
+  const { openModal } = useModal();
+  const openSuccessModal = () => openModal(AlertModal as React.FC, ALERT_SELL_SUCCESS);
+
   useEffect(() => {
     const clientSocket = new ClientSocket('');
+
     clientSocket.socket!.on('endAuctionWithSeller', ({ price }: { price: number }) => {
-      navigator(`/seller-introduce?price=${price}`);
-      clientSocket.socket!.disconnect();
+      openSuccessModal();
+      setTimeout(() => {
+        navigator(`/seller-introduce?price=${price}`);
+        clientSocket.socket!.disconnect();
+      }, 5000);
     });
   }, []);
 };

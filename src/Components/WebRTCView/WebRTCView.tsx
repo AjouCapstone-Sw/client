@@ -18,7 +18,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
   });
   const { productLikeNum, chats, addChat, seller } = useJoinAuction({ productId });
 
-  const { remainTime, maxPriceUser, joinedUserLength, nextAskPrice } = useAuctionStates({
+  const { timer, remainTime, maxPriceUser, joinedUserLength, nextAskPrice } = useAuctionStates({
     productId,
     addChat,
   });
@@ -30,7 +30,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
   return (
     <WebRTCViewStyle.Container>
       <WebRTCViewStyle.Header>
-        <WebRTCViewHeader />
+        <WebRTCViewHeader timer={timer} />
       </WebRTCViewStyle.Header>
 
       <WebRTCViewStyle.Title>{productTitle}</WebRTCViewStyle.Title>

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import ClientSocket from '../../Socket/WebRTC/WebRTC';
 import {
   ALERT_ASK_SUCCESS,
+  DEFAULT_TIMER,
   INIT_AUCTION_INFO,
   IN_PRODUCT_DATA_IN_AUCTION,
 } from './WebRTCView.const';
@@ -12,6 +13,7 @@ import type {
   auctionInfoType,
   auctionProductData,
   chatType,
+  TimerType,
   UseGetProductDataInAuction,
   UseJoinAuction,
 } from './WebRTCView.type';
@@ -75,6 +77,7 @@ export const useAuctionStates = ({
   const [maxPriceUser, setPriceUser] = useState<String>('');
   const [joinedUserLength, setJoinedUserLength] = useState<string>('');
   const [nextAskPrice, setNextAskPrice] = useState<string>('');
+  const [timer, setTimer] = useState<TimerType>(DEFAULT_TIMER);
 
   useEffect(() => {
     const myId = getUserId();
@@ -82,7 +85,6 @@ export const useAuctionStates = ({
 
     const clientSocket = new ClientSocket(myId);
     clientSocket.socket!.on('updateAuctionStatus', ({ status, nextPrice }) => {
-      console.log(status);
       setPriceUser(new String(status));
       setNextAskPrice(nextPrice);
     });
@@ -92,9 +94,17 @@ export const useAuctionStates = ({
       setJoinedUserLength(updatedUserLength);
     });
     clientSocket.socket!.on('auctionTimer', setRemainTime);
+
+    clientSocket.socket!.on('setDescriptionTime', (remainDescriptionTime) => {
+      setTimer({ proceedText: '상품 설명 시간', time: Math.floor(remainDescriptionTime / 1000) });
+    });
+
+    clientSocket.socket!.on('updateAskTime', (remainAskTime) => {
+      setTimer({ proceedText: '호가 시간', time: remainAskTime });
+    });
   }, [productId]);
 
-  return { remainTime, maxPriceUser, joinedUserLength, nextAskPrice };
+  return { timer, remainTime, maxPriceUser, joinedUserLength, nextAskPrice };
 };
 
 export const useAuctionAlert = (maxPriceUser: String, userId: string) => {
@@ -102,7 +112,6 @@ export const useAuctionAlert = (maxPriceUser: String, userId: string) => {
   const openSuccess = () => openModal(AlertModal as React.FC, ALERT_ASK_SUCCESS);
 
   useEffect(() => {
-    console.log(userId, maxPriceUser);
     if (userId === maxPriceUser) openSuccess();
   }, [maxPriceUser]);
 };

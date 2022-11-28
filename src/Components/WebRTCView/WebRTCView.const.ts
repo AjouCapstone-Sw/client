@@ -24,3 +24,5 @@ export const ALERT_ASK_SUCCESS: AlertModalProps = {
   time: 3000,
   type: 'success',
 };
+
+export const DEFAULT_TIMER = { proceedText: '', time: 0 };

@@ -20,7 +20,7 @@ export const chatLengthLimit20 = (chats: chatType[]) => {
   for (let i = start; i < chats.length; i++) {
     res.push(chats[i]);
   }
-  console.log(res);
+
   return res;
 };
 

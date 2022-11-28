@@ -25,6 +25,11 @@ const Container = styled.div`
   .auction-info {
     line-height: 24px;
   }
+
+  .timer {
+    color: ${({ theme }) => theme.color.primary};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+  }
 `;
 
 const Header = styled.div`

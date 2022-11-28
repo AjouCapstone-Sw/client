@@ -15,13 +15,13 @@ const getProductRegisterBody = (data: ProductRegisterFormData) => ({
   buyNowPrice: Number(removePriceEtc(data.buyNowPrice)),
   duration: Number(data.auctionDuration),
   bidPrice: Number(removePriceEtc(data.auctionBidPrice) ?? 0),
-  categoryId: 2,
+  categoryId: data.category.value,
 });
 
 export const createProduct = async (formData: ProductRegisterFormData) => {
   const userId = await getUserIdByNickName(getUserId()!);
   const images = await addImages(formData.images);
-  console.log(images);
+
   const { data } = await axiosInstance.post('/product/create', {
     ...getProductRegisterBody(formData),
     productImages: images,

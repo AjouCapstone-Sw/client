@@ -6,6 +6,12 @@ const Container = styled.div`
   max-width: 650px;
   width: 90%;
   overflow-y: scroll;
+
+  #product-category {
+    div {
+      min-width: 0px;
+    }
+  }
   div,
   input,
   textarea {

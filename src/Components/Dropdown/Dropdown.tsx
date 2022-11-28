@@ -9,6 +9,7 @@ export const Dropdown = <T extends FieldValues>({
   options,
   placeholder,
   rules,
+  id,
 }: DropdownProp<T>) => (
   <Controller
     control={control}
@@ -16,6 +17,7 @@ export const Dropdown = <T extends FieldValues>({
     rules={rules}
     render={({ field: { onChange, value } }) => (
       <DropdownStyle.SDropdown
+        id={id}
         options={options}
         onChange={onChange}
         placeholder={placeholder}

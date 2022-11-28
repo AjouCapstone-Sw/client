@@ -53,6 +53,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
           productId={productId}
           nextAskPrice={Number(nextAskPrice)}
           productLikeNum={productLikeNum}
+          maxPriceUser={maxPriceUser.toString()}
         />
       </WebRTCViewStyle.Footer>
     </WebRTCViewStyle.Container>

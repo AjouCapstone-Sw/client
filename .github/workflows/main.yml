@@ -20,24 +20,25 @@ jobs:
     
     strategy:
       matrix:
-        node-version: [12.16.x]
+        node-version: [16.14.2]
     
     steps:
-      - name: 체크아웃 Github-Action
+      - name: Checkout Github-Action
         uses: actions/checkout@v2
 
-      - name: node.js 12 설치 ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Set up node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: npm
 
-      - name: npm 설치
-        run: npm install -f
+      - name: npm install (CI)
+        run: npm ci
 
-      - name: npm 빌드
+      - name: npm build
         run: npm run build
 
-      - name: zip 생성
+      - name: Make zip file
         run: zip -qq -r ./build-fe.zip .
         shell: bash
 

@@ -7,3 +7,4 @@ export { ReactComponent as LeftArrow } from './LeftArrow.svg';
 export { ReactComponent as RightArrow } from './RightArrow.svg';
 export { ReactComponent as UserCircle } from './UserCircle.svg';
 export { ReactComponent as AddImage } from './AddImage.svg';
+export { ReactComponent as LogoImage } from './Logo.svg';

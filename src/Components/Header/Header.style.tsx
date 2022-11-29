@@ -25,6 +25,11 @@ const HeaderContainer = styled.div`
     }
   }
 
+  .header-logo {
+    width: 92px;
+    height: 92px;
+  }
+
   div:last-child {
     display: flex;
   }

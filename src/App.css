@@ -33,3 +33,7 @@ a {
   font-size: 32px;
   padding: 30px;
 }
+
+.MuiPickersPopper-root {
+  z-index: 99999999 !important;
+}

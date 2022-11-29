@@ -24,3 +24,18 @@ export const SEARCH_MODAL_PROPS = {
     ...{ overlay: { backgroundColor: 'rgba(23,23,26,0.5)', zIndex: 10000 } },
   },
 };
+
+export const EMAIL_PW_FINDER_MODAL_PROPS = {
+  ...MODAL_PROPS,
+  style: {
+    ...MODAL_STYLE,
+    ...{
+      overlay: { backgroundColor: 'rgba(23,23,26,0.5)', zIndex: 10000 },
+      content: {
+        width: '80%',
+        padding: '0px',
+        border: 'none',
+      },
+    },
+  },
+};

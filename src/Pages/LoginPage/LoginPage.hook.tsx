@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 
 import { postLogin } from './LoginPage.util';
 
+import { EmailPwFinderModal } from '@Components/Modals/EmailPwFinder/EmailPwFinderModal';
 import { useMovePage } from '@Hook/.';
+import { useModal } from '@Hook/useModal';
 import { setId, setUserId } from '@Util/LocalStorage';
 
 export const useLoginState = () => {
@@ -28,4 +30,10 @@ export const useLoginState = () => {
       });
   };
   return { email, password, handleChangeEmail, handleChangePassword, handleLogin };
+};
+
+export const useOpenEmailPwFinderModal = () => {
+  const { openModal } = useModal();
+  const openEmailPwModal = () => openModal(EmailPwFinderModal as React.FC, {});
+  return openEmailPwModal;
 };

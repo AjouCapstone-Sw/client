@@ -22,6 +22,7 @@ const AddressModalChild = ({ onChange }: AddressModalChildProps) => {
 
   return <PostCode onComplete={onComplete} />;
 };
+
 export const AddressModal = <T extends FieldValues>({ control, name }: AddressModalProps<T>) => {
   const { closeModal } = useModal();
 

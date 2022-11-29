@@ -4,7 +4,6 @@ import { ItemListCell } from '@Components/.';
 
 export const ListPage = () => {
   const { viewLiveList, viewList } = useGetItemList();
-
   return (
     <div>
       <ul>

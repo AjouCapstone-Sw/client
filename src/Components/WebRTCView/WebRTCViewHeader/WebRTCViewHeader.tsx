@@ -10,6 +10,7 @@ export const WebRTCViewHeader = ({ timer: { proceedText, time } }: WebRTCViewHea
     <>
       <div>
         <span>경매</span>
+
         <span className='text-Impact'>Live</span>
       </div>
       <div className='timer'>

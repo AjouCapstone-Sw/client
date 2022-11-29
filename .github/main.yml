@@ -1,0 +1,64 @@
+name: client CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  S3_BUCKET_NAME: s3-20221018
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  
+
+jobs:
+  build:
+    shell: bash
+    working-directory: client
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [12.16.x]
+    
+    steps:
+    - name: 체크아웃 Github-Action
+      uses: actions/checkout@v2
+
+    - name: node.js 12 설치 ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: npm 설치
+      run: npm install -f
+
+    - name: npm 빌드
+      run: npm run build
+    
+    - name: zip 생성
+      run: zip -qq -r ./build-fe.zip .
+      shell: bash
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-2
+
+    - name: Upload to S3
+      run: aws s3 cp --region ap-northeast-2 ./build-fe.zip s3://$S3_BUCKET_NAME/
+    
+    # Deploy
+    - name: Deploy
+      env:
+        S3_BUCKET_NAME: s3-20221018
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+      run: |
+        aws deploy create-deployment \
+        --application-name CodeDeploy-app \
+        --deployment-group-name deploy-client-pipe \
+        --file-exists-behavior OVERWRITE \
+        --s3-location bucket=s3-20221018,bundleType=zip,key=client/build-fe.zip \
+        --region ap-northeast-2

@@ -23,3 +23,5 @@ export * from './WebRTCView';
 export * from './Video';
 export * from './Buyer';
 export * from './Seller';
+export * from './EmailVerify/EmailVerify';
+export * from './PwRegister/PwRegister';

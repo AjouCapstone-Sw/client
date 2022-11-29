@@ -1,12 +1,21 @@
 import { useForm } from 'react-hook-form';
 
 import RegisterPageConstant from './RegisterPage.const';
-import { useEmailVerify, useOpenAddressModal } from './RegisterPage.hook';
+import { useOpenAddressModal } from './RegisterPage.hook';
 import RegisterPageStyle from './RegisterPage.style';
 import type { PostSignUpUser, RegisterFormData } from './RegisterPage.type';
 import { postSignUpUser } from './RegisterPage.util';
 
-import { Button, Input, Dropdown, Calendar, FormErrorMessage } from '@Components/.';
+import {
+  Button,
+  Input,
+  Dropdown,
+  Calendar,
+  FormErrorMessage,
+  EmailVerify,
+  PwRegister,
+} from '@Components/.';
+import { useEmailVerify } from '@Components/EmailVerify/EmailVerify.hook';
 import { useMovePage } from '@Hook/useMovePage';
 
 export const RegisterPage = () => {
@@ -51,20 +60,10 @@ export const RegisterPage = () => {
           />
           <FormErrorMessage error={registerValidationErrors.id} />
 
-          <Input
-            placeholder='비밀번호'
-            type='password'
-            {...register('password', RegisterPageConstant.PASSWORD_VALIDATION_OPTION)}
-          />
-          <FormErrorMessage error={registerValidationErrors.password} />
-          <Input
-            placeholder='비밀번호 확인'
-            type='password'
-            {...register('passwordValidate', {
-              required: '필수 응답 항목입니다.',
-              validate: (val: string) =>
-                watch('password') === val || '비밀번호가 일치하지 않습니다',
-            })}
+          <PwRegister
+            register={register}
+            validationErrors={registerValidationErrors}
+            watch={watch}
           />
           <FormErrorMessage error={registerValidationErrors.passwordValidate} />
 
@@ -74,29 +73,14 @@ export const RegisterPage = () => {
           />
           <FormErrorMessage error={registerValidationErrors.email} />
 
-          <RegisterPageStyle.EmailVerifyContainer>
-            <Input
-              disabled={!emailVerifyState}
-              placeholder='이메일 인증번호'
-              {...register('emailVerifyNum', RegisterPageConstant.EMAIL_VERIFY_VALIDATION_OPTION)}
-            />
-            {emailVerifyState ? (
-              <Button
-                type='button'
-                onClick={() => handleConfirmVerify(getValues('emailVerifyNum'))}
-              >
-                인증번호 확인
-              </Button>
-            ) : (
-              <Button
-                type='button'
-                onClick={() => handleEmailVerify(getValues('email'))}
-              >
-                인증번호 받기
-              </Button>
-            )}
-          </RegisterPageStyle.EmailVerifyContainer>
-          {emailVerifyState && (
+          <EmailVerify
+            register={register}
+            getValues={getValues}
+            emailVerifyState={emailVerifyState}
+            handleConfirmVerify={handleConfirmVerify}
+            handleEmailVerify={handleEmailVerify}
+          />
+          {confirmState && (
             <RegisterPageStyle.SuccessMsg>인증에 성공하셨습니다.</RegisterPageStyle.SuccessMsg>
           )}
           <FormErrorMessage error={registerValidationErrors.emailVerifyNum} />

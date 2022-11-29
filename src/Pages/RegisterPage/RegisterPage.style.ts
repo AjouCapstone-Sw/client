@@ -58,10 +58,18 @@ const SuccessMsg = styled.p`
   margin-bottom: 10px;
 `;
 
+const ErrorMsg = styled.p`
+  color: ${({ theme }) => theme.color.primary};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  margin-top: 5px;
+  margin-bottom: 10px;
+`;
+
 export default {
   RegisterContainer,
   RegisterForm,
   EmailVerifyContainer,
   DropdownContainer,
   SuccessMsg,
+  ErrorMsg,
 };

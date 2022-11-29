@@ -13,9 +13,11 @@ env:
 
 jobs:
   build:
-    shell: bash
-    working-directory: client
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: client
     
     strategy:
       matrix:

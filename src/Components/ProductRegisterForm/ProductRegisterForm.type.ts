@@ -11,6 +11,7 @@ export type ProductRegisterFormData = {
   auctionBidPrice: string;
   auctionStartTime: string;
   auctionDuration: string;
+  category: { value: number; label: string };
 };
 
 export type ProductRegisterFormProps = {

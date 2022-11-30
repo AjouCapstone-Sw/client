@@ -14,7 +14,14 @@ import {
 import ProductRegisterFormStyle from './ProductRegisterForm.style';
 import { ProductRegisterFormData, ProductRegisterFormProps } from './ProductRegisterForm.type';
 
-import { Button, ImageSlider, Input, AuctionEditForm, FormErrorMessage } from '@Components/.';
+import {
+  Button,
+  ImageSlider,
+  Input,
+  AuctionEditForm,
+  FormErrorMessage,
+  Dropdown,
+} from '@Components/.';
 import { AddImage } from '@Components/Svg';
 
 export const ProductRegisterForm = ({ onSubmit, defaultValues }: ProductRegisterFormProps) => {
@@ -38,6 +45,7 @@ export const ProductRegisterForm = ({ onSubmit, defaultValues }: ProductRegister
 
   const { imageRef, handleImageAdd, handleImageChange, handleImageRemove, images, setImages } =
     useImages(setValue);
+
   const imagePreviews = useImagePreviews(images);
 
   useResetDefaultValue(defaultValues, reset, setImages);
@@ -82,6 +90,15 @@ export const ProductRegisterForm = ({ onSubmit, defaultValues }: ProductRegister
         />
         <FormErrorMessage error={registerValidationErrors.buyNowPrice} />
 
+        <label>상품 카테고리</label>
+        <Dropdown
+          id='product-category'
+          control={control}
+          name='category'
+          placeholder=''
+          options={ProductRegisterFormConst.CATEGORY_OPTION}
+          rules={ProductRegisterFormConst.CATEGORY_VALIDATION_OPTION}
+        />
         <label htmlFor='isAuction'>라이브 경매 진행 여부</label>
         <Switch
           {...register('isAuction')}

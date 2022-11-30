@@ -19,3 +19,8 @@ export type auctionInfoType = {
   nowAuctionPrice: number;
   productLikeNum: number;
 };
+
+export type TimerType = {
+  proceedText: string;
+  time: number;
+};

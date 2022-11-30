@@ -12,7 +12,14 @@ import { useQuerySearch } from '@Hook/useQuerySearch';
 import { addPriceComma } from '@Util/Product';
 
 export const AddressRegisterPage = () => {
-  const [price, productId, seller, type] = useQuerySearch(['price', 'productId', 'seller', 'type']);
+  const [price, productId, seller, type, isBuyNow] = useQuerySearch([
+    'price',
+    'productId',
+    'seller',
+    'type',
+    'buyNow',
+  ]);
+
   const { title } = useGetProductDetail(Number(productId!));
   const {
     register,
@@ -21,10 +28,11 @@ export const AddressRegisterPage = () => {
     setValue,
     handleSubmit: handleAddressSubmit,
   } = useForm<AddressRegisterForm>();
+
   const defaultAddress = '경기 성남시 분당구 판교역로 4';
   const openAddressModal = useOpenAddressModal(control);
   const { isDefaultAddress, onCheckChange } = useIsDefaultAddress(defaultAddress, setValue);
-  const onSubmit = useOnSubmit(seller!, type!, productId!);
+  const onSubmit = useOnSubmit(seller!, type!, productId!, Boolean(isBuyNow!));
   const newAddress = watch('address');
 
   return (

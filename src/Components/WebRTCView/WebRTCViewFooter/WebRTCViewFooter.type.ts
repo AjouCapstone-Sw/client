@@ -6,6 +6,7 @@ export type WEbRTCViewFooterProps = {
   productId: number;
   chats: chatType[];
   seller: string;
+  maxPriceUser: string;
 };
 
 export type HandleAskPriceClick = {

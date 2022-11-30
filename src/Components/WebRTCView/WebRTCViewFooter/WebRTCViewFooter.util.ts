@@ -19,3 +19,5 @@ export const handleChatMessageSend =
     clientSocket.socket!.emit('sendMessage', { userId: nickName, message, productId });
     cleanField();
   };
+
+export const isMaxPriceUser = (nickName: string, maxPriceUser: string) => nickName === maxPriceUser;

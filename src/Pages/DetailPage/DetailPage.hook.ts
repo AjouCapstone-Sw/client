@@ -14,10 +14,12 @@ export const useGetProductDetail = (productId: number) => {
   useEffect(() => {
     if (!productId) return;
     const [targetProductDetail] = productDetails.filter(({ productId: id }) => id === productId);
+
     if (targetProductDetail) {
       setProductDetail(targetProductDetail);
       return;
     }
+
     getProductDetail(productId).then((detail) => {
       setProductDetails((details) => [...details, detail]);
       setProductDetail(detail);
@@ -33,7 +35,7 @@ export const useBuyNow = (productId: number, seller: string) => {
 
   const handleBuyNow = async () => {
     await buyProduct(userId!, productId);
-    navigator(`/address-register?productId=${productId}&seller=${seller}&type=buy`);
+    navigator(`/address-register?productId=${productId}&seller=${seller}&type=buy&buyNow=true`);
   };
 
   return handleBuyNow;

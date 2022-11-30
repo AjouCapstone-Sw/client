@@ -1,20 +1,22 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 
 import type { ItemListCellType } from '@Pages/ListPage/ListPage.type';
 
-export type GetUserInfo = { nickName: string | undefined };
-export type UseGetUserInfo = { nickName: string | undefined };
-export type UseGetUserReview = { nickName: string | undefined };
-export type GetAuctionReview = { nickName: string | undefined };
-export type GetProductReview = { nickName: string | undefined };
+export type GetUserInfo = { userId: string | undefined };
+export type UseGetUserInfo = { userId: string | undefined };
+export type UseGetUserReview = { userId: string | undefined };
+export type GetAuctionReview = { userId: string | undefined };
+export type GetProductReview = { userId: string | undefined };
+export type GetPurchaseProducts = { userId: string | undefined };
+export type GetSellProducts = { userId: string | undefined };
+export type GetLikeProducts = { userId: string | undefined };
+export type UseGetPersonalProducts = { userId: string | undefined };
 
 export type userInfoType = {
   nickName: string;
   profileImage: string;
   point: number;
-  likeList: ItemListCellType[];
-  sellList: ItemListCellType[];
-  buyList: ItemListCellType[];
 };
 
 export type auctionReviewType = {
@@ -29,12 +31,15 @@ export type productReviewType = auctionReviewType & {
   productId: number;
   productImage: string;
 };
+
+export type productReviewResponsesType = Omit<productReviewType, 'productImage'>;
+
 export type UseSelectBodyData = {
   auctionReview: auctionReviewType[];
   productReview: productReviewType[];
-  likeList: ItemListCellType[];
-  sellList: ItemListCellType[];
-  buyList: ItemListCellType[];
+  likeProducts: ItemListCellType[];
+  sellProducts: ItemListCellType[];
+  purchaseProducts: ItemListCellType[];
 };
 
 export type BodySelectType = '판매목록' | '구매목록' | '찜목록' | '판매후기' | '경매후기';

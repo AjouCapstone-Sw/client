@@ -1,7 +1,6 @@
 import ItemListCellStyle from './ItemListCell.style';
 import { ItemListCellProps } from './ItemListCell.type';
 
-import { LikeIcon } from '@Components/.';
 import { useMovePage } from '@Hook/useMovePage';
 import { addPriceComma } from '@Util/.';
 
@@ -13,7 +12,6 @@ export const ItemListCell = ({
   auctionStartTime,
   productImage,
   live,
-  like,
 }: ItemListCellProps) => {
   const [goDetail] = useMovePage(`/detail/${productId}`) as (() => void)[];
   return (
@@ -36,10 +34,6 @@ export const ItemListCell = ({
         ) : (
           <span>즉시 구매 상품입니다.</span>
         )}
-        <LikeIcon
-          like={like}
-          productId={productId}
-        />
       </ItemListCellStyle.TextContainer>
     </ItemListCellStyle.Container>
   );

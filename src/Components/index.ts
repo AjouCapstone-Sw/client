@@ -25,3 +25,4 @@ export * from './Buyer';
 export * from './Seller';
 export * from './EmailVerify/EmailVerify';
 export * from './PwRegister/PwRegister';
+export * from './LikeIcon/LikeIcon';

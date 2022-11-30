@@ -32,8 +32,14 @@ const TextArea = styled.textarea`
     outline: none;
   }
 `;
+
+const ScoreContainer = styled.div`
+  display: flex;
+`;
+
 export default {
   Container,
   ButtonContainer,
   TextArea,
+  ScoreContainer,
 };

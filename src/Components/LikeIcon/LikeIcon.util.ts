@@ -8,6 +8,6 @@ export const postProductLike = async (data: LikePostData) => {
 };
 
 export const deleteProductLike = async (data: LikePostData) => {
-  const { data: responseData } = await axiosInstance.post('/interest/delete', data);
+  const { data: responseData } = await axiosInstance.delete('/interest/delete', { data });
   return responseData;
 };

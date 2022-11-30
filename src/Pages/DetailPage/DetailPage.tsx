@@ -2,7 +2,7 @@ import { useBuyNow, useGetProductDetail } from './DetailPage.hook';
 import DetailPageStyle from './DetailPage.style';
 import { isSeller } from './DetailPage.util';
 
-import { Button, ImageSlick, AuctionTimerButton } from '@Components/.';
+import { Button, ImageSlick, AuctionTimerButton, LikeIcon } from '@Components/.';
 import { RightArrow } from '@Components/Svg';
 import { useMovePage } from '@Hook/useMovePage';
 import { useProductId } from '@Hook/useProductId';
@@ -24,6 +24,7 @@ export const DetailPage = () => {
     description,
     buyNowPrice,
     isAuction,
+    like,
   } = useGetProductDetail(productId)!;
 
   const [moveEditPage, goSeller] = useMovePage([
@@ -61,6 +62,10 @@ export const DetailPage = () => {
           </DetailPageStyle.ReviewAnchor>
         </DetailPageStyle.ReviewContainer>
       </DetailPageStyle.SellerInfoContainer>
+      <LikeIcon
+        like={like}
+        productId={productId}
+      />
       <DetailPageStyle.ProductTitle>{title}</DetailPageStyle.ProductTitle>
       <DetailPageStyle.ProductHighlightText>
         경매 시작가: {addPriceComma(auctionStartPrice)}

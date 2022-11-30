@@ -1,11 +1,12 @@
 import { useGetItemList } from './ListPage.hook';
+import ListPageStyle from './ListPage.style';
 
 import { ItemListCell } from '@Components/.';
 
 export const ListPage = () => {
   const { viewLiveList, viewList } = useGetItemList();
   return (
-    <div>
+    <ListPageStyle.Container>
       <ul>
         {viewLiveList.map((viewLive) => (
           <ItemListCell
@@ -26,6 +27,6 @@ export const ListPage = () => {
           ))
         )}
       </ul>
-    </div>
+    </ListPageStyle.Container>
   );
 };

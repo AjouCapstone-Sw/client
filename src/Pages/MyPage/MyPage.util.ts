@@ -1,6 +1,7 @@
 import type {
   GetAuctionReview,
   GetLikeProducts,
+  GetPointHistories,
   GetProductReview,
   GetPurchaseProducts,
   GetSellProducts,
@@ -51,16 +52,23 @@ export const getLikeProducts = async ({ userId }: GetLikeProducts) => {
   return products;
 };
 
+export const getPointHistories = async ({ userId }: GetPointHistories) => {
+  const { data } = await axiosInstance.get(`/point/history/${userId}`);
+  return data;
+};
+
 export const makeBodyData = ({
   auctionReview,
   productReview,
   likeProducts,
   sellProducts,
   purchaseProducts,
+  pointHistories,
 }: MakeBodyData) => ({
   판매목록: sellProducts,
   구매목록: purchaseProducts,
   찜목록: likeProducts,
   경매후기: auctionReview,
   판매후기: productReview,
+  포인트기록: pointHistories,
 });

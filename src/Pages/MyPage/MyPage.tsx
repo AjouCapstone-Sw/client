@@ -1,6 +1,7 @@
 import { INNER_HTML } from './MyPage.const';
 import {
   useGetPersonalProducts,
+  useGetPointHistories,
   useGetUserInfo,
   useGetUserReview,
   useSelectBodyData,
@@ -13,12 +14,13 @@ import { getId } from '@Util/LocalStorage';
 
 export const MyPage = () => {
   const userId = getId()!;
-  const { nickName, profileImage } = useGetUserInfo({
+  const { nickName, profileImage, point } = useGetUserInfo({
     userId,
   });
 
   const { auctionReview, productReview } = useGetUserReview({ userId });
   const { sellProducts, purchaseProducts, likeProducts } = useGetPersonalProducts({ userId });
+  const pointHistories = useGetPointHistories({ userId });
 
   const { bodyDatas, handleSelectChange } = useSelectBodyData({
     likeProducts,
@@ -26,6 +28,7 @@ export const MyPage = () => {
     purchaseProducts,
     auctionReview,
     productReview,
+    pointHistories,
   });
 
   return (
@@ -38,6 +41,7 @@ export const MyPage = () => {
           profileImage={profileImage || '/asset/김영진.jpg'}
           productReviewLength={productReview.length}
           auctionReviewLength={auctionReview.length}
+          point={point}
         />
       </MyPageStyle.User>
       <MyPageStyle.ButtonContainer>
@@ -60,6 +64,12 @@ export const MyPage = () => {
               onClick={handleSelectChange}
             >
               {INNER_HTML.LIKE_LIST}
+            </button>
+            <button
+              type='button'
+              onClick={handleSelectChange}
+            >
+              {INNER_HTML.POINT_HISTORY}
             </button>
           </>
         )}

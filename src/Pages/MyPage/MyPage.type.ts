@@ -11,7 +11,9 @@ export type GetProductReview = { userId: string | undefined };
 export type GetPurchaseProducts = { userId: string | undefined };
 export type GetSellProducts = { userId: string | undefined };
 export type GetLikeProducts = { userId: string | undefined };
+export type GetPointHistories = { userId: string | undefined };
 export type UseGetPersonalProducts = { userId: string | undefined };
+export type UseGetPointHistories = { userId: string | undefined };
 
 export type userInfoType = {
   nickName: string;
@@ -32,6 +34,13 @@ export type productReviewType = auctionReviewType & {
   productImage: string;
 };
 
+export type PointHistoryType = {
+  createdAt: string;
+  point: number;
+  userId: number;
+  id: number;
+};
+
 export type productReviewResponsesType = Omit<productReviewType, 'productImage'>;
 
 export type UseSelectBodyData = {
@@ -40,14 +49,24 @@ export type UseSelectBodyData = {
   likeProducts: ItemListCellType[];
   sellProducts: ItemListCellType[];
   purchaseProducts: ItemListCellType[];
+  pointHistories: PointHistoryType[];
 };
 
-export type BodySelectType = '판매목록' | '구매목록' | '찜목록' | '판매후기' | '경매후기';
+export type BodySelectType =
+  | '판매목록'
+  | '구매목록'
+  | '찜목록'
+  | '판매후기'
+  | '경매후기'
+  | '포인트기록';
+
 export type MakeBodyData = UseSelectBodyData;
+
 export type BodyDataType = {
   [key in BodySelectType]: UseSelectBodyData[keyof UseSelectBodyData];
 };
 export type HandleSelectChange = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+
 export type MyPageBodyProps = {
   bodyDatas: UseSelectBodyData[keyof UseSelectBodyData];
 };

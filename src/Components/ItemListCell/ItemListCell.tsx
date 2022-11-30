@@ -16,7 +16,6 @@ export const ItemListCell = ({
   like,
 }: ItemListCellProps) => {
   const [goDetail] = useMovePage(`/detail/${productId}`) as (() => void)[];
-
   return (
     <ItemListCellStyle.Container onClick={goDetail}>
       <ItemListCellStyle.ImageBox>

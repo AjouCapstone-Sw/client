@@ -102,6 +102,7 @@ export const useAuctionStates = ({
     clientSocket.socket!.on('updateAskTime', (remainAskTime) => {
       setTimer({ proceedText: '호가 시간', time: remainAskTime });
     });
+    clientSocket.socket!.on('auctionTimer', setRemainTime);
   }, [productId]);
 
   return { timer, remainTime, maxPriceUser, joinedUserLength, nextAskPrice };

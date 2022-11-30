@@ -35,7 +35,9 @@ export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) =>
 
   useEffect(() => {
     if (!productStream) return;
+    console.log(productStream.stream.getTracks());
     videoRef.current!.srcObject = productStream.stream;
+    console.log(videoRef.current?.srcObject);
   }, [productStream]);
 
   return videoRef;

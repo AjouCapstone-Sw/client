@@ -18,8 +18,8 @@ export const EmailFinder = () => {
       <EmailFinderStyle.EmailResContainer>
         {email && (
           <p>
-            이메일 찾기 결과:
-            <span className='fined-email'>{email}</span>
+            <p>이메일 찾기 결과:</p>
+            <span className='finded-email'>{email}</span>
           </p>
         )}
       </EmailFinderStyle.EmailResContainer>

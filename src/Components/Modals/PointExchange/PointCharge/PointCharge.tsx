@@ -1,13 +1,13 @@
+import { useHandlePointChange, usePointExchange } from '../PointExchangeModal.hook';
 import { POINT_CHARGE_BUTTON } from './PointCharge.const';
-import { useHandlePointCharge, usePointCharge } from './PointCharge.hook';
 import PointChargeStyle from './PointCharge.style';
 
 import { Button, Input } from '@Components/.';
 import { LogoImage } from '@Components/Svg';
 
 export const PointCharge = () => {
-  const { chargePoint, handlePointChange, handlePointChargeButton } = usePointCharge();
-  const handlePointCharge = useHandlePointCharge(chargePoint);
+  const { chargePoint, handlePointChange, handlePointChargeButton } = usePointExchange();
+  const handlePointCharge = useHandlePointChange(chargePoint, true);
 
   return (
     <PointChargeStyle.Container>

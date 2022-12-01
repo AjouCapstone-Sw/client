@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 
@@ -20,6 +22,8 @@ export const getBidPrice = (num: string | number) =>
   Math.floor(Number(removePriceEtc(num)) * BID_PRICE_RATIO);
 
 export const addPriceComma = (num: number | string) => Number(removePriceEtc(num)).toLocaleString();
+
+export const isPriceNaN = (price: string) => isNaN(Number(removePriceEtc(price)));
 
 export const getTimeDiffFromNow = (nowTime: dayjs.Dayjs, baseTime: string) =>
   dayjs.duration(dayjs(baseTime).diff(dayjs(nowTime, DATE_FORMAT))).format('DD일 HH:mm:ss');

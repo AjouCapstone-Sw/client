@@ -27,3 +27,5 @@ export * from './EmailVerify/EmailVerify';
 export * from './PwRegister/PwRegister';
 export * from './LikeIcon/LikeIcon';
 export * from './AddressModal/AddressModal';
+export * from './PointExchangeIcon/PointExchangeIcon';
+export * from './PointHistory/PointHistory';

@@ -8,7 +8,6 @@ export const ProductReview = ({
   review,
   score,
   createdAt,
-  productId,
   productImage,
 }: productReviewType) => (
   <ProductReviewStyle.Container>

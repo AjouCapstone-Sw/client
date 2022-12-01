@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import type { MyPageUserProps } from './MyPageUser.type';
 
+import { PointExchangeIcon } from '@Components/.';
 import { INNER_HTML } from '@Pages/MyPage/MyPage.const';
 
 export const MyPageUser = ({
@@ -9,6 +10,7 @@ export const MyPageUser = ({
   auctionReviewLength,
   nickName,
   handleSelectChange,
+  point,
 }: MyPageUserProps) => (
   <>
     <img
@@ -16,7 +18,7 @@ export const MyPageUser = ({
       alt='프로필'
     />
     <h1>{nickName}</h1>
-    <div>
+    <div className='review-point-container'>
       <button
         onClick={handleSelectChange}
         type='button'
@@ -29,6 +31,14 @@ export const MyPageUser = ({
       >
         <div>{INNER_HTML.AUCTION_REVIEW}</div> <span>{auctionReviewLength} 건</span>
       </button>
+      <button
+        type='button'
+        className='my-point'
+      >
+        <div>{INNER_HTML.MY_POINT}</div>
+        <span>{point}</span> P
+      </button>
+      <PointExchangeIcon />
     </div>
   </>
 );

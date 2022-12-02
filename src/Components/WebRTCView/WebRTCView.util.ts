@@ -6,7 +6,7 @@ import { axiosInstance } from '@Util/Axios';
 export const getProductDataInAuction = async ({ productId }: GetProductDataInAuction) => {
   const {
     data: { bidPrice, startPrice, title },
-  } = await axiosInstance.get(`/product/${productId}`);
+  } = await axiosInstance.post(`/product`, { productId, userId: 1 });
   return {
     productTitle: title,
     auctionStartPrice: startPrice,

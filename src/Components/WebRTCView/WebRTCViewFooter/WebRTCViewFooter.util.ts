@@ -1,14 +1,15 @@
 import { AuctionChatInput, HandleAskPriceClick } from './WebRTCViewFooter.type';
 
 import ClientSocket from '@Socket/WebRTC/WebRTC';
-import { getUserId } from '@Util/LocalStorage';
+import { getUserId } from '@Util/.';
 
 export const handleAskPriceClick =
-  ({ productId, nextAskPrice }: HandleAskPriceClick) =>
+  ({ productId, nextAskPrice, handleAttendTrue }: HandleAskPriceClick) =>
   () => {
     const userId = getUserId();
     const clientSocket = new ClientSocket(userId as string);
     clientSocket.socket!.emit('sendAskPrice', { productId, nextAskPrice });
+    handleAttendTrue();
   };
 
 export const handleChatMessageSend =
@@ -18,3 +19,5 @@ export const handleChatMessageSend =
     clientSocket.socket!.emit('sendMessage', { userId: nickName, message, productId });
     cleanField();
   };
+
+export const isMaxPriceUser = (nickName: string, maxPriceUser: string) => nickName === maxPriceUser;

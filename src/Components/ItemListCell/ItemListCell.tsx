@@ -12,10 +12,8 @@ export const ItemListCell = ({
   auctionStartTime,
   productImage,
   live,
-  like,
 }: ItemListCellProps) => {
   const [goDetail] = useMovePage(`/detail/${productId}`) as (() => void)[];
-  console.log(like);
   return (
     <ItemListCellStyle.Container onClick={goDetail}>
       <ItemListCellStyle.ImageBox>

@@ -6,4 +6,5 @@ export type MyPageUserProps = {
   auctionReviewLength: number;
   nickName: string;
   handleSelectChange: HandleSelectChange;
+  point: number;
 };

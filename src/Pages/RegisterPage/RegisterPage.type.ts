@@ -9,9 +9,10 @@ export type RegisterFormData = {
     value: 'male' | 'female';
   };
   birth: string;
+  address: string;
 };
 
-export type PostSignUpUser = Pick<RegisterFormData, 'email' | 'password' | 'birth'> & {
+export type PostSignUpUser = Pick<RegisterFormData, 'address' | 'email' | 'password' | 'birth'> & {
   nickName: string;
   gender: 'M' | 'F';
 };

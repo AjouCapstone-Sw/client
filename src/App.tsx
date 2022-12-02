@@ -14,6 +14,8 @@ import {
   ProductReigsterPage,
   RegisterPage,
   ProductEditPage,
+  SellerIntroducePage,
+  AddressRegisterPage,
 } from '@Pages/.';
 import { PrivatePage } from '@Pages/PrivatePage/PrivatePage';
 
@@ -38,13 +40,13 @@ function App() {
           element={<FooterPage />}
         >
           <Route
-            path='/my'
-            element={<MyPage />}
-          />
-          <Route
             path='/'
             element={<HeaderPage />}
           >
+            <Route
+              path='/my'
+              element={<MyPage />}
+            />
             <Route
               path='/'
               element={<HomePage />}
@@ -62,8 +64,16 @@ function App() {
               element={<ListPage />}
             />
             <Route
-              path='product-register'
+              path='/product-register'
               element={<ProductReigsterPage />}
+            />
+            <Route
+              path='/seller-introduce'
+              element={<SellerIntroducePage />}
+            />
+            <Route
+              path='/address-register'
+              element={<AddressRegisterPage />}
             />
           </Route>
         </Route>

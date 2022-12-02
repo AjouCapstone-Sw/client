@@ -42,9 +42,21 @@ const BUY_NOW_VALIDATION_OPTION = {
   },
 };
 
+const CATEGORY_VALIDATION_OPTION = { required: '필수 응답 항목입니다.' };
+
+const CATEGORY_OPTION = [
+  { value: 3, label: '자동차' },
+  { value: 4, label: '신발' },
+  { value: 5, label: '빵' },
+  { value: 6, label: '음반' },
+  { value: 7, label: '전자기기' },
+];
+
 export default {
   TITLE_VALIDATION_OPTION,
   CONTENT_VALIDATION_OPTION,
   IMAGES_VALIDATION_OPTION,
   BUY_NOW_VALIDATION_OPTION,
+  CATEGORY_VALIDATION_OPTION,
+  CATEGORY_OPTION,
 };

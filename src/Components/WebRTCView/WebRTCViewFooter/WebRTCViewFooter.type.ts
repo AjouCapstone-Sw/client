@@ -6,11 +6,13 @@ export type WEbRTCViewFooterProps = {
   productId: number;
   chats: chatType[];
   seller: string;
+  maxPriceUser: string;
 };
 
 export type HandleAskPriceClick = {
   productId: number;
   nextAskPrice: number;
+  handleAttendTrue: Function;
 };
 
 export type AuctionChatInput = {

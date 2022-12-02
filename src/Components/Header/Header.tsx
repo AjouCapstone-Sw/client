@@ -5,14 +5,16 @@ import { HEADER_MENU } from './Header.const';
 import { useHandleModals } from './Header.hook';
 import HeaderStyle from './Header.style';
 
-import { SearchIcon } from '@Components/Svg';
+import { CategoryMenuIcon, LogoImage, SearchIcon } from '@Components/Svg';
 
 export const Header = () => {
   const { openSearchModal, openMenuModal } = useHandleModals();
 
   return (
     <HeaderStyle.HeaderContainer>
-      <HeaderStyle.Logo to='/'>LOGO</HeaderStyle.Logo>
+      <HeaderStyle.Logo to='/'>
+        <LogoImage className='header-logo' />
+      </HeaderStyle.Logo>
       <HeaderStyle.MenuContainer>
         {HEADER_MENU.map(({ link, id, title }) => (
           <NavLink
@@ -24,13 +26,14 @@ export const Header = () => {
           </NavLink>
         ))}
       </HeaderStyle.MenuContainer>
-      <div>
+      <HeaderStyle.IconContainer>
         <SearchIcon onClick={openSearchModal} />
+        <CategoryMenuIcon />
         <HeaderStyle.MenuIcon
           icon={faBars}
           onClick={openMenuModal}
         />
-      </div>
+      </HeaderStyle.IconContainer>
     </HeaderStyle.HeaderContainer>
   );
 };

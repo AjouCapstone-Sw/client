@@ -1,11 +1,12 @@
 import { useGetItemList } from './ListPage.hook';
+import ListPageStyle from './ListPage.style';
 
 import { ItemListCell } from '@Components/.';
 
 export const ListPage = () => {
   const { viewLiveList, viewList } = useGetItemList();
   return (
-    <div>
+    <ListPageStyle.Container>
       <ul>
         {viewLiveList.map((viewLive) => (
           <ItemListCell
@@ -15,13 +16,17 @@ export const ListPage = () => {
         ))}
       </ul>
       <ul>
-        {viewList.map((viewItem) => (
-          <ItemListCell
-            key={viewItem.productId}
-            {...viewItem}
-          />
-        ))}
+        {viewList.length === 0 ? (
+          <p className='big-empty-text'>텅</p>
+        ) : (
+          viewList.map((viewItem) => (
+            <ItemListCell
+              key={viewItem.productId}
+              {...viewItem}
+            />
+          ))
+        )}
       </ul>
-    </div>
+    </ListPageStyle.Container>
   );
 };

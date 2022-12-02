@@ -1,22 +1,13 @@
-import { useState } from 'react';
+import React from 'react';
+import { Control } from 'react-hook-form';
 
-import { getEmailValidation } from './RegisterPage.util';
+import { RegisterFormData } from './RegisterPage.type';
 
-let validationCode = '';
+import { AddressModal } from '@Components/Modals/Address/AddressModal';
+import { useModal } from '@Hook/useModal';
 
-export const useEmailVerify = () => {
-  const [emailVerifyState, setEmailVerifyState] = useState<boolean>(false);
-  const [confirmState, setConfirmState] = useState<boolean>(false);
-
-  const handleEmailVerify = (email: string) =>
-    getEmailValidation(email).then((res) => {
-      setEmailVerifyState(true);
-      validationCode = res;
-    });
-
-  const handleConfirmVerify = (userInputValidateCode: string) => {
-    if (validationCode === userInputValidateCode) setConfirmState(true);
-  };
-
-  return { emailVerifyState, handleEmailVerify, confirmState, handleConfirmVerify };
+export const useOpenAddressModal = (control: Control<RegisterFormData, any>) => {
+  const { openModal } = useModal();
+  const openAddressModal = () => openModal(AddressModal as React.FC, { control, name: 'address' });
+  return openAddressModal;
 };

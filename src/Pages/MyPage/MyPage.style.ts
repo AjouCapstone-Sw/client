@@ -13,11 +13,11 @@ const Header = styled.div`
 
 const User = styled.div`
   position: absolute;
-  top: 25vh;
+  top: 36vh;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  width: 200px;
+  width: 330px;
   height: 340px;
   img {
     margin-top: 40px;
@@ -27,6 +27,10 @@ const User = styled.div`
   }
   h1 {
     margin: 10px 0px;
+  }
+
+  h1 + div {
+    margin-top: 24px;
   }
   div {
     display: flex;
@@ -38,10 +42,13 @@ const User = styled.div`
     color: ${({ theme }) => theme.color.primary};
     background-color: white;
   }
+  .my-point {
+    cursor: auto;
+  }
 `;
 
 const ButtonContainer = styled.div`
-  margin-top: 190px;
+  margin-top: 220px;
   width: 100%;
   height: 60px;
   display: flex;
@@ -60,6 +67,9 @@ const ButtonContainer = styled.div`
 const Body = styled.ul`
   overflow: auto;
   height: calc(75vh - 250px);
+  width: 70%;
+  margin: 16px auto;
+  min-width: 320px;
   li {
     border-bottom: 2px solid #f6f6f6;
   }

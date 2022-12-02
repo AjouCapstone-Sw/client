@@ -1,9 +1,15 @@
+/* eslint-disable no-var */
 /* eslint-disable no-unused-vars */
 import { ProductRegisterFormData } from '@Components/ProductRegisterForm/ProductRegisterForm.type';
 import { ProductDetail } from '@Pages/DetailPage';
-import { addPriceComma, getAuctionDuration, getBidPrice } from '@Util/Product';
+import { axiosInstance } from '@Util/Axios';
+import { addImages } from '@Util/Image';
+import { addPriceComma, getAuctionDuration, getBidPrice, removePriceEtc } from '@Util/Product';
 
 const convertURLtoFile = async (url: string) => {
+  const image = new Image();
+  image.src = url;
+  if (!image) return;
   const response = await fetch(url);
   const data = await response.blob();
   const ext = url.split('.').pop();
@@ -18,9 +24,11 @@ const getImageFiles = async (images: string[]) => {
   return imageFiles;
 };
 const makeImageFileList = async (images: string[]) => {
+  console.log(images);
   const imageFiles = await getImageFiles(images);
   const dataTransfer = new DataTransfer();
-  imageFiles.forEach((imageFile) => dataTransfer.items.add(imageFile));
+  imageFiles.forEach((imageFile) => dataTransfer.items.add(imageFile!));
+  console.log(dataTransfer.files);
   return dataTransfer.files;
 };
 
@@ -44,3 +52,41 @@ export const makeDefaultProductValue = async ({
   auctionDuration: getAuctionDuration(auctionStartTime, auctionEndTime),
   images: await makeImageFileList(productImages),
 });
+
+export const makeDefaultProductValueWithoutImage = ({
+  title,
+  description,
+  isAuction,
+  buyNowPrice,
+  auctionStartPrice,
+  auctionEndTime,
+  auctionStartTime,
+}: ProductDetail): Omit<ProductRegisterFormData, 'images'> & { images: string[] } => ({
+  title,
+  description,
+  auctionStartTime,
+  buyNowPrice: addPriceComma(buyNowPrice),
+  auctionBidPrice: addPriceComma(getBidPrice(auctionStartPrice)),
+  isAuction,
+  auctionStartPrice: addPriceComma(auctionStartPrice),
+  auctionDuration: getAuctionDuration(auctionStartTime, auctionEndTime),
+  images: [],
+});
+
+const getProductRegisterBody = (data: ProductRegisterFormData & { productId: number }) => ({
+  productId: data.productId,
+  title: data.title,
+  description: data.description,
+  startTime: data.auctionStartTime,
+  startPrice: Number(removePriceEtc(data.auctionStartPrice)),
+  instant: Number(!data.isAuction),
+  buyNowPrice: Number(removePriceEtc(data.buyNowPrice)),
+  duration: data.auctionDuration,
+  bidPrice: Number(removePriceEtc(data.auctionBidPrice)),
+  categoryId: 2,
+});
+
+export const updateProduct = async (formData: ProductRegisterFormData & { productId: number }) => {
+  const images = await addImages(formData.images);
+  await axiosInstance.patch(`/product/update`, { ...getProductRegisterBody(formData), images });
+};

@@ -1,9 +1,16 @@
-import { useAuctionStates, useGetProductDataInAuction, useJoinAuction } from './WebRTCView.hook';
+import {
+  useAuctionAlert,
+  useAuctionStates,
+  useGetProductDataInAuction,
+  useJoinAuction,
+} from './WebRTCView.hook';
 import WebRTCViewStyle from './WebRTCView.style';
 import type { WebRTCViewProps } from './WebRTCView.type';
 import { WebRTCViewBody } from './WebRTCViewBody';
 import { WebRTCViewFooter } from './WebRTCViewFooter/WebRTCViewFooter';
 import { WebRTCViewHeader } from './WebRTCViewHeader';
+
+import { getUserId } from '@Util/LocalStorage';
 
 export const WebRTCView = ({ productId }: WebRTCViewProps) => {
   const { productTitle, auctionStartPrice, nowAskPrice } = useGetProductDataInAuction({
@@ -11,15 +18,19 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
   });
   const { productLikeNum, chats, addChat, seller } = useJoinAuction({ productId });
 
-  const { remainTime, maxPriceUser, joinedUserLength, nextAskPrice } = useAuctionStates({
+  const { timer, remainTime, maxPriceUser, joinedUserLength, nextAskPrice } = useAuctionStates({
     productId,
     addChat,
   });
+
+  const myId = getUserId();
+  useAuctionAlert(maxPriceUser, myId!);
+
   const nowPrice = Number(nextAskPrice) - nowAskPrice;
   return (
     <WebRTCViewStyle.Container>
       <WebRTCViewStyle.Header>
-        <WebRTCViewHeader />
+        <WebRTCViewHeader timer={timer} />
       </WebRTCViewStyle.Header>
 
       <WebRTCViewStyle.Title>{productTitle}</WebRTCViewStyle.Title>
@@ -31,7 +42,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
           untilExitAuctionTime={remainTime}
           nowAuctionPrice={Number(nowPrice)}
           nowAskPrice={nowAskPrice}
-          maxPriceUser={maxPriceUser}
+          maxPriceUser={maxPriceUser.toString()}
         />
       </WebRTCViewStyle.Body>
 
@@ -42,6 +53,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
           productId={productId}
           nextAskPrice={Number(nextAskPrice)}
           productLikeNum={productLikeNum}
+          maxPriceUser={maxPriceUser.toString()}
         />
       </WebRTCViewStyle.Footer>
     </WebRTCViewStyle.Container>

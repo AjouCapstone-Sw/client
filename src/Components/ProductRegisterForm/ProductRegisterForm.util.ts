@@ -51,6 +51,6 @@ export const makeAuctionProduct = ({
 
 export const makeProduct = async (body: MakeProduct) => {
   const res = await axiosInstance.post('/product', body);
-  console.log(res.data);
+
   return res.data;
 };

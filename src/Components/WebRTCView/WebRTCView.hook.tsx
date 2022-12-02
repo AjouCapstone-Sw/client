@@ -1,18 +1,28 @@
+/* eslint-disable no-new-wrappers */
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ClientSocket from '../../Socket/WebRTC/WebRTC';
-import { INIT_AUCTION_INFO, IN_PRODUCT_DATA_IN_AUCTION } from './WebRTCView.const';
+import {
+  ALERT_ASK_SUCCESS,
+  DEFAULT_TIMER,
+  INIT_AUCTION_INFO,
+  IN_PRODUCT_DATA_IN_AUCTION,
+} from './WebRTCView.const';
 import type {
   auctionInfoType,
   auctionProductData,
   chatType,
+  TimerType,
   UseGetProductDataInAuction,
   UseJoinAuction,
 } from './WebRTCView.type';
 import { chatLengthLimit20, createChatData, getProductDataInAuction } from './WebRTCView.util';
 
 import { UseGetVideoStreamBuyer } from '@Components/Buyer/Buyer.type';
+import { AlertModal } from '@Components/Modals/Alert/AlertModal';
+import { AlertModalProps } from '@Components/Modals/Alert/AlertModal.type';
+import { useModal } from '@Hook/useModal';
 import { getUserId } from '@Util/LocalStorage';
 
 export const useGetProductDataInAuction = ({ productId }: UseGetProductDataInAuction) => {
@@ -37,7 +47,7 @@ const useGetAuctionInfo = () => {
 export const useChatData = () => {
   const [chats, setChats] = useState<chatType[]>([]);
   const addChat = (chatsData: chatType) =>
-    setChats((prev) => chatLengthLimit20(prev.concat(chatsData)));
+    setChats((prev) => chatLengthLimit20([...prev, chatsData]));
 
   return { chats, addChat };
 };
@@ -50,7 +60,7 @@ export const useJoinAuction = ({ productId }: UseJoinAuction) => {
   const [seller, setSeller] = useState<string>('');
 
   useEffect(() => {
-    clientSocket.socket!.on('a', setSeller);
+    clientSocket.socket!.on('callSeller', setSeller);
     clientSocket.socket!.on('receiveMessage', ({ message, userId }) => {
       addChat(createChatData(userId, message));
     });
@@ -64,9 +74,10 @@ export const useAuctionStates = ({
   addChat,
 }: UseGetVideoStreamBuyer & { addChat: (chatData: chatType) => void }) => {
   const [remainTime, setRemainTime] = useState<string>('0');
-  const [maxPriceUser, setPriceUser] = useState<string>('');
+  const [maxPriceUser, setPriceUser] = useState<String>('');
   const [joinedUserLength, setJoinedUserLength] = useState<string>('');
   const [nextAskPrice, setNextAskPrice] = useState<string>('');
+  const [timer, setTimer] = useState<TimerType>(DEFAULT_TIMER);
 
   useEffect(() => {
     const myId = getUserId();
@@ -74,16 +85,34 @@ export const useAuctionStates = ({
 
     const clientSocket = new ClientSocket(myId);
     clientSocket.socket!.on('updateAuctionStatus', ({ status, nextPrice }) => {
-      setPriceUser(status);
+      setPriceUser(new String(status));
       setNextAskPrice(nextPrice);
     });
 
     clientSocket.socket!.on('joinUser', ({ userId, updatedUserLength }) => {
-      addChat(createChatData('system', `${userId}님이 입장하셨습니다`));
+      addChat(createChatData(`${userId}`, `님이 입장하셨습니다`));
       setJoinedUserLength(updatedUserLength);
+    });
+    clientSocket.socket!.on('auctionTimer', setRemainTime);
+
+    clientSocket.socket!.on('setDescriptionTime', (remainDescriptionTime) => {
+      setTimer({ proceedText: '상품 설명 시간', time: Math.floor(remainDescriptionTime / 1000) });
+    });
+
+    clientSocket.socket!.on('updateAskTime', (remainAskTime) => {
+      setTimer({ proceedText: '호가 시간', time: remainAskTime });
     });
     clientSocket.socket!.on('auctionTimer', setRemainTime);
   }, [productId]);
 
-  return { remainTime, maxPriceUser, joinedUserLength, nextAskPrice };
+  return { timer, remainTime, maxPriceUser, joinedUserLength, nextAskPrice };
+};
+
+export const useAuctionAlert = (maxPriceUser: String, userId: string) => {
+  const { openModal } = useModal();
+  const openSuccess = () => openModal(AlertModal as React.FC, ALERT_ASK_SUCCESS);
+
+  useEffect(() => {
+    if (userId === maxPriceUser) openSuccess();
+  }, [maxPriceUser]);
 };

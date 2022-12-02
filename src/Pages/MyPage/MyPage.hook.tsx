@@ -6,41 +6,90 @@ import type {
   BodyDataType,
   BodySelectType,
   HandleSelectChange,
+  PointHistoryType,
   productReviewType,
+  UseGetPersonalProducts,
   UseGetUserInfo,
   UseGetUserReview,
   userInfoType,
   UseSelectBodyData,
+  UseGetPointHistories,
 } from './MyPage.type';
-import { getAuctionReview, getProductReview, getUserInfo, makeBodyData } from './MyPage.util';
+import {
+  getAuctionReview,
+  getLikeProducts,
+  getPointHistories,
+  getProductReview,
+  getPurchaseProducts,
+  getSellProducts,
+  getUserInfo,
+  makeBodyData,
+} from './MyPage.util';
 
-export const useGetUserInfo = ({ nickName }: UseGetUserInfo) => {
+import { ItemListCellType } from '@Pages/ListPage/ListPage.type';
+
+export const useGetUserInfo = ({ userId }: UseGetUserInfo) => {
   const [userInfo, setUserInfo] = useState<userInfoType>(USER_INFO_SKELETON);
   useEffect(() => {
-    getUserInfo({ nickName })
+    getUserInfo({ userId })
       .then(setUserInfo)
       .catch(() => setUserInfo(USER_INFO_SKELETON));
-  }, [nickName]);
+  }, [userId]);
   return userInfo;
 };
 
-export const useGetUserReview = ({ nickName }: UseGetUserReview) => {
+export const useGetUserReview = ({ userId }: UseGetUserReview) => {
   const [auctionReview, setAuctionReview] = useState<auctionReviewType[]>([]);
   const [productReview, setProductReview] = useState<productReviewType[]>([]);
 
   useEffect(() => {
-    getAuctionReview({ nickName })
+    getAuctionReview({ userId })
       .then(setAuctionReview)
       .catch(() => setAuctionReview([]));
-    getProductReview({ nickName })
+    getProductReview({ userId })
       .then(setProductReview)
       .catch(() => setProductReview([]));
-  }, [nickName]);
+  }, [userId]);
 
   return {
     auctionReview,
     productReview,
   };
+};
+
+export const useGetPersonalProducts = ({ userId }: UseGetPersonalProducts) => {
+  const [purchaseProducts, setPurchaseProducts] = useState<ItemListCellType[]>([]);
+  const [sellProducts, setSellProducts] = useState<ItemListCellType[]>([]);
+  const [likeProducts, setLikeProducts] = useState<ItemListCellType[]>([]);
+
+  useEffect(() => {
+    getPurchaseProducts({ userId })
+      .then(setPurchaseProducts)
+      .catch(() => setPurchaseProducts([]));
+    getSellProducts({ userId })
+      .then(setSellProducts)
+      .catch(() => setSellProducts([]));
+    getLikeProducts({ userId })
+      .then(setLikeProducts)
+      .catch(() => setLikeProducts([]));
+  }, [userId]);
+
+  return {
+    purchaseProducts,
+    sellProducts,
+    likeProducts,
+  };
+};
+
+export const useGetPointHistories = ({ userId }: UseGetPointHistories) => {
+  const [pointHistories, setPointHistories] = useState<PointHistoryType[]>([]);
+  useEffect(() => {
+    getPointHistories({ userId })
+      .then(setPointHistories)
+      .catch(() => setPointHistories([]));
+  }, [userId]);
+
+  return pointHistories;
 };
 
 export const useSelectBodyData = (props: UseSelectBodyData) => {

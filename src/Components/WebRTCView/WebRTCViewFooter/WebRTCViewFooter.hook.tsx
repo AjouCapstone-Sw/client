@@ -34,3 +34,12 @@ export const useAuctionFooterStates = ({
 
   return { isAuctionStart };
 };
+
+export const useAttendBid = ({ nextAskPrice }: { nextAskPrice: number }) => {
+  const [attend, setAttend] = useState(false);
+  const handleAttendTrue = () => setAttend(true);
+  useEffect(() => {
+    setAttend(false);
+  }, [nextAskPrice]);
+  return { attend, handleAttendTrue };
+};

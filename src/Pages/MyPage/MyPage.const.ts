@@ -1,10 +1,7 @@
 export const USER_INFO_SKELETON = {
-  nickName: '',
-  profileImage: '',
-  point: 0,
-  likeList: [],
-  sellList: [],
-  buyList: [],
+  nickName: 'Noelsky',
+  profileImage: '/asset/김영진.jpg',
+  point: 3000,
 };
 
 export const INNER_HTML = {
@@ -13,4 +10,6 @@ export const INNER_HTML = {
   LIKE_LIST: '찜 목록',
   SELL_REVIEW: '판매 후기',
   AUCTION_REVIEW: '경매 후기',
+  MY_POINT: '내 포인트',
+  POINT_HISTORY: '포인트 기록',
 };

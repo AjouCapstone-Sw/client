@@ -1,21 +1,15 @@
-import { useParams } from 'react-router-dom';
-
-import { useGetProductDefaultValue } from './ProductEditPage.hook';
+import { useGetProductDefaultValue, useOnSubmit } from './ProductEditPage.hook';
 
 import { ProductRegisterForm } from '@Components/.';
-import { ProductRegisterFormData } from '@Components/ProductRegisterForm/ProductRegisterForm.type';
+import { useProductId } from '@Hook/useProductId';
 import { useGetProductDetail } from '@Pages/DetailPage';
 
 export const ProductEditPage = () => {
-  const { productId } = useParams();
-  if (!productId) return null;
-
-  const productDetail = useGetProductDetail(Number(productId))!;
+  const productId = useProductId();
+  const productDetail = useGetProductDetail(productId)!;
   const defaultProductValue = useGetProductDefaultValue(productDetail);
 
-  const onSubmit = (data: ProductRegisterFormData) => {
-    console.log(data);
-  };
+  const onSubmit = useOnSubmit();
 
   return (
     <ProductRegisterForm

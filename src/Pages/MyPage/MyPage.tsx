@@ -1,26 +1,36 @@
-import { useLocation } from 'react-router-dom';
-
 import { INNER_HTML } from './MyPage.const';
-import { useGetUserInfo, useGetUserReview, useSelectBodyData } from './MyPage.hook';
+import {
+  useGetPersonalProducts,
+  useGetPointHistories,
+  useGetUserInfo,
+  useGetUserReview,
+  useSelectBodyData,
+} from './MyPage.hook';
 import MyPageStyle from './MyPage.style';
 import { MyPageBody } from './MyPageBody/MyPageBody';
 
 import { MyPageUser } from '@Components/.';
+import { getId } from '@Util/LocalStorage';
 
 export const MyPage = () => {
-  const { search: name } = useLocation();
-  const { nickName, profileImage, point, likeList, sellList, buyList } = useGetUserInfo({
-    nickName: name,
+  const userId = getId()!;
+  const { nickName, profileImage, point } = useGetUserInfo({
+    userId,
   });
-  const { auctionReview, productReview } = useGetUserReview({ nickName: name });
+
+  const { auctionReview, productReview } = useGetUserReview({ userId });
+  const { sellProducts, purchaseProducts, likeProducts } = useGetPersonalProducts({ userId });
+  const pointHistories = useGetPointHistories({ userId });
+
   const { bodyDatas, handleSelectChange } = useSelectBodyData({
-    likeList,
-    sellList,
-    buyList,
+    likeProducts,
+    sellProducts,
+    purchaseProducts,
     auctionReview,
     productReview,
+    pointHistories,
   });
-  console.log(point);
+
   return (
     <MyPageStyle.Container>
       <MyPageStyle.Header />
@@ -28,9 +38,10 @@ export const MyPage = () => {
         <MyPageUser
           nickName={nickName}
           handleSelectChange={handleSelectChange}
-          profileImage={profileImage}
+          profileImage={profileImage || '/asset/김영진.jpg'}
           productReviewLength={productReview.length}
           auctionReviewLength={auctionReview.length}
+          point={point}
         />
       </MyPageStyle.User>
       <MyPageStyle.ButtonContainer>
@@ -40,7 +51,7 @@ export const MyPage = () => {
         >
           {INNER_HTML.SELL_LIST}
         </button>
-        {name && (
+        {userId && (
           <>
             <button
               type='button'
@@ -53,6 +64,12 @@ export const MyPage = () => {
               onClick={handleSelectChange}
             >
               {INNER_HTML.LIKE_LIST}
+            </button>
+            <button
+              type='button'
+              onClick={handleSelectChange}
+            >
+              {INNER_HTML.POINT_HISTORY}
             </button>
           </>
         )}

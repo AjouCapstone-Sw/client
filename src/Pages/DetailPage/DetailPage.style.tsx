@@ -21,6 +21,19 @@ const ProductContainer = styled.div`
     width: 30%;
     min-width: 150px;
   }
+
+  .like-icon {
+    height: 32px;
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    width: 32px;
+    opacity: 0.8;
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
 `;
 const SellerInfoContainer = styled.div`
   display: flex;

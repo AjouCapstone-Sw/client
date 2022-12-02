@@ -7,7 +7,8 @@ import { useMovePage } from '@Hook/useMovePage';
 
 export const MainItemSet = ({ categoryId, categoryName }: MainItemSetProps) => {
   const itemList = useGetCategoryItemInfo({ categoryId });
-  const [goList] = useMovePage(`/list?${categoryId}`) as (() => void)[];
+  const [goList] = useMovePage(`/list?categoryId=${categoryId}`) as (() => void)[];
+
   return (
     <MainItemSetStyle.Container>
       <MainItemSetStyle.Title>

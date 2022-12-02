@@ -1,8 +1,9 @@
 import WebRTCViewHeaderStyle from './WebRTCViewHeader.style';
+import { WebRTCViewHeaderProps } from './WebRTCViewHeader.type';
 
 import { useMovePage } from '@Hook/useMovePage';
 
-export const WebRTCViewHeader = () => {
+export const WebRTCViewHeader = ({ timer: { proceedText, time } }: WebRTCViewHeaderProps) => {
   const [goHome] = useMovePage('/') as (() => void)[];
 
   return (
@@ -11,6 +12,9 @@ export const WebRTCViewHeader = () => {
         <span>경매</span>
 
         <span className='text-Impact'>Live</span>
+      </div>
+      <div className='timer'>
+        {proceedText} {time}초
       </div>
       <WebRTCViewHeaderStyle.HeaderImgContainer>
         <img

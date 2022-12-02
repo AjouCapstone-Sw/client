@@ -3,8 +3,11 @@ import { ProductDetail } from './DetailPage.type';
 import { axiosInstance } from '@Util/.';
 import { getUserIdByNickName } from '@Util/User';
 
-export const getProductDetail = async (productId: number): Promise<ProductDetail> => {
-  const { data } = await axiosInstance.get(`/product/${productId}`);
+export const getProductDetail = async (
+  productId: number,
+  userId: number,
+): Promise<ProductDetail> => {
+  const { data } = await axiosInstance.post('/product', { productId, userId });
 
   return {
     ...data,

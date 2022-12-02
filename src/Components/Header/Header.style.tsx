@@ -29,12 +29,14 @@ const HeaderContainer = styled.div`
     width: 92px;
     height: 92px;
   }
-
-  div:last-child {
-    display: flex;
-  }
 `;
 
+const IconContainer = styled.div`
+  display: flex;
+  svg {
+    margin: auto 8px;
+  }
+`;
 const Logo = styled(Link)`
   margin-right: 2.5rem;
   color: ${({ theme }) => theme.color.primary};
@@ -78,10 +80,10 @@ const MenuIcon = styled(FontAwesomeIcon)`
   display: none;
   width: 24px;
   height: 24px;
-  margin-left: 24px;
+
   @media ${({ theme }) => theme.mediaQuery.base} {
     display: block;
   }
 `;
 
-export default { HeaderContainer, MenuContainer, Logo, MenuIcon };
+export default { HeaderContainer, MenuContainer, Logo, MenuIcon, IconContainer };

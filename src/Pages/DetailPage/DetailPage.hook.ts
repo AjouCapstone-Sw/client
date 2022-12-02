@@ -5,11 +5,12 @@ import { SKELETON_PRODUCT_DETAIL } from './DetailPage.const';
 import { ProductDetail } from './DetailPage.type';
 import { buyProduct, getProductDetail } from './DetailPage.util';
 
-import { getUserId } from '@Util/LocalStorage';
+import { getId, getUserId } from '@Util/LocalStorage';
 
 export const useGetProductDetail = (productId: number) => {
   const [productDetails, setProductDetails] = useState<ProductDetail[]>([SKELETON_PRODUCT_DETAIL]);
   const [productDetail, setProductDetail] = useState<ProductDetail>(SKELETON_PRODUCT_DETAIL);
+  const userId = Number(getId()!);
 
   useEffect(() => {
     if (!productId) return;
@@ -18,7 +19,7 @@ export const useGetProductDetail = (productId: number) => {
       setProductDetail(targetProductDetail);
       return;
     }
-    getProductDetail(productId).then((detail) => {
+    getProductDetail(productId, userId).then((detail) => {
       setProductDetails((details) => [...details, detail]);
       setProductDetail(detail);
     });

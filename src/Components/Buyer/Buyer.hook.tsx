@@ -9,6 +9,7 @@ import { connection, getReceiverAnswerEvent, getReceiverCandidateEvent } from '.
 import { AlertModal } from '@Components/Modals/Alert/AlertModal';
 import { ReviewModal } from '@Components/Modals/Review/ReviewModal';
 import { useModal } from '@Hook/useModal';
+import { Socket } from '@Socket/socket';
 import { getUserId } from '@Util/LocalStorage';
 
 export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) => {
@@ -36,6 +37,7 @@ export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) =>
   useEffect(() => {
     if (!productStream) return;
     console.log(productStream.stream.getTracks());
+    console.log(Socket.instance);
     videoRef.current!.srcObject = productStream.stream;
     console.log(videoRef.current?.srcObject);
   }, [productStream]);

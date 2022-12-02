@@ -47,13 +47,13 @@ export const convertProductsImagePropertyName = (
     return { productImage: image, ...rest };
   });
 
-export const getProductThumbNail = async (productId: string | number) => {
-  const { productImages } = await getProductDetail(Number(productId));
+export const getProductThumbNail = async (productId: string | number, userId: number) => {
+  const { productImages } = await getProductDetail(Number(productId), userId);
   return productImages[0];
 };
 
-export const getProductThumbNails = async (productIds: string[] | number[]) => {
-  const promiseArray = productIds.map((productId) => getProductThumbNail(productId));
+export const getProductThumbNails = async (productIds: string[] | number[], userId: number) => {
+  const promiseArray = productIds.map((productId) => getProductThumbNail(productId, userId));
   const productThumbNails = await Promise.all(promiseArray);
   return productThumbNails;
 };

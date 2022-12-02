@@ -27,7 +27,7 @@ export const getProductReview = async ({ userId }: GetProductReview) => {
     `/review/product/${userId}`,
   );
   const productIds = productReviewResponses.map(({ productId }) => productId);
-  const productThumbNails = await getProductThumbNails(productIds);
+  const productThumbNails = await getProductThumbNails(productIds, Number(userId));
   const productReviews = productReviewResponses.map((productReview, idx) => ({
     productImage: productThumbNails[idx],
     ...productReview,

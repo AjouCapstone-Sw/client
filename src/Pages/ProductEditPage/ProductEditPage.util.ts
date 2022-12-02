@@ -51,6 +51,7 @@ export const makeDefaultProductValue = async ({
   auctionStartPrice: addPriceComma(auctionStartPrice),
   auctionDuration: getAuctionDuration(auctionStartTime, auctionEndTime),
   images: await makeImageFileList(productImages),
+  category: { value: 3, label: '자동차' },
 });
 
 export const makeDefaultProductValueWithoutImage = ({
@@ -71,6 +72,7 @@ export const makeDefaultProductValueWithoutImage = ({
   auctionStartPrice: addPriceComma(auctionStartPrice),
   auctionDuration: getAuctionDuration(auctionStartTime, auctionEndTime),
   images: [],
+  category: { value: 3, label: '자동차' },
 });
 
 const getProductRegisterBody = (data: ProductRegisterFormData & { productId: number }) => ({

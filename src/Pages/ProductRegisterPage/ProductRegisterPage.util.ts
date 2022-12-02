@@ -6,7 +6,6 @@ import { getUserId } from '@Util/LocalStorage';
 import { getUserIdByNickName } from '@Util/User';
 
 const getProductRegisterBody = (data: ProductRegisterFormData) => ({
-  userId: 1,
   title: data.title,
   description: data.description,
   startTime: data.auctionStartTime,

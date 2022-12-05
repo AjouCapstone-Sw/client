@@ -41,14 +41,23 @@ export type PointHistoryType = {
   id: number;
 };
 
+export type ProductPreview = {
+  buyNowPrice: number;
+  image: string;
+  like: boolean;
+  live: boolean;
+  productId: number;
+  title: string;
+};
+
 export type productReviewResponsesType = Omit<productReviewType, 'productImage'>;
 
 export type UseSelectBodyData = {
   auctionReview: auctionReviewType[];
   productReview: productReviewType[];
   likeProducts: ItemListCellType[];
-  sellProducts: ItemListCellType[];
-  purchaseProducts: ItemListCellType[];
+  sellProducts: ProductPreview[];
+  purchaseProducts: ProductPreview[];
   pointHistories: PointHistoryType[];
 };
 

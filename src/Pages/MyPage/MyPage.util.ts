@@ -7,6 +7,7 @@ import type {
   GetSellProducts,
   GetUserInfo,
   MakeBodyData,
+  ProductPreview,
   productReviewResponsesType,
 } from './MyPage.type';
 
@@ -37,13 +38,28 @@ export const getProductReview = async ({ userId }: GetProductReview) => {
 };
 
 export const getPurchaseProducts = async ({ userId }: GetPurchaseProducts) => {
-  console.log(userId);
-  return [];
+  const { data: purchaseProductsResponse } = await axiosInstance.get<ProductPreview[]>(
+    `/product/buyList/${userId}`,
+  );
+
+  const purchaseProducts = purchaseProductsResponse.map((purchaseProduct) => ({
+    productImage: purchaseProduct.image,
+    ...purchaseProduct,
+  }));
+
+  return purchaseProducts;
 };
 
 export const getSellProducts = async ({ userId }: GetSellProducts) => {
-  console.log(userId);
-  return [];
+  const { data: sellProductsResponse } = await axiosInstance.get<ProductPreview[]>(
+    `/product/sellList/${userId}`,
+  );
+  const sellProducts = sellProductsResponse.map((sellProduct) => ({
+    productImage: sellProduct.image,
+    ...sellProduct,
+  }));
+
+  return sellProducts;
 };
 
 export const getLikeProducts = async ({ userId }: GetLikeProducts) => {

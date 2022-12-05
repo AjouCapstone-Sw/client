@@ -16,6 +16,7 @@ import {
   ProductEditPage,
   SellerIntroducePage,
   AddressRegisterPage,
+  InvoicePage,
 } from '@Pages/.';
 import { PrivatePage } from '@Pages/PrivatePage/PrivatePage';
 
@@ -74,6 +75,10 @@ function App() {
             <Route
               path='/address-register'
               element={<AddressRegisterPage />}
+            />
+            <Route
+              path='/invoice'
+              element={<InvoicePage />}
             />
           </Route>
         </Route>

@@ -12,7 +12,7 @@ export const SellerIntroducePage = () => {
   const [price, productId] = useQuerySearch(['price', 'productId']);
   const productInfo = useGetProductInfo(Number(productId), Number(userId));
   const [image] = productInfo.productImages;
-  const [goMain, goInvoice] = useMovePage(['/', 'invoice']) as (() => void)[];
+  const [goMain, goInvoice] = useMovePage(['/', '/invoice']) as (() => void)[];
   return (
     <SellerIntroducePageStyle.Container>
       <SellerIntroducePageStyle.ImageContainer>

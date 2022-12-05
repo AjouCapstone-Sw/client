@@ -14,6 +14,7 @@ import type {
   userInfoType,
   UseSelectBodyData,
   UseGetPointHistories,
+  ProductPreview,
 } from './MyPage.type';
 import {
   getAuctionReview,
@@ -58,8 +59,8 @@ export const useGetUserReview = ({ userId }: UseGetUserReview) => {
 };
 
 export const useGetPersonalProducts = ({ userId }: UseGetPersonalProducts) => {
-  const [purchaseProducts, setPurchaseProducts] = useState<ItemListCellType[]>([]);
-  const [sellProducts, setSellProducts] = useState<ItemListCellType[]>([]);
+  const [purchaseProducts, setPurchaseProducts] = useState<ProductPreview[]>([]);
+  const [sellProducts, setSellProducts] = useState<ProductPreview[]>([]);
   const [likeProducts, setLikeProducts] = useState<ItemListCellType[]>([]);
 
   useEffect(() => {

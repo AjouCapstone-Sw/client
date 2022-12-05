@@ -1,17 +1,17 @@
 export const getUserId = () => {
-  const userId = sessionStorage.getItem('userId');
+  const userId = localStorage.getItem('userId');
   return userId;
 };
 
 export const getId = () => {
-  const id = sessionStorage.getItem('id');
+  const id = localStorage.getItem('id');
   return id;
 };
 
 export const setUserId = (userId: string) => {
-  sessionStorage.setItem('userId', userId);
+  localStorage.setItem('userId', userId);
 };
 
 export const setId = (id: string) => {
-  sessionStorage.setItem('id', id);
+  localStorage.setItem('id', id);
 };

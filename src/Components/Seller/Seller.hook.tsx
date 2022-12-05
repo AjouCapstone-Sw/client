@@ -21,6 +21,7 @@ export const useGetVideoStreamSeller = ({ productId }: UseGetVideoStreamSeller) 
     clientSocket.socket!.on('getSenderAnswer', getSenderAnswerEvent);
 
     return () => {
+      console.log('??');
       (ClientSocket.sendPC as RTCPeerConnection).close();
       ClientSocket.sendPC = null;
       clientSocket.socket!.emit('close', { productId });
@@ -40,12 +41,15 @@ export const useAuctionEnd = () => {
   useEffect(() => {
     const clientSocket = new ClientSocket('');
 
-    clientSocket.socket!.on('endAuctionWithSeller', ({ price }: { price: number }) => {
-      openSuccessModal();
-      setTimeout(() => {
-        navigator(`/seller-introduce?price=${price}`);
-        clientSocket.socket!.disconnect();
-      }, 5000);
-    });
+    clientSocket.socket!.on(
+      'endAuctionWithSeller',
+      ({ price, productId }: { price: number; productId: number }) => {
+        openSuccessModal();
+        setTimeout(() => {
+          navigator(`/seller-introduce?price=${price}&productId=${productId}`);
+          clientSocket.socket!.disconnect();
+        }, 5000);
+      },
+    );
   }, []);
 };

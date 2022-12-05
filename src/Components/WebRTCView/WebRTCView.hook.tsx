@@ -93,7 +93,6 @@ export const useAuctionStates = ({
       addChat(createChatData(`${userId}`, `님이 입장하셨습니다`));
       setJoinedUserLength(updatedUserLength);
     });
-    clientSocket.socket!.on('auctionTimer', setRemainTime);
 
     clientSocket.socket!.on('setDescriptionTime', (remainDescriptionTime) => {
       setTimer({ proceedText: '상품 설명 시간', time: Math.floor(remainDescriptionTime / 1000) });

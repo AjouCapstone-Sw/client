@@ -49,14 +49,11 @@ export const getCandidateEvent = (pc: RTCPeerConnection, candidate: RTCIceCandid
   pc.addIceCandidate(new RTCIceCandidate(candidate));
 };
 
-let flag = false;
-
 export const registerRemoteDescriptionToPc = (
   pc: RTCPeerConnection,
   sdp: RTCSessionDescription,
 ) => {
-  if (!pc.remoteDescription && !flag) {
-    flag = true;
+  if (!pc.remoteDescription) {
     pc.setRemoteDescription(new RTCSessionDescription(sdp));
   }
 };

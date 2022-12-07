@@ -9,7 +9,6 @@ import { connection, getReceiverAnswerEvent, getReceiverCandidateEvent } from '.
 import { AlertModal } from '@Components/Modals/Alert/AlertModal';
 import { ReviewModal } from '@Components/Modals/Review/ReviewModal';
 import { useModal } from '@Hook/useModal';
-import { Socket } from '@Socket/socket';
 import { getUserId } from '@Util/LocalStorage';
 
 export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) => {
@@ -29,17 +28,18 @@ export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) =>
 
     return () => {
       // 방 퇴장
+      ClientSocket.sendPC = null;
+      ClientSocket.receivePC = null;
+      ClientSocket.instance = null;
       clientSocket.socket!.off('getReceiverCandidate', getReceiverCandidateEvent);
       clientSocket.socket!.off('getReceiverAnswer', getReceiverAnswerEvent);
+      clientSocket.socket!.disconnect();
     };
   }, [productId]);
 
   useEffect(() => {
     if (!productStream) return;
-    console.log(productStream.stream.getTracks());
-    console.log(Socket.instance);
     videoRef.current!.srcObject = productStream.stream;
-    console.log(videoRef.current?.srcObject);
   }, [productStream]);
 
   return videoRef;
@@ -60,16 +60,14 @@ export const useAuctionEnd = () => {
           navigator(
             `/address-register?price=${price}&productId=${productId}&seller=${seller}&type=auction`,
           );
-          clientSocket.socket!.disconnect();
-        }, 5000);
+        }, 3000);
       },
     );
 
     clientSocket.socket!.on('endAuctionWithRemainder', ({ productId, seller }) => {
       setTimeout(() => {
         openModal(ReviewModal as React.FC, { productId, userId: seller, type: 'auction' });
-        clientSocket.socket!.disconnect();
-      }, 5000);
+      }, 3000);
     });
   }, []);
 };

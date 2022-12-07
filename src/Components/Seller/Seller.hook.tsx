@@ -45,11 +45,15 @@ export const useAuctionEnd = () => {
     clientSocket.socket!.on(
       'endAuctionWithSeller',
       ({ price, productId }: { price: number; productId: number }) => {
+        if (price === 0) {
+          navigator('/');
+          return;
+        }
         openSuccessModal();
         setTimeout(() => {
           navigator(`/seller-introduce?price=${price}&productId=${productId}`);
           clientSocket.socket!.disconnect();
-        }, 5000);
+        }, 3000);
       },
     );
   }, []);

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ClientSocket from '../../Socket/WebRTC/WebRTC';
-import { ALERT_BUY_SUCCESS, FORCE_AUCTION_EXIT } from './Buyer.const';
+import { ALERT_BUY_SUCCESS, DONT_OPEN_AUCTION, FORCE_AUCTION_EXIT } from './Buyer.const';
 import { UseGetVideoStreamBuyer, WebRTCUser } from './Buyer.type';
 import { connection, getReceiverAnswerEvent, getReceiverCandidateEvent } from './Buyer.util';
 
@@ -50,9 +50,17 @@ export const useAuctionEnd = () => {
   const { openModal } = useModal();
   const openSuccessModal = () => openModal(AlertModal as React.FC, ALERT_BUY_SUCCESS);
   const openForceExitModal = () => openModal(AlertModal as React.FC, FORCE_AUCTION_EXIT);
+  const openDontOpenModal = () => openModal(AlertModal as React.FC, DONT_OPEN_AUCTION);
 
   useEffect(() => {
     const clientSocket = new ClientSocket('');
+    clientSocket.socket!.on('dontOpenAuction', () => {
+      openDontOpenModal();
+      setTimeout(() => {
+        navigator('/');
+      }, 3000);
+    });
+
     clientSocket.socket!.on('forceAuctionExit', () => {
       openForceExitModal();
       setTimeout(() => {

@@ -49,11 +49,11 @@ export const connection = async ({
 
 // eslint-disable-next-line no-undef
 export const getReceiverCandidateEvent = async (data: { candidate: RTCIceCandidateInit }) => {
+  if (!ClientSocket.receivePC) return;
   getCandidateEvent(ClientSocket.receivePC, data.candidate);
 };
 
 export const getReceiverAnswerEvent = async (data: { sdp: RTCSessionDescription }) => {
-  await registerRemoteDescriptionToPc(ClientSocket.receivePC, data.sdp);
+  if (!ClientSocket.receivePC) return;
+  registerRemoteDescriptionToPc(ClientSocket.receivePC, data.sdp);
 };
-
-export const startAuctionEvent = () => {};

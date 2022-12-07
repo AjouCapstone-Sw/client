@@ -21,9 +21,10 @@ export const useGetVideoStreamSeller = ({ productId }: UseGetVideoStreamSeller) 
     clientSocket.socket!.on('getSenderAnswer', getSenderAnswerEvent);
 
     return () => {
-      console.log('??');
-      (ClientSocket.sendPC as RTCPeerConnection).close();
+      if (streamRef.current) streamRef.current.getTracks().forEach((track) => track.stop());
       ClientSocket.sendPC = null;
+      ClientSocket.receivePC = null;
+      ClientSocket.instance = null;
       clientSocket.socket!.emit('close', { productId });
       clientSocket.socket!.off('getSenderCandidate', getSenderCandidateEvent);
       clientSocket.socket!.off('getSenderAnswer', getSenderAnswerEvent);
@@ -44,11 +45,15 @@ export const useAuctionEnd = () => {
     clientSocket.socket!.on(
       'endAuctionWithSeller',
       ({ price, productId }: { price: number; productId: number }) => {
+        if (price === 0) {
+          navigator('/');
+          return;
+        }
         openSuccessModal();
         setTimeout(() => {
           navigator(`/seller-introduce?price=${price}&productId=${productId}`);
           clientSocket.socket!.disconnect();
-        }, 5000);
+        }, 3000);
       },
     );
   }, []);

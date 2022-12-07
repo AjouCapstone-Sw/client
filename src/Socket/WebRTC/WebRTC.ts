@@ -1,17 +1,17 @@
 import io, { Socket } from 'socket.io-client';
 
-// const SERVER_URL = 'https://localhost';
-// const PORT = '4000';
+const SERVER_URL = 'https://localhost';
+const PORT = '4000';
 
-const SERVER_URL = 'https://theajou.shop';
-const PORT = '443';
+// const SERVER_URL = 'https://theajou.shop';
+// const PORT = '443';
 
 export default class ClientSocket {
   socket: Socket | undefined;
 
   static sendPC: RTCPeerConnection | null;
 
-  static receivePC: RTCPeerConnection;
+  static receivePC: RTCPeerConnection | null;
 
   // eslint-disable-next-line no-use-before-define
   static instance: ClientSocket | null;
@@ -25,7 +25,6 @@ export default class ClientSocket {
   }
 
   connect() {
-    // this.socket = io(`${SERVER_URL}`, { transports: ['websocket'] });
     this.socket = io(`${SERVER_URL}:${PORT}`, { transports: ['websocket'] });
   }
 

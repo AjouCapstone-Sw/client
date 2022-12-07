@@ -2,14 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ClientSocket from '../../Socket/WebRTC/WebRTC';
-import { ALERT_BUY_SUCCESS } from './Buyer.const';
+import { ALERT_BUY_SUCCESS, DONT_OPEN_AUCTION, FORCE_AUCTION_EXIT } from './Buyer.const';
 import { UseGetVideoStreamBuyer, WebRTCUser } from './Buyer.type';
 import { connection, getReceiverAnswerEvent, getReceiverCandidateEvent } from './Buyer.util';
 
 import { AlertModal } from '@Components/Modals/Alert/AlertModal';
 import { ReviewModal } from '@Components/Modals/Review/ReviewModal';
 import { useModal } from '@Hook/useModal';
-import { Socket } from '@Socket/socket';
 import { getUserId } from '@Util/LocalStorage';
 
 export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) => {
@@ -29,17 +28,18 @@ export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) =>
 
     return () => {
       // 방 퇴장
+      ClientSocket.sendPC = null;
+      ClientSocket.receivePC = null;
+      ClientSocket.instance = null;
       clientSocket.socket!.off('getReceiverCandidate', getReceiverCandidateEvent);
       clientSocket.socket!.off('getReceiverAnswer', getReceiverAnswerEvent);
+      clientSocket.socket!.disconnect();
     };
   }, [productId]);
 
   useEffect(() => {
     if (!productStream) return;
-    console.log(productStream.stream.getTracks());
-    console.log(Socket.instance);
     videoRef.current!.srcObject = productStream.stream;
-    console.log(videoRef.current?.srcObject);
   }, [productStream]);
 
   return videoRef;
@@ -49,9 +49,25 @@ export const useAuctionEnd = () => {
   const navigator = useNavigate();
   const { openModal } = useModal();
   const openSuccessModal = () => openModal(AlertModal as React.FC, ALERT_BUY_SUCCESS);
+  const openForceExitModal = () => openModal(AlertModal as React.FC, FORCE_AUCTION_EXIT);
+  const openDontOpenModal = () => openModal(AlertModal as React.FC, DONT_OPEN_AUCTION);
 
   useEffect(() => {
     const clientSocket = new ClientSocket('');
+    clientSocket.socket!.on('dontOpenAuction', () => {
+      openDontOpenModal();
+      setTimeout(() => {
+        navigator('/');
+      }, 3000);
+    });
+
+    clientSocket.socket!.on('forceAuctionExit', () => {
+      openForceExitModal();
+      setTimeout(() => {
+        navigator('/');
+      }, 3000);
+    });
+
     clientSocket.socket!.on(
       'endAuctionWithBuyer',
       ({ price, productId, seller }: { price: number; productId: number; seller: string }) => {
@@ -60,16 +76,14 @@ export const useAuctionEnd = () => {
           navigator(
             `/address-register?price=${price}&productId=${productId}&seller=${seller}&type=auction`,
           );
-          clientSocket.socket!.disconnect();
-        }, 5000);
+        }, 3000);
       },
     );
 
     clientSocket.socket!.on('endAuctionWithRemainder', ({ productId, seller }) => {
       setTimeout(() => {
         openModal(ReviewModal as React.FC, { productId, userId: seller, type: 'auction' });
-        clientSocket.socket!.disconnect();
-      }, 5000);
+      }, 3000);
     });
   }, []);
 };

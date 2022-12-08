@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { MenuModal } from '@Components/Modals/Menu/MenuModal';
 import { SearchModal } from '@Components/Modals/Search/SearchModal';
 import { useModal } from '@Hook/useModal';
-import { getId } from '@Util/LocalStorage';
+import { getId } from '@Util/.';
 
 export const useHandleModals = () => {
   const { openModal, closeModal } = useModal();

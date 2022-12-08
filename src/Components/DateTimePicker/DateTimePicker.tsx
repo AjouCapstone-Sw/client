@@ -28,7 +28,7 @@ export const DateTimePicker = <T extends FieldValues>({
         {...rest}
         value={value}
         onChange={(date) => {
-          onChange(dayjs(date).format('YYYY-MM-DD hh:mm'));
+          onChange(dayjs(date).format('YYYY-MM-DD HH:mm'));
         }}
       />
     )}

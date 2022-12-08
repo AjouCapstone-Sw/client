@@ -20,7 +20,8 @@ export const AddressRegisterPage = () => {
     'buyNow',
   ]);
 
-  const { title } = useGetProductDetail(Number(productId!));
+  const { title, buyNowPrice } = useGetProductDetail(Number(productId!));
+
   const {
     register,
     control,
@@ -40,7 +41,7 @@ export const AddressRegisterPage = () => {
       <AddressRegisterPageStyle.InfoText>
         결제된 포인트는{' '}
         <AddressRegisterPageStyle.Highlight>
-          {addPriceComma(Number(price))}
+          {addPriceComma(Number(price ?? buyNowPrice))}
         </AddressRegisterPageStyle.Highlight>
         원 입니다
       </AddressRegisterPageStyle.InfoText>

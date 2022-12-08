@@ -33,8 +33,16 @@ const HeaderContainer = styled.div`
 
 const IconContainer = styled.div`
   display: flex;
+
   svg {
     margin: auto 8px;
+  }
+  p {
+    white-space: nowrap;
+
+    :hover {
+      cursor: pointer;
+    }
   }
 `;
 const Logo = styled(Link)`

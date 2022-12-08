@@ -19,4 +19,9 @@ export const HEADER_MENU = [
     title: '판매글 작성',
     link: '/product-register',
   },
+  {
+    id: 4,
+    title: '판매글 작성',
+    link: '/product-register',
+  },
 ];

@@ -6,8 +6,9 @@ import { Button, ImageSlick, AuctionTimerButton, LikeIcon } from '@Components/.'
 import { RightArrow } from '@Components/Svg';
 import { useMovePage } from '@Hook/useMovePage';
 import { useProductId } from '@Hook/useProductId';
+import { useGetUserInfo } from '@Pages/MyPage/MyPage.hook';
 import { addPriceComma } from '@Util/.';
-import { getUserId } from '@Util/LocalStorage';
+import { getId, getUserId } from '@Util/LocalStorage';
 
 export const DetailPage = () => {
   const productId = useProductId();
@@ -34,6 +35,9 @@ export const DetailPage = () => {
 
   const buyNowHandler = useBuyNow(productId, seller);
   const userId = getUserId();
+
+  const id = getId()!;
+  const { point } = useGetUserInfo({ userId: id });
 
   return (
     <DetailPageStyle.ProductContainer>
@@ -75,7 +79,10 @@ export const DetailPage = () => {
       </DetailPageStyle.ProductHighlightText>
       <DetailPageStyle.ProductText>{description}</DetailPageStyle.ProductText>
       <DetailPageStyle.ButtonContainer>
-        <Button onClick={buyNowHandler}>
+        <Button
+          onClick={buyNowHandler}
+          disabled={point < buyNowPrice}
+        >
           즉시 구매 <span>{addPriceComma(buyNowPrice)} ₩</span>
         </Button>
         {isAuction && (

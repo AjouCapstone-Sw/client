@@ -4,7 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import ClientSocket from '../../Socket/WebRTC/WebRTC';
 import { ALERT_BUY_SUCCESS, DONT_OPEN_AUCTION, FORCE_AUCTION_EXIT } from './Buyer.const';
 import { UseGetVideoStreamBuyer, WebRTCUser } from './Buyer.type';
-import { connection, getReceiverAnswerEvent, getReceiverCandidateEvent } from './Buyer.util';
+import {
+  connection,
+  getReceiverAnswerEvent,
+  getReceiverCandidateEvent,
+  goUserAuctionHandler,
+} from './Buyer.util';
 
 import { AlertModal } from '@Components/Modals/Alert/AlertModal';
 import { ReviewModal } from '@Components/Modals/Review/ReviewModal';
@@ -14,7 +19,7 @@ import { getUserId } from '@Util/LocalStorage';
 export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [productStream, setProductStream] = useState<WebRTCUser | null>(null);
-
+  const navigate = useNavigate();
   const addStream = (e: RTCTrackEvent) => setProductStream({ id: productId, stream: e.streams[0] });
 
   useEffect(() => {
@@ -25,7 +30,7 @@ export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) =>
     connection({ productId, addStream, userId });
     clientSocket.socket!.on('getReceiverCandidate', getReceiverCandidateEvent);
     clientSocket.socket!.on('getReceiverAnswer', getReceiverAnswerEvent);
-
+    clientSocket.socket!.on('goUserAuction', goUserAuctionHandler(navigate));
     return () => {
       // 방 퇴장
       ClientSocket.sendPC = null;
@@ -33,6 +38,7 @@ export const useGetVideoStreamBuyer = ({ productId }: UseGetVideoStreamBuyer) =>
       ClientSocket.instance = null;
       clientSocket.socket!.off('getReceiverCandidate', getReceiverCandidateEvent);
       clientSocket.socket!.off('getReceiverAnswer', getReceiverAnswerEvent);
+      clientSocket.socket!.off('goUserAuction', goUserAuctionHandler(navigate));
       clientSocket.socket!.disconnect();
     };
   }, [productId]);

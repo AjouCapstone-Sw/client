@@ -12,6 +12,7 @@ export const ItemListCell = ({
   auctionStartTime,
   productImage,
   live,
+  instance,
 }: ItemListCellProps) => {
   const [goDetail] = useMovePage(`/detail/${productId}`) as (() => void)[];
   return (
@@ -21,7 +22,8 @@ export const ItemListCell = ({
           src={productImage}
           alt='상품이미지'
         />
-        {live && <span>Live</span>}
+        {live && <span>Ing</span>}
+        {!instance && <span>Live</span>}
       </ItemListCellStyle.ImageBox>
       <ItemListCellStyle.TextContainer>
         <span className='strong'>{title}</span>

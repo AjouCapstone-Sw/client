@@ -1,7 +1,7 @@
 export const USER_INFO_SKELETON = {
-  nickName: 'Noelsky',
+  nickName: '',
   profileImage: '/asset/김영진.jpg',
-  point: 3000,
+  point: 0,
 };
 
 export const INNER_HTML = {

@@ -19,7 +19,7 @@ export const WebRTCViewFooter = ({
   const { isAuctionStart } = useAuctionFooterStates({ productId });
   const { attend, handleAttendTrue } = useAttendBid({ nextAskPrice });
   const userId = getUserId();
-  console.log(userId, maxPriceUser);
+
   return (
     <>
       <div>

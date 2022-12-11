@@ -32,6 +32,7 @@ const View = styled.div`
   overflow: hidden;
   min-width: 320px;
   max-width: 440px;
+  height: 250px;
   :hover {
     img {
       display: block;

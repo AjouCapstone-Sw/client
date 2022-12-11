@@ -18,7 +18,9 @@ export const useGetCategoryList = () => {
 
 export const useGetLiveItemList = () => {
   const [liveItemList, setLiveItemList] = useState<LiveItemType[]>([]);
-  const [homeLiveItemLists, setHomeLiveItemLists] = useState<HomeLiveItem[]>([]);
+  const [homeLiveItemLists, setHomeLiveItemLists] = useState<HomeLiveItem[]>([
+    DEFAULT_HOME_LIVE_ITEM,
+  ]);
 
   useEffect(() => {
     getLiveItemList()

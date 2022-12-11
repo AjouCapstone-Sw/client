@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 import { ProductRegisterFormData } from '@Components/ProductRegisterForm/ProductRegisterForm.type';
 import { removePriceEtc } from '@Util/.';
 import { axiosInstance } from '@Util/Axios';
@@ -8,7 +10,7 @@ import { getUserIdByNickName } from '@Util/User';
 const getProductRegisterBody = (data: ProductRegisterFormData) => ({
   title: data.title,
   description: data.description,
-  startTime: data.auctionStartTime,
+  startTime: dayjs(data.auctionStartTime).format('YYYY-MM-DD HH:mm'),
   startPrice: Number(removePriceEtc(data.auctionStartPrice) ?? 0),
   instant: Number(!data.isAuction),
   buyNowPrice: Number(removePriceEtc(data.buyNowPrice)),

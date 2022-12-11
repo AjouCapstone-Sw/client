@@ -10,7 +10,8 @@ import { WebRTCViewBody } from './WebRTCViewBody';
 import { WebRTCViewFooter } from './WebRTCViewFooter/WebRTCViewFooter';
 import { WebRTCViewHeader } from './WebRTCViewHeader';
 
-import { getUserId } from '@Util/LocalStorage';
+import { useGetUserInfo } from '@Pages/MyPage/MyPage.hook';
+import { getUserId, getId } from '@Util/LocalStorage';
 
 export const WebRTCView = ({ productId }: WebRTCViewProps) => {
   const { productTitle, auctionStartPrice, nowAskPrice } = useGetProductDataInAuction({
@@ -22,6 +23,8 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
     productId,
     addChat,
   });
+  const userId = getId()!;
+  const { point } = useGetUserInfo({ userId });
 
   const myId = getUserId();
   useAuctionAlert(maxPriceUser, myId!);
@@ -54,6 +57,7 @@ export const WebRTCView = ({ productId }: WebRTCViewProps) => {
           nextAskPrice={Number(nextAskPrice)}
           productLikeNum={productLikeNum}
           maxPriceUser={maxPriceUser.toString()}
+          point={point}
         />
       </WebRTCViewStyle.Footer>
     </WebRTCViewStyle.Container>

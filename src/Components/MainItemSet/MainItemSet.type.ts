@@ -11,5 +11,5 @@ export type UseGetCategoryItemInfo = {
 
 export type CategoryItemSet = Pick<
   ItemListCellType,
-  'productId' | 'productImage' | 'title' | 'buyNowPrice' | 'live' | 'like'
+  'productId' | 'productImage' | 'title' | 'buyNowPrice' | 'live' | 'like' | 'instance'
 >;

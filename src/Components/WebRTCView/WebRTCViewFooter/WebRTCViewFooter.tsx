@@ -13,12 +13,13 @@ export const WebRTCViewFooter = ({
   chats,
   seller,
   maxPriceUser,
+  point,
 }: WEbRTCViewFooterProps) => {
   const { register, handleSubmit } = useSendChatMessage({ productId });
   const { isAuctionStart } = useAuctionFooterStates({ productId });
   const { attend, handleAttendTrue } = useAttendBid({ nextAskPrice });
   const userId = getUserId();
-  console.log(userId, maxPriceUser);
+
   return (
     <>
       <div>
@@ -50,7 +51,8 @@ export const WebRTCViewFooter = ({
             !isAuctionStart ||
             isSeller(userId, seller) ||
             attend ||
-            isMaxPriceUser(userId!, maxPriceUser)
+            isMaxPriceUser(userId!, maxPriceUser) ||
+            point < nextAskPrice
           }
         >
           {addPriceComma(nextAskPrice)} 원

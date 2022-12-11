@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const Container = styled.li`
-  height: 150px;
   cursor: pointer;
   span {
     display: block;
@@ -11,6 +10,18 @@ const Container = styled.li`
     border-radius: 8px;
     width: 110px;
     height: 110px;
+  }
+  div {
+    position: relative;
+
+    span {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      color: ${({ theme }) => theme.color.primary};
+      font-weight: ${({ theme }) => theme.fontWeight.bold};
+      transform: rotate(-0.1turn);
+    }
   }
 `;
 

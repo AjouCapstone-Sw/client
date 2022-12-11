@@ -16,16 +16,12 @@ export const ListPage = () => {
         ))}
       </ul>
       <ul>
-        {viewList.length === 0 ? (
-          <p className='big-empty-text'>텅</p>
-        ) : (
-          viewList.map((viewItem) => (
-            <ItemListCell
-              key={viewItem.productId}
-              {...viewItem}
-            />
-          ))
-        )}
+        {viewList.map((viewItem) => (
+          <ItemListCell
+            key={viewItem.productId}
+            {...viewItem}
+          />
+        ))}
       </ul>
     </ListPageStyle.Container>
   );

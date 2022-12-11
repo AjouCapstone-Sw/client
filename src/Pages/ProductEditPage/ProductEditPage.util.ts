@@ -24,11 +24,9 @@ const getImageFiles = async (images: string[]) => {
   return imageFiles;
 };
 const makeImageFileList = async (images: string[]) => {
-  console.log(images);
   const imageFiles = await getImageFiles(images);
   const dataTransfer = new DataTransfer();
   imageFiles.forEach((imageFile) => dataTransfer.items.add(imageFile!));
-  console.log(dataTransfer.files);
   return dataTransfer.files;
 };
 

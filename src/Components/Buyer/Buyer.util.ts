@@ -1,3 +1,5 @@
+import { NavigateFunction } from 'react-router-dom';
+
 import {
   makePeerConnection,
   createOffer,
@@ -57,3 +59,9 @@ export const getReceiverAnswerEvent = async (data: { sdp: RTCSessionDescription 
   if (!ClientSocket.receivePC) return;
   registerRemoteDescriptionToPc(ClientSocket.receivePC, data.sdp);
 };
+
+export const goUserAuctionHandler =
+  (navigate: NavigateFunction) =>
+  ({ otherAuctionProductId }: { otherAuctionProductId: number }) => {
+    navigate(`/live/${otherAuctionProductId}`);
+  };

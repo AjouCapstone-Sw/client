@@ -6,5 +6,5 @@ import { getUserId } from '@Util/LocalStorage';
 
 export const PrivatePage = ({ component: Component }: PrivatePageProps) => {
   const user = getUserId();
-  return <>{user ? <Navigate to='/' /> : <Component />} </>;
+  return <>{!user ? <Navigate to='/login' /> : <Component />} </>;
 };

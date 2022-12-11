@@ -14,6 +14,7 @@ import { getId } from '@Util/LocalStorage';
 
 export const MyPage = () => {
   const userId = getId()!;
+
   const { nickName, profileImage, point } = useGetUserInfo({
     userId,
   });

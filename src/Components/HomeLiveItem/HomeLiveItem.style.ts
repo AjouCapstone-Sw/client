@@ -5,13 +5,13 @@ const Container = styled.div`
 
   background-color: ${({ theme }) => theme.color.primary};
   width: 100vw;
-  height: 420px;
+  height: 450px;
   color: ${({ theme }) => theme.color.white};
   text-align: center;
   box-sizing: border-box;
   padding: 0px 20px;
   padding-top: 30px;
-
+  min-width: 320px;
   a {
     min-width: 320px;
     width: 50%;

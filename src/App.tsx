@@ -18,6 +18,7 @@ import {
   AddressRegisterPage,
   InvoicePage,
 } from '@Pages/.';
+import { Adminpage } from '@Pages/AdminPage';
 import { IncomePage } from '@Pages/IncomePage/IncomePage';
 import { PrivatePage } from '@Pages/PrivatePage';
 
@@ -80,6 +81,10 @@ function App() {
             <Route
               path='/invoice'
               element={<InvoicePage />}
+            />
+            <Route
+              path='/admin'
+              element={<Adminpage />}
             />
           </Route>
         </Route>

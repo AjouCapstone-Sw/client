@@ -29,3 +29,4 @@ export * from './LikeIcon/LikeIcon';
 export * from './AddressModal/AddressModal';
 export * from './PointExchangeIcon/PointExchangeIcon';
 export * from './PointHistory/PointHistory';
+export * from './SellProduct';

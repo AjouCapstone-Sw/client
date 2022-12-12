@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react';
 
-import { AdminPageInfo } from './AdminPage.type';
-import { getAdminPageInfo } from './AdminPage.util';
+import { AdminPageInfo, SellProduct } from './AdminPage.type';
+import { getAdminPageInfo, getProductSellList } from './AdminPage.util';
 
 export const useAdminPageInfos = () => {
+  const [sellProducts, setSellProducts] = useState<SellProduct[]>([]);
   const [adminPageInfo, setAdminPageInfo] = useState<AdminPageInfo>({
-    userCount: 0,
     totalPrice: 0,
     commission: 0,
   });
+
   useEffect(() => {
-    getAdminPageInfo().then(setAdminPageInfo);
+    getProductSellList()
+      .then(setSellProducts)
+      .catch(() => setSellProducts([]));
   }, []);
-  return adminPageInfo;
+
+  useEffect(() => {
+    setAdminPageInfo(getAdminPageInfo(sellProducts));
+  }, [sellProducts]);
+
+  return { sellProducts, adminPageInfo };
 };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { postLogin } from './LoginPage.util';
 
@@ -11,6 +12,7 @@ export const useLoginState = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [goMain] = useMovePage('/') as (() => void)[];
+  const naviagtor = useNavigate();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -23,7 +25,7 @@ export const useLoginState = () => {
         if (email === 'admin@admin') {
           setUserId('admin');
           setId('0');
-          goMain();
+          naviagtor('/admin');
           return;
         }
         setUserId(nickName);

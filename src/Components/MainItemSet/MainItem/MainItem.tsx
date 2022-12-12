@@ -24,7 +24,7 @@ export const MainItem = ({
           alt='상품 이미지'
         />
         {live && <span>Ing</span>}
-        {!instance && <span>Live</span>}
+        {!instance && !live && <span>Live</span>}
       </div>
       <span>{title}</span>
       <MainItemStyle.Price>{addPriceComma(buyNowPrice)} 원</MainItemStyle.Price>

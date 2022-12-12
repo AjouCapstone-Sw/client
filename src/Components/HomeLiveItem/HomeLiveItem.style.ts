@@ -5,11 +5,19 @@ const Container = styled.div`
 
   background-color: ${({ theme }) => theme.color.primary};
   width: 100vw;
-  height: 270px;
+  height: 450px;
   color: ${({ theme }) => theme.color.white};
   text-align: center;
   box-sizing: border-box;
   padding: 0px 20px;
+  padding-top: 30px;
+  min-width: 320px;
+  a {
+    min-width: 320px;
+    width: 50%;
+    display: block;
+    margin: auto;
+  }
 
   h1 {
     margin-top: 10px;
@@ -17,13 +25,14 @@ const Container = styled.div`
 `;
 
 const View = styled.div`
-  width: calc(100%);
-  height: calc(80% - 20px);
   border-radius: 12px;
   background-color: ${({ theme }) => theme.color.white};
-  margin: 20px 0;
+  margin: 20px auto;
   position: relative;
   overflow: hidden;
+  min-width: 320px;
+  max-width: 440px;
+  height: 250px;
   :hover {
     img {
       display: block;
@@ -35,6 +44,8 @@ const ImageBox = styled.img`
   max-width: 100%;
   height: auto;
   display: block;
+  width: 100%;
+  height: 100%;
 `;
 
 const PlayButton = styled.img`
@@ -46,4 +57,10 @@ const PlayButton = styled.img`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
-export default { Container, View, ImageBox, PlayButton };
+
+const Title = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.l};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+`;
+
+export default { Container, View, ImageBox, PlayButton, Title };

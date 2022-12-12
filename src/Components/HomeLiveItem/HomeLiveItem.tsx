@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import HomeLiveItemStyle from './HomeLiveItem.style';
 import type { HomeLiveItemProps } from './HomeLiveItem.type';
 
-export const HomeLiveItem = ({ imgSrc, productId }: HomeLiveItemProps) => (
+export const HomeLiveItem = ({ imgSrc, productId, title }: HomeLiveItemProps) => (
   <HomeLiveItemStyle.Container>
     <h1>경매 진행 중</h1>
     <NavLink to={`/live/${productId}`}>
@@ -18,5 +18,6 @@ export const HomeLiveItem = ({ imgSrc, productId }: HomeLiveItemProps) => (
         />
       </HomeLiveItemStyle.View>
     </NavLink>
+    <HomeLiveItemStyle.Title>{title}</HomeLiveItemStyle.Title>
   </HomeLiveItemStyle.Container>
 );

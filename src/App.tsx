@@ -18,7 +18,9 @@ import {
   AddressRegisterPage,
   InvoicePage,
 } from '@Pages/.';
-import { PrivatePage } from '@Pages/PrivatePage/PrivatePage';
+import { Adminpage } from '@Pages/AdminPage';
+import { IncomePage } from '@Pages/IncomePage/IncomePage';
+import { PrivatePage } from '@Pages/PrivatePage';
 
 function App() {
   return (
@@ -26,15 +28,15 @@ function App() {
       <Routes>
         <Route
           path='/login'
-          element={<PrivatePage component={LoginPage} />}
+          element={<IncomePage component={LoginPage} />}
         />
         <Route
           path='/register'
-          element={<PrivatePage component={RegisterPage} />}
+          element={<IncomePage component={RegisterPage} />}
         />
         <Route
           path='/live/:productId'
-          element={<LivePage />}
+          element={<PrivatePage component={LivePage} />}
         />
         <Route
           path='/'
@@ -46,7 +48,7 @@ function App() {
           >
             <Route
               path='/my'
-              element={<MyPage />}
+              element={<PrivatePage component={MyPage} />}
             />
             <Route
               path='/'
@@ -66,7 +68,7 @@ function App() {
             />
             <Route
               path='/product-register'
-              element={<ProductReigsterPage />}
+              element={<PrivatePage component={ProductReigsterPage} />}
             />
             <Route
               path='/seller-introduce'
@@ -79,6 +81,10 @@ function App() {
             <Route
               path='/invoice'
               element={<InvoicePage />}
+            />
+            <Route
+              path='/admin'
+              element={<Adminpage />}
             />
           </Route>
         </Route>
